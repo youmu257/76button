@@ -7,43 +7,25 @@
         <a href="https://twitter.com/Chilla_Storia" target="_blank" rel="noopener">Twitter</a>
     </p>
     <h3>Button</h3>
-    <audio ref="subaru-1"
-        class="sound-play"
-        :src="require('@/assets/sound/subaru-1.mp3')"
-        controls
-        preload
-        ></audio>
-    <div class="toggle-subaru-1 paused" @click="play('subaru-1')">播放/暫停1</div>
-    <audio ref="subaru-3"
-        class="sound-play"
-        :src="require('@/assets/sound/subaru-3.mp3')"
-        controls
-        preload
-        ></audio>
-    <div class="toggle-subaru-3 paused" @click="play('subaru-3')">播放/暫停3</div>
+    <VoiceButton
+        voiceFileName="subaru-1"
+        buttonName="語音1" />
+    <VoiceButton
+        voiceFileName="subaru-3"
+        buttonName="語音3" />
     </div>
 </template>
 
 <script>
+import VoiceButton from './VoiceButton.vue'
+
 export default {
-    name: 'VideoPage',
+    name: 'VoicePage',
+    components: {
+        VoiceButton
+    },
     props: {
         msg: String
-    },
-    methods: {
-        play(id) {
-            let audio = this.$refs[id];
-            if (audio.paused && document.querySelector(".toggle-" + id).classList.contains("paused")) {
-                console.log("play it");
-                audio.play();
-                document.querySelector(".toggle-" + id).classList.remove("paused");
-            } else {
-                // TODO: 暫停操作上感覺怪怪的 之後調整
-                console.log("pause it");
-                audio.pause();
-                document.querySelector(".toggle-" + id).classList.add("paused");
-            }
-        }
     }
 }
 </script>
@@ -63,8 +45,5 @@ li {
 }
 a {
     color: #42b983;
-}
-.sound-play {
-    display: none;
 }
 </style>

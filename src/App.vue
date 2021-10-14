@@ -9,7 +9,7 @@ import VoicePage from './components/VoicePage.vue'
 export default {
     name: 'App',
     components: {
-        VoicePage
+        VoicePage,
     }
 }
 </script>
