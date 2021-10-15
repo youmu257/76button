@@ -8,11 +8,11 @@
     </p>
     <h3>Button</h3>
     <VoiceButton
-        voiceFileName="subaru-1"
+        voiceFileName="76-1"
         buttonName="語音1" />
     <VoiceButton
-        voiceFileName="subaru-3"
-        buttonName="語音3" />
+        voiceFileName="76-2"
+        buttonName="語音2" />
     </div>
 </template>
 
