@@ -1,11 +1,7 @@
 <template>
     <div class="hello">
         <h1>{{ msg }}</h1>
-        <p>
-            祈菈的資訊<br>
-            <a href="https://www.youtube.com/c/STORIANarrator%E9%81%8A%E6%88%B2%E5%B7%A5%E4%BD%9C%E5%AE%A4/about" target="_blank" rel="noopener">Youtube</a><br>
-            <a href="https://twitter.com/Chilla_Storia" target="_blank" rel="noopener">Twitter</a>
-        </p>
+        <InformationBlock></InformationBlock>
         <div
             class="background"
             v-for="(item, index) in btnMap"
@@ -23,11 +19,13 @@
 
 <script>
 import VoiceButton from './VoiceButton.vue'
+import InformationBlock from './InformationBlock.vue'
 
 export default {
     name: 'VoicePage',
     components: {
-        VoiceButton
+        VoiceButton,
+        InformationBlock,
     },
     props: {
         msg: String
