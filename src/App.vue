@@ -13,6 +13,14 @@ export default {
     components: {
         VoicePage,
         VoicePageFooter,
-    }
+    },
+    methods:{
+        init: function() {
+            console.log("%c祈菈我婆", "color:red; font-size: 50px");
+        }
+    },
+    beforeMount(){
+        this.init()
+    },
 }
 </script>
