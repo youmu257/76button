@@ -2,6 +2,7 @@
     <div class="hello">
         <h1>{{ msg }}</h1>
         <InformationBlock></InformationBlock>
+        <hr>
         <div
             class="background"
             v-for="(item, index) in btnMap"
