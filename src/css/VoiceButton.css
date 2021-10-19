@@ -41,3 +41,11 @@
 	position:relative;
 	top:1px;
 }
+
+.btn-secondary {
+    background-color: #25B7D3 !important;
+}
+
+.panel {
+  display: inline-block;
+}

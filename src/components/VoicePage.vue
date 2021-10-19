@@ -12,7 +12,8 @@
                 v-for="(btnData, index) in item.btnList"
                 :key="index"
                 :voiceFileName=btnData.fileName
-                :buttonName=btnData.btnName>
+                :buttonName=btnData.btnName
+                :sourceUrl=btnData.sourceUrl>
             </VoiceButton>
         </div>
     </div>
@@ -39,14 +40,16 @@ export default {
                     btnList: [
                         {
                             fileName: "76-1",
-                            btnName: "起司我了"
+                            btnName: "起司我了",
+                            sourceUrl: "https://youtu.be/XDPvn0oDuEI?t=1"
                         },
                         {
                             fileName: "76-2",
-                            btnName: "起司我了2"
+                            btnName: "起司我了2",
+                            sourceUrl: "https://youtu.be/XDPvn0oDuEI?t=1"
                         }
                     ]
-                },
+                }
             ]
         }
     },
