@@ -22,6 +22,7 @@
 <script>
 import VoiceButton from './VoiceButton.vue'
 import InformationBlock from './InformationBlock.vue'
+import btnList from '../assets/button-list.json'
 
 export default {
     name: 'VoicePage',
@@ -34,23 +35,7 @@ export default {
     },
     data() {
         return {
-            btnMap: [
-                {
-                    category: "祈哥",
-                    btnList: [
-                        {
-                            fileName: "76-1",
-                            btnName: "起司我了",
-                            sourceUrl: "https://youtu.be/XDPvn0oDuEI?t=1"
-                        },
-                        {
-                            fileName: "76-2",
-                            btnName: "起司我了2",
-                            sourceUrl: "https://youtu.be/XDPvn0oDuEI?t=1"
-                        }
-                    ]
-                }
-            ]
+            btnMap: btnList
         }
     },
 }
