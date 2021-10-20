@@ -1,5 +1,5 @@
 <template>
-    <footer class="fixed-bottom">
+    <footer class="footer">
         <div class="footer-background">
             <div>
                 <a
@@ -18,6 +18,7 @@
                     </svg>
                 </a>
                 <div>本站為粉絲純做推廣用，與 STORIA 沒有任何關係</div>
+                <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
             </div>
         </div>
     </footer>
