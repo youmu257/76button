@@ -47,7 +47,7 @@ export default {
     methods: {
         play() {
             let audio = this.$refs[this.voiceFileName];
-            audio.currentTime=0;
+            audio.load();
             audio.play();
         }
     }
