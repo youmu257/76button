@@ -1,5 +1,5 @@
 <template>
-    <div class="background1">
+    <div class="background">
         <h3>祈菈的資訊</h3>
         <div class="container">
             <div class="row">

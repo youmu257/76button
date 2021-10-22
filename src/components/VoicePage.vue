@@ -8,7 +8,7 @@
         <hr>
         <div
             class="background"
-            v-for="(item, index) in btnMap"
+            v-for="(item, index) in btnDataList"
             :key="index">
             <h3>{{ item.category }}</h3>
             <VoiceButton
@@ -38,7 +38,7 @@ export default {
     },
     data() {
         return {
-            btnMap: btnList
+            btnDataList: btnList
         }
     },
 }

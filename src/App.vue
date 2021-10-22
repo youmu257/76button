@@ -1,6 +1,5 @@
 <template>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <VoicePage msg="祈菈‧貝希毛絲的語音按鈕"/>
+    <VoicePage :msg=getTitle() />
     <VoicePageFooter/>
 </template>
 
@@ -16,9 +15,9 @@ export default {
     },
     data() {
         return {
-            ChinchillaTitle: "祈菈‧貝希毛絲的語音按鈕",
-            ChinchillaContent: "純粹推廣可愛帥氣迷人性感的遜炮毛絲鼠用",
-            ChinchillaPicture: "https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096"
+            chillaTitle: "祈菈‧貝希毛絲的語音按鈕",
+            chillaContent: "純粹推廣可愛帥氣迷人性感的遜炮毛絲鼠用",
+            chillaPicture: "https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096"
         }
     },
     head() {
@@ -56,13 +55,13 @@ export default {
             console.log("%c祈菈我婆", "color:red; font-size: 50px");
         },
         getTitle: function() {
-            return this.ChinchillaTitle;
+            return this.chillaTitle;
         },
         getContent: function() {
-            return this.ChinchillaContent;
+            return this.chillaContent;
         },
         getPicture: function() {
-            return this.ChinchillaPicture;
+            return this.chillaPicture;
         }
     },
     beforeMount() {
