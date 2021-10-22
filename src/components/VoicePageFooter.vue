@@ -19,6 +19,7 @@
                 </a>
                 <div>本站為粉絲純做推廣用，與 STORIA 沒有任何關係</div>
                 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                <div>感謝 Cow Lo 提供<a href="https://twitter.com/ud83xji4g/status/1444297977388945411?s=21">圖片素材</a></div>
             </div>
         </div>
     </footer>

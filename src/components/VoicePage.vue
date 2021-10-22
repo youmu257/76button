@@ -1,6 +1,9 @@
 <template>
     <div class="hello">
         <h1>{{ msg }}</h1>
+        <img
+            height="200"
+            src="https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096">
         <InformationBlock></InformationBlock>
         <hr>
         <div
