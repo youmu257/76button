@@ -12,7 +12,7 @@
         <div class="panel-body">
             <a 
                 href="#"
-                :class="'paused voiceButton toggle-' + voiceFileName"
+                :class="'voiceButton toggle-' + voiceFileName"
                 pauseStatus
                 @click="play()">{{ buttonName }}</a>
         </div>
@@ -47,16 +47,8 @@ export default {
     methods: {
         play() {
             let audio = this.$refs[this.voiceFileName];
-            let classlist = document.querySelector(".toggle-" + this.voiceFileName).classList;
-            if (audio.paused && classlist.contains("paused")) {
-                console.log("play it");
-                audio.play();
-                classlist.remove("paused");
-            } else {
-                console.log("pause it");
-                audio.pause();
-                classlist.add("paused");
-            }
+            audio.currentTime=0;
+            audio.play();
         }
     }
 }
