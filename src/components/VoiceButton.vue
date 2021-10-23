@@ -10,11 +10,12 @@
                 ></audio>
         </div>
         <div class="panel-body">
-            <a 
-                href="#"
+            <button
                 :class="'voiceButton toggle-' + voiceFileName"
                 pauseStatus
-                @click="play()">{{ buttonName }}</a>
+                @click="play()">
+                {{ buttonName }}
+            </button>
         </div>
         <div class="panel-footer">
             <a
