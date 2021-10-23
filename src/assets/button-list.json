@@ -26,6 +26,56 @@
                 "fileName": "一定是後面那兩個帶雖",
                 "btnName": "一定是後面那兩個帶雖(菈米亞)",
                 "sourceUrl": "https://www.youtube.com/watch?v=-pl6s56d7Cs&t=5525s"
+            },
+            {
+                "fileName": "好累喔",
+                "btnName": "好累喔",
+                "sourceUrl": "https://youtu.be/PvxKAnCaMq8?t=4250"
+            },
+            {
+                "fileName": "這真的只是寬深蹲",
+                "btnName": "這真的只是寬深蹲(音量增幅)",
+                "sourceUrl": "https://www.youtube.com/watch?v=PvxKAnCaMq8&t=2755s"
+            },
+            {
+                "fileName": "你們為什麼不提醒我",
+                "btnName": "你們為什麼不提醒我",
+                "sourceUrl": "https://www.youtube.com/watch?v=PvxKAnCaMq8&t=8543s"
+            },
+            {
+                "fileName": "阿斯",
+                "btnName": "阿斯",
+                "sourceUrl": "https://www.youtube.com/watch?v=jpFVLOU23wY&t=1824s"
+            },
+            {
+                "fileName": "單槓蛋蛋蛋",
+                "btnName": "單槓蛋蛋蛋",
+                "sourceUrl": "https://www.youtube.com/watch?v=IhTPaZoYw2s&t=23483s"
+            },
+            {
+                "fileName": "我愛你們",
+                "btnName": "我愛你們",
+                "sourceUrl": "https://www.youtube.com/watch?v=IhTPaZoYw2s&t=18713s"
+            },
+            {
+                "fileName": "RRRRRR",
+                "btnName": "阿阿阿阿阿阿阿",
+                "sourceUrl": "https://www.youtube.com/watch?v=IhTPaZoYw2s&t=3996s"
+            },
+            {
+                "fileName": "笑什麼笑",
+                "btnName": "笑什麼笑",
+                "sourceUrl": "https://www.youtube.com/watch?v=jpFVLOU23wY&t=5299s"
+            },
+            {
+                "fileName": "今天想買什麼全部都由祈菈買單",
+                "btnName": "今天想買什麼全部都由祈菈買單",
+                "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=3524s"
+            },
+            {
+                "fileName": "你這個笨蛋",
+                "btnName": "你這個笨蛋(哭)",
+                "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=4283s"
             }
         ]
     },
@@ -41,16 +91,51 @@
                 "fileName": "我很可愛請給我錢",
                 "btnName": "我很可愛請給我錢",
                 "sourceUrl": "https://youtu.be/d-NaLEl4H_Q?t=12994"
+            },
+            {
+                "fileName": "就衝著我來吧",
+                "btnName": "就衝著我來吧",
+                "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=2849s"
             }
         ]
     },
     {
-        "category": "760",
+        "category": "姐姐聲線",
+        "btnList": [
+            {
+                "fileName": "我現在就要把他吃掉",
+                "btnName": "我現在就要把他吃掉",
+                "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=1910s"
+            },
+            {
+                "fileName": "女僕祈菈道晚安日文",
+                "btnName": "女僕祈菈道晚安(日文)",
+                "sourceUrl": "https://www.youtube.com/watch?v=IhTPaZoYw2s&t=23601s"
+            }
+        ]
+    },
+    {
+        "category": "祈哥",
+        "btnList": [
+            {
+                "fileName": "我此生無怨無悔",
+                "btnName": "我此生無怨無悔",
+                "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=3240s"
+            }
+        ]
+    },
+    {
+        "category": "760(肥宅音)",
         "btnList": [
             {
                 "fileName": "我也想去女僕咖啡廳",
                 "btnName": "我也想去女僕咖啡廳",
                 "sourceUrl": "https://youtu.be/d-NaLEl4H_Q?t=10360"
+            },
+            {
+                "fileName": "我才不是勞鼠",
+                "btnName": "我才不是勞鼠",
+                "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=3642s"
             }
         ]
     }
