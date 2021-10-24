@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3"></div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-4">
                     <a
                         href="https://www.youtube.com/c/STORIANarrator%E9%81%8A%E6%88%B2%E5%B7%A5%E4%BD%9C%E5%AE%A4/about"
                         target="_blank"
@@ -20,7 +20,7 @@
                         </svg>
                     </a>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-4">
                     <a
                         href="https://twitter.com/Chilla_Storia"
                         target="_blank"
@@ -36,7 +36,7 @@
                         </svg>
                     </a>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-4">
                     <a
                         href="https://discord.gg/Y4fp3k2"
                         target="_blank"
