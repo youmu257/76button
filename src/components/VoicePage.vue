@@ -13,6 +13,7 @@
             <h3>{{ item.category }}</h3>
             <VoiceButton
                 v-for="(btnData, index) in item.btnList"
+                v-on:displayOther = 'displayOtherVoice'
                 :key="index"
                 :voiceFileName=btnData.fileName
                 :buttonName=btnData.btnName
@@ -34,11 +35,21 @@ export default {
         InformationBlock,
     },
     props: {
-        msg: String
+        msg: String,
     },
     data() {
         return {
-            btnDataList: btnList
+            btnDataList: btnList,
+            playNow: null,
+        }
+    },
+     methods:{
+        displayOtherVoice(playVoice) {
+            if (this.playNow != null) {
+                // 停止播放上一個聲音
+                this.playNow.pause();
+            }
+            this.playNow = playVoice;
         }
     },
 }
