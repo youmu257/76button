@@ -38,19 +38,9 @@
                 "sourceUrl": "https://www.youtube.com/watch?v=PvxKAnCaMq8&t=8543s"
             },
             {
-                "fileName": "阿斯",
-                "btnName": "阿斯",
-                "sourceUrl": "https://www.youtube.com/watch?v=jpFVLOU23wY&t=1824s"
-            },
-            {
                 "fileName": "單槓蛋蛋蛋",
                 "btnName": "單槓蛋蛋蛋",
                 "sourceUrl": "https://www.youtube.com/watch?v=IhTPaZoYw2s&t=23483s"
-            },
-            {
-                "fileName": "RRRRRR",
-                "btnName": "阿阿阿阿阿阿阿",
-                "sourceUrl": "https://www.youtube.com/watch?v=IhTPaZoYw2s&t=3996s"
             },
             {
                 "fileName": "笑什麼笑",
@@ -61,11 +51,6 @@
                 "fileName": "你這個笨蛋",
                 "btnName": "你這個笨蛋(哭)",
                 "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=4283s"
-            },
-            {
-                "fileName": "嗚欸",
-                "btnName": "嗚欸",
-                "sourceUrl": "https://www.youtube.com/watch?v=IypzP3FMRo8&t=5972s"
             },
             {
                 "fileName": "讓我看看",
@@ -88,9 +73,14 @@
                 "sourceUrl": "https://youtu.be/TpRHZj0Or5M?t=7566"
             },
             {
-                "fileName": "奸笑",
-                "btnName": "嘻嘻嘻嘻 (奸笑)",
-                "sourceUrl": "https://www.youtube.com/watch?v=IypzP3FMRo8&t=14046s"
+                "fileName": "起司我了",
+                "btnName": "起司我了",
+                "sourceUrl": "https://youtu.be/-qcXysiiCpY?t=2726"
+            },
+            {
+                "fileName": "頭殼壞去",
+                "btnName": "頭殼壞去",
+                "sourceUrl": "https://youtu.be/-qcXysiiCpY?t=19968"
             }
         ]
     },
@@ -176,6 +166,56 @@
                 "fileName": "病嬌笑",
                 "btnName": "病嬌笑",
                 "sourceUrl": "https://youtu.be/ULNi3gfe6ZM?t=9564"
+            },
+            {
+                "fileName": "當初就跟你說要戴你看現在兩條線了",
+                "btnName": "當初就跟你說要戴，你看現在兩條線了",
+                "sourceUrl": "https://youtu.be/ULNi3gfe6ZM?t=13091"
+            }
+        ]
+    },
+    {
+        "category": "祈特音效",
+        "btnList": [
+            {
+                "fileName": "阿斯",
+                "btnName": "阿斯",
+                "sourceUrl": "https://www.youtube.com/watch?v=jpFVLOU23wY&t=1824s"
+            },
+            {
+                "fileName": "RRRRRR",
+                "btnName": "阿阿阿阿阿阿阿",
+                "sourceUrl": "https://www.youtube.com/watch?v=IhTPaZoYw2s&t=3996s"
+            },
+            {
+                "fileName": "奸笑",
+                "btnName": "嘻嘻嘻嘻 (奸笑)",
+                "sourceUrl": "https://www.youtube.com/watch?v=IypzP3FMRo8&t=14046s"
+            },
+            {
+                "fileName": "嗚欸",
+                "btnName": "嗚欸",
+                "sourceUrl": "https://www.youtube.com/watch?v=IypzP3FMRo8&t=5972s"
+            },
+            {
+                "fileName": "吃漢堡音效",
+                "btnName": "吃漢堡音效",
+                "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=1913s"
+            },
+            {
+                "fileName": "DeDeDeDeDe",
+                "btnName": "De De De De De",
+                "sourceUrl": "https://youtu.be/x6XIyoA85lc?t=10498"
+            },
+            {
+                "fileName": "ㄑㄑㄑㄑㄑ",
+                "btnName": "ㄑㄑㄑㄑㄑ",
+                "sourceUrl": "https://youtu.be/-qcXysiiCpY?t=2537"
+            },
+            {
+                "fileName": "生氣的怒吼",
+                "btnName": "生氣的怒吼",
+                "sourceUrl": "https://youtu.be/-qcXysiiCpY?t=2721"
             }
         ]
     },
@@ -201,6 +241,11 @@
                 "fileName": "我才不是勞鼠",
                 "btnName": "我才不是勞鼠",
                 "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=3642s"
+            },
+            {
+                "fileName": "歐泥醬",
+                "btnName": "歐....歐泥醬",
+                "sourceUrl": "https://youtu.be/-qcXysiiCpY?t=5736"
             }
         ]
     }
