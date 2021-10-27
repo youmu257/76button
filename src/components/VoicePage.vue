@@ -6,6 +6,10 @@
             src="https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096">
         <InformationBlock></InformationBlock>
         <hr>
+        <b>播放規則</b><br>
+        語音不重疊播放，播放時再次點擊語音按鈕(同一顆或其他顆)會蓋掉原本的聲音<br>
+        另外<b>空白鍵</b>可以停止播放<br>
+        <hr>
         <div
             class="background"
             v-for="(item, index) in btnDataList"
@@ -37,6 +41,15 @@ export default {
     props: {
         msg: String,
     },
+    created() {
+        var self = this;
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space') {
+                self.stopPlay();
+                e.preventDefault();
+            }
+        });
+    },
     data() {
         return {
             btnDataList: btnList,
@@ -45,12 +58,15 @@ export default {
     },
      methods:{
         displayOtherVoice(playVoice) {
+            this.stopPlay();
+            this.playNow = playVoice;
+        },
+        stopPlay() {
             if (this.playNow != null) {
                 // 停止播放上一個聲音
                 this.playNow.pause();
             }
-            this.playNow = playVoice;
-        }
+        },
     },
 }
 </script>
