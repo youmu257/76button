@@ -58,8 +58,8 @@
                 "sourceUrl": "https://youtu.be/vRXNyzjNbSw?t=1153"
             },
             {
-                "fileName": "好公喔",
-                "btnName": "好公喔",
+                "fileName": "好攻喔",
+                "btnName": "好攻喔",
                 "sourceUrl": "https://www.youtube.com/watch?v=vRXNyzjNbSw&t=12660s"
             },
             {
@@ -99,7 +99,7 @@
             },
             {
                 "fileName": "這真的只是寬深蹲",
-                "btnName": "這真的只是寬深蹲(音量增幅)",
+                "btnName": "這真的只是寬深蹲(音量增幅 建議戴耳機)",
                 "sourceUrl": "https://www.youtube.com/watch?v=PvxKAnCaMq8&t=2755s"
             },
             {
@@ -214,8 +214,13 @@
             },
             {
                 "fileName": "生氣的怒吼",
-                "btnName": "生氣的怒吼",
+                "btnName": "生氣的怒吼(爆音注意)",
                 "sourceUrl": "https://youtu.be/-qcXysiiCpY?t=2721"
+            },
+            {
+                "fileName": "麻RRRR",
+                "btnName": "麻RRRR",
+                "sourceUrl": "https://youtu.be/-pl6s56d7Cs?t=10993"
             }
         ]
     },
