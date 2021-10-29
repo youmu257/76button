@@ -56,4 +56,4 @@ export default {
     }
 }
 </script>
-<style scoped src="../css/VoiceButton.css"></style>
+<style scoped src="src/css/VoiceButton.css"></style>

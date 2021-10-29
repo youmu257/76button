@@ -1,41 +1,52 @@
 <template>
     <div class="hello">
-        <h1>{{ msg }}</h1>
+      <div class="d-flex align-items-center justify-content-center container">
         <img
+            class="img-circle"
             height="200"
             src="https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096">
-        <InformationBlock></InformationBlock>
+        <div>
+          <p class="fs-1">{{ msg }}</p>
+          <InformationBlock></InformationBlock>
+        </div>
+      </div>
         <hr>
         <b>播放規則</b><br>
         語音不重疊播放，播放時再次點擊語音按鈕(同一顆或其他顆)會蓋掉原本的聲音<br>
         另外<b>空白鍵</b>可以停止播放<br>
         <hr>
+      <div class="container mb-5">
         <div
-            class="background"
+            class="d-flex flex-column background"
             v-for="(item, index) in btnDataList"
             :key="index">
-            <h3>{{ item.category }}</h3>
-            <VoiceButton
+          <p class="fs-3 mr-auto">{{ item.category }}</p>
+          <div class="d-flex flex-wrap voice-button-block">
+            <Button1
                 v-for="(btnData, index) in item.btnList"
                 v-on:displayOther = 'displayOtherVoice'
                 :key="index"
                 :voiceFileName=btnData.fileName
                 :buttonName=btnData.btnName
                 :sourceUrl=btnData.sourceUrl>
-            </VoiceButton>
+            </Button1>
+          </div>
+          <hr v-if="index !== btnDataList.length - 1">
         </div>
+      </div>
+
     </div>
 </template>
 
 <script>
-import VoiceButton from './VoiceButton.vue'
+import Button1 from './buttons/Button1.vue'
 import InformationBlock from './InformationBlock.vue'
 import btnList from '../assets/button-list.json'
 
 export default {
     name: 'VoicePage',
     components: {
-        VoiceButton,
+      Button1,
         InformationBlock,
     },
     props: {
@@ -71,3 +82,13 @@ export default {
 }
 </script>
 <style scoped src="../css/VoiceButton.css"></style>
+<style>
+.img-circle{
+  border-radius: 50%;
+}
+.voice-button-block {
+  /*border: 1px solid rgba(0,0,0,0.1);*/
+  /*border-top-left-radius: .25rem;*/
+  /*border-top-right-radius: .25rem;*/
+}
+</style>
