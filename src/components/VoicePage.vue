@@ -22,14 +22,14 @@
             :key="index">
           <p class="fs-3 mr-auto">{{ item.category }}</p>
           <div class="d-flex flex-wrap voice-button-block">
-            <Button1
+            <VoiceButton1
                 v-for="(btnData, index) in item.btnList"
                 v-on:displayOther = 'displayOtherVoice'
                 :key="index"
                 :voiceFileName=btnData.fileName
                 :buttonName=btnData.btnName
                 :sourceUrl=btnData.sourceUrl>
-            </Button1>
+            </VoiceButton1>
           </div>
           <hr v-if="index !== btnDataList.length - 1">
         </div>
@@ -39,14 +39,14 @@
 </template>
 
 <script>
-import Button1 from './buttons/Button1.vue'
+import VoiceButton1 from './buttons/VoiceButton1.vue'
 import InformationBlock from './InformationBlock.vue'
 import btnList from '../assets/button-list.json'
 
 export default {
     name: 'VoicePage',
     components: {
-      Button1,
+        VoiceButton1,
         InformationBlock,
     },
     props: {

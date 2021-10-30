@@ -28,7 +28,7 @@
 </template>
 <script>
 export default {
-  name: 'Button1',
+  name: 'VoiceButton1',
   props: {
     voiceFileName: String,
     buttonName: String,
