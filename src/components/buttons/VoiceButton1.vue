@@ -45,29 +45,4 @@ export default {
   }
 }
 </script>
-<style scoped src="../../css/VoiceButton.css"></style>
-<style lang="css" scoped>
-.cursor-pointer {
-  cursor: pointer;
-}
-.icon {
-  padding: 3px;
-  padding-right: 3px;
-}
-.audio-play-icon {
-  color: rgba(90, 82, 88, 0.76);
-}
-.audio-play-icon:hover {
-  color: dimgrey;
-}
-.youtube-icon {
-  color: brown;
-}
-.youtube-icon:hover {
-  color: crimson;
-}
-
-.fs-6 {
-  margin-bottom: 0rem;
-}
-</style>
+<style scoped src="../../css/VoiceButton1.css"></style>

@@ -56,6 +56,14 @@
 	padding-right: 3px;
 }
 
+.audio-play-icon {
+	color: rgba(90, 82, 88, 0.76);
+}
+
+.audio-play-icon:hover {
+	color: dimgrey;
+}
+
 .youtube-icon {
 	color: brown;
 }
