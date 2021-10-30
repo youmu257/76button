@@ -10,6 +10,16 @@
           <InformationBlock></InformationBlock>
         </div>
       </div>
+        <iframe
+            v-bind:class="{ hidden: !f12push }"
+            ref="rick-roll"
+            width="560"
+            height="315"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
         <hr>
         <b>播放規則</b><br>
         語音不重疊播放，播放時再次點擊語音按鈕(同一顆或其他顆)會蓋掉原本的聲音<br>
@@ -58,6 +68,10 @@ export default {
             if (e.code === 'Space') {
                 self.stopPlay();
                 e.preventDefault();
+            } else if (self.f12push == false && e.code === 'F12') {
+                window.scrollTo(0,0);
+                self.f12push = true;
+                self.$refs["rick-roll"].src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&&mute=1&rel=0";
             }
         });
     },
@@ -65,6 +79,7 @@ export default {
         return {
             btnDataList: btnList,
             playNow: null,
+            f12push: false,
         }
     },
      methods:{
