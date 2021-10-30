@@ -1,12 +1,12 @@
 <template>
     <div class="hello">
-      <div class="d-flex align-items-center justify-content-center container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center container">
         <img
             class="img-circle"
             height="200"
             src="https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096">
         <div>
-          <p class="fs-1">{{ msg }}</p>
+          <p class="fs-1 py-1">{{ msg }}</p>
           <InformationBlock></InformationBlock>
         </div>
       </div>
@@ -20,8 +20,8 @@
             class="d-flex flex-column background"
             v-for="(item, index) in btnDataList"
             :key="index">
-          <p class="fs-3 mr-auto">{{ item.category }}</p>
-          <div class="d-flex flex-wrap voice-button-block">
+          <p class="fs-3">{{ item.category }}</p>
+          <div class="d-flex flex-wrap justify-content-center">
             <VoiceButton2
                 v-for="(btnData, index) in item.btnList"
                 v-on:displayOther = 'displayOtherVoice'
@@ -85,10 +85,5 @@ export default {
 <style>
 .img-circle{
   border-radius: 50%;
-}
-.voice-button-block {
-  /*border: 1px solid rgba(0,0,0,0.1);*/
-  /*border-top-left-radius: .25rem;*/
-  /*border-top-right-radius: .25rem;*/
 }
 </style>
