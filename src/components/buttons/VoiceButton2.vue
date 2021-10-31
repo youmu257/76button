@@ -13,7 +13,7 @@
       <button
         type="button"
         class="btn btn-danger"
-        :class="'cursor-pointer toggle-' + voiceFileName"
+        :class="'toggle-' + voiceFileName"
         pauseStatus
         title="播放"
         @click="play()">
@@ -32,7 +32,7 @@
 </template>
 <script>
 export default {
-  name: 'VoiceButton1',
+  name: 'VoiceButton2',
   props: {
     voiceFileName: String,
     buttonName: String,
