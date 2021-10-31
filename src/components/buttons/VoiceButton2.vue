@@ -7,25 +7,31 @@
         :src="require('@/assets/sound/' + voiceFileName + '.mp3')"
         controls
         preload
-      ></audio>
+      />
     </div>
-    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+    <div
+      class="btn-group btn-group-sm"
+      role="group"
+      aria-label="Basic outlined example"
+    >
       <button
         type="button"
         class="btn btn-danger"
         :class="'cursor-pointer toggle-' + voiceFileName"
         pauseStatus
         title="播放"
-        @click="play()">
+        @click="play()"
+      >
         {{ buttonName }}
-        <i class="bi bi-volume-up-fill icon"></i>
+        <i class="bi bi-volume-up-fill icon" />
       </button>
       <a
         class="btn btn-outline-danger"
         :href="sourceUrl"
         target="_blank"
-        title="來源">
-        <i class="bi bi-youtube icon youtube-icon"></i>
+        title="來源"
+      >
+        <i class="bi bi-youtube icon youtube-icon" />
       </a>
     </div>
   </div>
@@ -34,17 +40,26 @@
 export default {
   name: 'VoiceButton1',
   props: {
-    voiceFileName: String,
-    buttonName: String,
-    sourceUrl: String,
+    voiceFileName: {
+      type: String,
+      default: ''
+    },
+    buttonName:  {
+      type: String,
+      default: ''
+    },
+    sourceUrl:  {
+      type: String,
+      default: ''
+    },
   },
   methods: {
     play() {
-      let audio = this.$refs[this.voiceFileName];
+      let audio = this.$refs[this.voiceFileName]
       // 傳給 VoicePage 用來停止撥放上一個聲音
-      this.$emit('displayOther', audio);
-      audio.load();
-      audio.play();
+      this.$emit('displayOther', audio)
+      audio.load()
+      audio.play()
     }
   }
 }
