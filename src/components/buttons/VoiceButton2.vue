@@ -31,7 +31,7 @@
         target="_blank"
         title="來源"
       >
-        <i class="bi bi-youtube icon youtube-icon" />
+        <i class="bi bi-youtube" />
       </a>
     </div>
   </div>
