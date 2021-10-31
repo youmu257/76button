@@ -29,6 +29,7 @@
     background-color: rgba(238, 189, 164, 0.4);
     border-color: rgba(238, 189, 164, 0.2);
     color: #636163;
+    font-weight: bold;
 }
 
 .btn-danger:hover {
