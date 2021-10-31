@@ -18,6 +18,11 @@
     git commit -m 'deploy'
     git push -f https://github.com/youmu257/76button.git master:gh-pages
     ```
+* Coding style
+    * 使用 Eslint 統一 style
+    ```
+    npm run lint
+    ```
 # To list
 * 重疊播放的開啟按鈕
 * 隨機播放按鈕
