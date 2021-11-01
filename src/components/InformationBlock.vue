@@ -1,7 +1,7 @@
 <template>
   <div class="info-block background">
     <p class="fs-3">
-      祈菈的資訊
+      {{ title }}
     </p>
     <div class="container">
       <div class="d-flex flex-wrap justify-content-center">
@@ -39,7 +39,13 @@
 <script>
 
 export default {
-  name: 'InformationBlock'
+  name: 'InformationBlock',
+  props: {
+    title:  {
+      type: String,
+      default: ''
+    },
+  },
 }
 </script>
 <style>

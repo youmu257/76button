@@ -10,7 +10,7 @@
         <p class="fs-1 py-1">
           {{ msg }}
         </p>
-        <InformationBlock />
+        <InformationBlock :title="getInfoBlockTitle()" />
       </div>
     </div>
     <iframe
@@ -75,6 +75,7 @@ export default {
       btnDataList: btnList,
       playNow: null,
       f12push: false,
+      infoBlockTitle: '祈菈的資訊',
     }
   },
   created() {
@@ -100,6 +101,9 @@ export default {
         // 停止播放上一個聲音
         this.playNow.pause()
       }
+    },
+    getInfoBlockTitle() {
+      return this.infoBlockTitle
     },
   },
 }
