@@ -32,10 +32,11 @@
     font-weight: bold;
 }
 
-.btn-danger:hover {
+.btn-danger:hover,
+.btn-outline-danger:hover {
     background-color: #CF3E45;
     border-color: #CF3E45;
-    opacity: 100%;
+    color: #FFFFFF;
 }
 
 .btn-outline-danger {
