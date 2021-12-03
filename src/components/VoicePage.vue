@@ -27,6 +27,10 @@
     <b>播放規則</b><br>
     語音不重疊播放，播放時再次點擊語音按鈕(同一顆或其他顆)會蓋掉原本的聲音<br>
     另外<b>空白鍵</b>可以停止播放<br>
+    <input
+      type="checkbox"
+      @change="switchOverlapPlayback()"
+    >勾選開啟重複播放
     <hr>
     <div class="container mb-5">
       <div
@@ -74,8 +78,10 @@ export default {
     return {
       btnDataList: btnList,
       playNow: null,
+      playNowList: [],
       f12push: false,
       infoBlockTitle: '祈菈的資訊',
+      overlapPlayback: false,
     }
   },
   created() {
@@ -93,17 +99,39 @@ export default {
   },
   methods:{
     displayOtherVoice(playVoice) {
-      this.stopPlay()
-      this.playNow = playVoice
+      if (this.getOverlapPlaybackStatus()) {
+        this.playNowList.push(playVoice)
+      } else {
+        this.stopPlay()
+        this.playNow = playVoice
+      }
     },
     stopPlay() {
-      if (this.playNow != null) {
+      if (this.getOverlapPlaybackStatus()) {
+        this.stopPlayList()
+      } else if (this.playNow != null) {
+        this.stopPlayList()
         // 停止播放上一個聲音
         this.playNow.pause()
       }
     },
+    stopPlayList() {
+      if (this.playNowList.length == 0) {
+        return
+      }
+      this.playNowList.forEach(function(item) {
+        item.pause()
+      })
+      this.playNowList = []
+    },
     getInfoBlockTitle() {
       return this.infoBlockTitle
+    },
+    getOverlapPlaybackStatus() {
+      return this.overlapPlayback
+    },
+    switchOverlapPlayback() {
+      this.overlapPlayback = !this.overlapPlayback
     },
   },
 }
