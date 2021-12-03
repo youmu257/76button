@@ -35,7 +35,7 @@
       <input
         type="checkbox"
         :checked="getOverlapPlaybackStatus()"
-      >勾選開啟重複播放
+      >勾選開啟重疊播放
     </button>
     <hr>
     <div class="container mb-5">
