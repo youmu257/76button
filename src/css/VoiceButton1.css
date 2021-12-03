@@ -1,0 +1,26 @@
+
+/* audio style */
+.sound-play {
+    display: none;
+}
+
+.panel {
+  display: inline-block;
+}
+
+.icon {
+	padding: 3px;
+	padding-right: 3px;
+}
+
+.youtube-icon {
+	color: brown;
+}
+
+.youtube-icon:hover {
+	color: crimson;
+}
+
+.fs-6 {
+	margin-bottom: 0rem;
+}

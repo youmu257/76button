@@ -1,0 +1,45 @@
+/* audio style */
+.sound-play {
+    display: none;
+}
+
+.panel {
+  display: inline-block;
+}
+
+
+.icon {
+	padding: 3px;
+	padding-right: 3px;
+}
+
+.youtube-icon {
+    /*color: #FAF7F7;*/
+}
+
+.youtube-icon:hover {
+	/*color: white;*/
+}
+
+.fs-6 {
+	margin-bottom: 0rem;
+}
+
+.btn-danger {
+    background-color: rgba(238, 189, 164, 0.4);
+    border-color: rgba(238, 189, 164, 0.2);
+    color: #636163;
+    font-weight: bold;
+}
+
+.btn-danger:hover,
+.btn-outline-danger:hover {
+    background-color: #CF3E45;
+    border-color: #CF3E45;
+    color: #FFFFFF;
+}
+
+.btn-outline-danger {
+    background-color: #FAF7F7;
+    border-color: #FAF7F7;
+}
