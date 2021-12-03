@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     play() {
-      let audio = this.$refs[this.voiceFileName]
+      let audio = this.$refs[this.voiceFileName].cloneNode()
       // 傳給 VoicePage 用來停止撥放上一個聲音
       this.$emit('displayOther', audio)
       audio.load()
