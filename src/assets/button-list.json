@@ -181,6 +181,11 @@
                 "fileName": "當初就跟你說要戴你看現在兩條線了",
                 "btnName": "當初就跟你說要戴，你看現在兩條線了",
                 "sourceUrl": "https://youtu.be/ULNi3gfe6ZM?t=13091"
+            },
+            {
+                "fileName": "arara",
+                "btnName": "arara",
+                "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=7322"
             }
         ]
     },
@@ -236,7 +241,27 @@
               "fileName": "阿勒查查查",
               "btnName": "阿勒查查查",
               "sourceUrl": "https://youtu.be/KCXvFgsylB0?t=4089"
-          }
+            },
+            {
+                "fileName": "嗚嗚嗚嗚",
+                "btnName": "嗚嗚嗚嗚",
+                "sourceUrl": "https://youtu.be/SJKuSTZEtpk?t=5126"
+            },
+            {
+                "fileName": "哭哭",
+                "btnName": "哭哭",
+                "sourceUrl": "https://youtu.be/SJKuSTZEtpk?t=1458"
+            },
+            {
+                "fileName": "嘔吐音效",
+                "btnName": "(肉桂蘋果)嘔吐音效",
+                "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=1367"
+            },
+            {
+                "fileName": "獨角獸的叫聲",
+                "btnName": "獨角獸的叫聲",
+                "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=5986"
+            }
         ]
     },
     {
@@ -266,6 +291,11 @@
                 "fileName": "歐泥醬",
                 "btnName": "歐....歐泥醬",
                 "sourceUrl": "https://youtu.be/-qcXysiiCpY?t=5736"
+            },
+            {
+                "fileName": "大哥哥最喜歡你了，笨蛋，變態",
+                "btnName": "大哥哥最喜歡你了，笨蛋，變態",
+                "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=5769"
             }
         ]
     }
