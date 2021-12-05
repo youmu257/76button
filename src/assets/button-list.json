@@ -126,6 +126,11 @@
                 "fileName": "你們喜歡我我也喜歡你們",
                 "btnName": "你們喜歡我 我也喜歡你們 晚安",
                 "sourceUrl": "https://youtu.be/zKilNR7TSH8?t=10775"
+            },
+            {
+                "fileName": "可以色色",
+                "btnName": "可以色色",
+                "sourceUrl": "https://youtu.be/-qcXysiiCpY?t=2897"
             }
         ]
     },
@@ -148,10 +153,15 @@
                 "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=2849s"
             },
             {
-              "fileName": "moe moe kyun",
-              "btnName": "moe moe kyun",
-              "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=3573"
-          }
+                "fileName": "moe moe kyun",
+                "btnName": "moe moe kyun",
+                "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=3573"
+            },
+            {
+                "fileName": "衝蝦菈",
+                "btnName": "衝蝦菈",
+                "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=6089"
+            }
         ]
     },
     {
@@ -261,6 +271,21 @@
                 "fileName": "獨角獸的叫聲",
                 "btnName": "獨角獸的叫聲",
                 "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=5986"
+            },
+            {
+              "fileName": "不行NO",
+              "btnName": "不行NO",
+              "sourceUrl": "https://youtu.be/ukCD2iZl8oI?t=12812"
+            }
+        ]
+    },
+    {
+        "category": "笑聲",
+        "btnList": [
+            {
+                "fileName": "擦玻璃笑聲1",
+                "btnName": "笑聲1(擦玻璃)",
+                "sourceUrl": "https://youtu.be/ukCD2iZl8oI?t=9760"
             }
         ]
     },
@@ -271,6 +296,11 @@
                 "fileName": "我此生無怨無悔",
                 "btnName": "我此生無怨無悔",
                 "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=3240s"
+            },
+            {
+                "fileName": "吵死了小不點",
+                "btnName": "吵死了小不點",
+                "sourceUrl": "https://youtu.be/NXhjFoAQk1I?t=942"
             }
         ]
     },
