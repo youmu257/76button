@@ -182,11 +182,7 @@
         "btnName": "起司團站起來 加把勁站起來",
         "sourceUrl": "https://youtu.be/ULNi3gfe6ZM?t=13054"
       },
-      {
-        "fileName": "病嬌笑",
-        "btnName": "病嬌笑",
-        "sourceUrl": "https://youtu.be/ULNi3gfe6ZM?t=9564"
-      },
+
       {
         "fileName": "當初就跟你說要戴你看現在兩條線了",
         "btnName": "當初就跟你說要戴，你看現在兩條線了",
@@ -211,11 +207,6 @@
         "fileName": "RRRRRR",
         "btnName": "阿阿阿阿阿阿阿",
         "sourceUrl": "https://www.youtube.com/watch?v=IhTPaZoYw2s&t=3996s"
-      },
-      {
-        "fileName": "奸笑",
-        "btnName": "嘻嘻嘻嘻 (奸笑)",
-        "sourceUrl": "https://www.youtube.com/watch?v=IypzP3FMRo8&t=14046s"
       },
       {
         "fileName": "嗚欸",
@@ -283,9 +274,39 @@
     "category": "笑聲",
     "btnList": [
       {
-        "fileName": "擦玻璃笑聲1",
+        "fileName": "笑聲1(擦玻璃)",
         "btnName": "笑聲1(擦玻璃)",
         "sourceUrl": "https://youtu.be/ukCD2iZl8oI?t=9760"
+      },
+      {
+        "fileName": "笑聲2",
+        "btnName": "笑聲2",
+        "sourceUrl": "https://youtu.be/gkoCqx5KPDU?t=8486"
+      },
+      {
+        "fileName": "笑聲3(初見粽症)",
+        "btnName": "笑聲3(初見粽症)",
+        "sourceUrl": "https://youtu.be/F69jN2kEsWs?t=8920"
+      },
+      {
+        "fileName": "笑聲4",
+        "btnName": "笑聲4",
+        "sourceUrl": "https://youtu.be/F69jN2kEsWs?t=11482"
+      },
+      {
+        "fileName": "笑聲5(魔王笑)",
+        "btnName": "笑聲5(魔王笑)",
+        "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=6211"
+      },
+      {
+        "fileName": "笑聲6(病嬌笑)",
+        "btnName": "笑聲6(病嬌笑)",
+        "sourceUrl": "https://youtu.be/ULNi3gfe6ZM?t=9564"
+      },
+      {
+        "fileName": "笑聲7(奸笑)",
+        "btnName": "笑聲7(奸笑)",
+        "sourceUrl": "https://www.youtube.com/watch?v=IypzP3FMRo8&t=14046s"
       }
     ]
   },
