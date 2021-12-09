@@ -52,6 +52,14 @@ export default {
       ],
     }
   },
+  created() {
+    var self = this
+    window.addEventListener('keydown', function(e) {
+      if (e.code === 'F12') {
+        self.chillaTitle = '歡迎加入大鼠維埃共婆黨'
+      }
+    })
+  },
   beforeMount() {
     this.init()
   },

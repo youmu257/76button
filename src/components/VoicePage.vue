@@ -2,6 +2,7 @@
   <div class="hello">
     <div class="d-flex flex-wrap align-items-center justify-content-center container">
       <img
+        ref="img-circle"
         class="img-circle"
         height="200"
         src="https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096"
@@ -27,7 +28,7 @@
     <b>播放規則</b><br>
     語音預設不重疊播放，播放時再次點擊語音按鈕(同一顆或其他顆)會蓋掉原本的聲音<br>
     可以點擊下方按鈕打開重疊播放<br>
-    <s>如果覺得太吵</s>可以按<b>空白鍵</b>可以停止播放(<b>重疊播放時會全部停止</b>)<br>
+    <s>如果覺得太吵</s>可以按<b>空白鍵</b>停止播放(<b>重疊播放時會全部停止</b>)<br>
     <button
       class="btn btn-danger"
       @click="switchOverlapPlayback()"
@@ -99,7 +100,17 @@ export default {
       } else if (self.f12push == false && e.code === 'F12') {
         window.scrollTo(0,0)
         self.f12push = true
-        self.$refs['rick-roll'].src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&&mute=1&rel=0'
+        self.$refs['rick-roll']['src'] = 'https://www.youtube.com/embed/O1FWa6vRFTA?start=19&autoplay=1&mute=0'
+        self.$refs['img-circle']['src'] = 'https://media.discordapp.net/attachments/833581544223277068/901992965227048980/a945144c73db5c24.png'
+        self.infoBlockTitle = '毛主祈萬歲'
+        setTimeout(function () {
+          console.log('%c請看向左邊祈菈搖', 'color:red; font-size: 50px')
+          console.log('%c←←←←←←', 'color:red; font-size: 50px')
+        }, 1000)
+        setTimeout(function () {
+          self.$refs['rick-roll']['src'] = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&rel=0'
+          console.log('%c按 F12 想做啥(́◕◞౪◟◕‵)', 'color:black; font-size: 20px')
+        }, 5000)
       }
     })
   },
