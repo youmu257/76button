@@ -30,6 +30,16 @@
     可以點擊下方按鈕打開重疊播放<br>
     <s>如果覺得太吵</s>可以按<b>空白鍵</b>停止播放(<b>重疊播放時會全部停止</b>)<br>
     備註: 按鈕旁邊有音訊檔來源(Youtube)，如果是推特符號表示為推特音訊(所以沒有記錄檔，想聽更多去追蹤推特)<br>
+    <img
+      v-for="item in photobombList"
+      :key="item.key"
+      ref="photobomb"
+      class="img-circle"
+      height="150"
+      weight="150"
+      :style="item"
+      :src="require('@/assets/photobomb_chilla.png')"
+    >
     <button
       class="btn btn-danger"
       @click="switchOverlapPlayback()"
@@ -41,6 +51,20 @@
     </button>
     <hr>
     <div class="container mb-5">
+      <p class="fs-3">
+        亂入 王祈菈
+      </p>
+      註: 一次會亂入10隻祈菈，最多200隻祈菈，祈菈會慢慢消失
+      <div class="d-flex flex-wrap justify-content-center">
+        <VoiceButton2
+          :key="0"
+          voice-file-name="王祈菈"
+          button-name="亂入王祈菈"
+          source-url="https://youtu.be/M88KVpnyNbE?t=479"
+          @displayOther="photobombVoice"
+        />
+      </div>
+      <hr v-if="index !== btnDataList.length - 1">
       <div
         v-for="(item, index) in btnDataList"
         :key="index"
@@ -90,13 +114,16 @@ export default {
       f12push: false,
       infoBlockTitle: '祈菈的資訊',
       overlapPlayback: false,
+      photobombList: new Map(),
+      windowHeight: window.innerHeight,
+      windowWidth: window.innerWidth,
     }
   },
   created() {
     var self = this
     window.addEventListener('keydown', function(e) {
       if (e.code === 'Space') {
-        self.stopPlay()
+        self.stopPlay(true)
         e.preventDefault()
       } else if (self.f12push == false && e.code === 'F12') {
         window.scrollTo(0,0)
@@ -124,13 +151,62 @@ export default {
         this.playNow = playVoice
       }
     },
-    stopPlay() {
+    photobombVoice(playVoice) {
+      // 王祈菈亂入圖產生
+      this.displayOtherVoice(playVoice)
+      for (var i of Array(10)) {
+        this.generatePhotobomb(i)
+      }
+    },
+    generatePhotobomb(num = 1) {
+      // 最多 200 張亂入圖
+      if (this.photobombList.size > 200) {
+        return
+      }
+      // 產生一張亂入圖
+      let x = this.getRandom(100)
+      let y = this.getRandom(100)
+      let positionStyle = 'z-index:10;position: absolute;'
+      let centerX = x >= 40 && x <= 50
+      let centerY = y >= 40 && y <= 50
+      let randomX = ((centerX ? x - 15 : x)/100) * this.windowWidth
+      let randomY = ((centerY ? y - 15 : y)/100) * this.windowHeight
+      positionStyle += 'right:'+randomX+'px; top: '+randomY+'px;'
+
+      let mapKey = this.getRandom(99999 + num)
+      this.photobombList.set(mapKey, positionStyle)
+      let styleNow = positionStyle
+      let self = this
+      for (let time = 10; time >= 0; time--) {
+        setTimeout(function() {
+          if (self.photobombList.has(mapKey) == false) {
+            return
+          }
+          if (time == 0) {
+            // 秒數倒數結束後移除圖片
+            self.photobombList.delete(mapKey)
+          } else {
+            // 讓圖片慢慢變透明
+            self.photobombList.set(mapKey, styleNow + 'opacity:' + (time / 10))
+          }
+        }, 300 * (10 - time))
+      }
+    },
+    getRandom(x) {
+      return Math.floor(Math.random()*x) + 1
+    },
+    stopPlay(stopAll = false) {
       if (this.getOverlapPlaybackStatus()) {
         this.stopPlayList()
       } else if (this.playNow != null) {
         this.stopPlayList()
         // 停止播放上一個聲音
         this.playNow.pause()
+      }
+      // 按空白鍵進入要觸發的事件
+      if (stopAll) {
+        // 清空亂入圖
+        this.photobombList.clear()
       }
     },
     stopPlayList() {
