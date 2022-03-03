@@ -26,12 +26,19 @@
         <i class="bi bi-volume-up-fill icon" />
       </button>
       <a
+        v-if="sourceUrl != ''"
         class="btn btn-outline-danger"
         :href="sourceUrl"
         target="_blank"
         title="來源"
       >
         <i class="bi bi-youtube" />
+      </a>
+      <a
+        v-else
+        class="btn btn-twitter btn-outline-twitter"
+      >
+        <i class="bi bi-twitter" />
       </a>
     </div>
   </div>

@@ -7,18 +7,9 @@
   display: inline-block;
 }
 
-
 .icon {
 	padding: 3px;
 	padding-right: 3px;
-}
-
-.youtube-icon {
-    /*color: #FAF7F7;*/
-}
-
-.youtube-icon:hover {
-	/*color: white;*/
 }
 
 .fs-6 {
@@ -40,6 +31,25 @@
 }
 
 .btn-outline-danger {
+    background-color: #FAF7F7;
+    border-color: #FAF7F7;
+}
+
+.btn-twitter {
+    background-color: #00ACEE;
+    border-color: #00ACEE;
+    color: #00ACEE;
+    font-weight: bold;
+}
+
+.btn-twitter:hover,
+.btn-outline-twitter:hover {
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    color: #00ACEE;
+}
+
+.btn-outline-twitter {
     background-color: #FAF7F7;
     border-color: #FAF7F7;
 }
