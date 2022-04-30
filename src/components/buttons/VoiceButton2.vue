@@ -26,7 +26,7 @@
         <i class="bi bi-volume-up-fill icon" />
       </button>
       <a
-        v-if="sourceUrl != ''"
+        v-if="sourceType == ''"
         class="btn btn-outline-danger"
         :href="sourceUrl"
         target="_blank"
@@ -59,6 +59,10 @@ export default {
       type: String,
       default: ''
     },
+    sourceType: {
+      type: String,
+      default: ''
+    }
   },
   methods: {
     play() {

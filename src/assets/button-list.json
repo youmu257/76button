@@ -95,12 +95,12 @@
       {
         "fileName": "深蹲深蹲",
         "btnName": "深蹲深蹲",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "你現在在聽色情電話",
         "btnName": "你現在在聽色情電話",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       }
     ]
   },
@@ -190,17 +190,17 @@
       {
         "fileName": "全部都抓走",
         "btnName": "全部都抓走",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "大家快逃阿",
         "btnName": "大家快逃阿",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "等我長大了 再回來找我",
         "btnName": "等我長大了 再回來找我",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       }
     ]
   },
@@ -321,22 +321,22 @@
       {
         "fileName": "皮卡皮卡",
         "btnName": "皮卡皮卡",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "哀噁1",
         "btnName": "哀噁1",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "哀噁2",
         "btnName": "哀噁2",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "哀噁3",
         "btnName": "哀噁3",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       }
     ]
   },
