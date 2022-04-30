@@ -35,6 +35,15 @@
         <i class="bi bi-youtube" />
       </a>
       <a
+        v-else-if="sourceUrl != ''"
+        class="btn btn-twitter btn-outline-twitter"
+        :href="sourceUrl"
+        target="_blank"
+        title="來源"
+      >
+        <i class="bi bi-twitter" />
+      </a>
+      <a
         v-else
         class="btn btn-twitter btn-outline-twitter"
       >
