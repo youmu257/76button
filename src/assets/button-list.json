@@ -95,12 +95,98 @@
       {
         "fileName": "深蹲深蹲",
         "btnName": "深蹲深蹲",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "你現在在聽色情電話",
         "btnName": "你現在在聽色情電話",
-        "sourceUrl": ""
+        "sourceType": "twitter"
+      },
+      {
+        "fileName": "討厭死相以後不來了",
+        "btnName": "討厭死相以後不來了",
+        "sourceType": "twitter",
+        "sourceUrl": "https://twitter.com/Chilla_Storia/status/1519655378426146816"
+      },
+      {
+        "fileName": "我殺了你這王八蛋",
+        "btnName": "我殺了你這王八蛋",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=4299"
+      },
+      {
+        "fileName": "吹小力一點不然會噴出來",
+        "btnName": "吹小力一點不然會噴出來",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=2740"
+      }
+    ]
+  },
+  {
+    "category": "做作女台詞 祈菈菈",
+    "btnList": [
+      {
+        "fileName": "今天心情壞壞想要起司團給我摸摸",
+        "btnName": "今天心情壞壞想要起司團給我摸摸",
+        "sourceUrl": "https://youtu.be/G8uefs0U_0I?t=18071"
+      },
+      {
+        "fileName": "人家吃不太多",
+        "btnName": "人家吃不太多 剩下的你幫我吃啦 好不好",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=1459"
+      },
+      {
+        "fileName": "不可以死死你要活活",
+        "btnName": "不可以死死 你要活活",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=710"
+      },
+      {
+        "fileName": "可可愛愛",
+        "btnName": "可可愛愛",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=997"
+      },
+      {
+        "fileName": "拜託菈人家拿不動",
+        "btnName": "拜託啦人家拿不動",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=1377"
+      },
+      {
+        "fileName": "人家可是柔弱女森內",
+        "btnName": "人家可是柔弱女森內",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=1687"
+      },
+      {
+        "fileName": "你是不是沒有專心在看人家人家生氣氣喔",
+        "btnName": "你是不是沒有專心在看人家 人家生氣氣喔",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=3252"
+      },
+      {
+        "fileName": "後ㄋ一ㄡ",
+        "btnName": "後ㄋ一ㄡ",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=3953"
+      },
+      {
+        "fileName": "老闆我最愛你了",
+        "btnName": "老闆我最愛你了",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=4234"
+      },
+      {
+        "fileName": "比鼻你覺得人家今天有哪裡不一樣",
+        "btnName": "比鼻你覺得人家今天有哪裡不一樣",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=5733"
+      },
+      {
+        "fileName": "你可以教教我嗎",
+        "btnName": "你可以教教我嗎 拜託",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=7863"
+      },
+      {
+        "fileName": "拜託你菈救救我菈",
+        "btnName": "拜託你啦 救救我啦",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=8027"
+      },
+      {
+        "fileName": "祈菈菈挖嘎奈",
+        "btnName": "祈菈菈挖嘎奈",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=8061"
       }
     ]
   },
@@ -151,6 +237,11 @@
         "fileName": "其實我也很喜歡起司團",
         "btnName": "其實我也很喜歡起司團",
         "sourceUrl": "https://youtu.be/NQ2t_7PvSg0?t=1944"
+      },
+      {
+        "fileName": "親愛的北鼻",
+        "btnName": "親愛的北鼻",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=4514"
       }
     ]
   },
@@ -190,17 +281,17 @@
       {
         "fileName": "全部都抓走",
         "btnName": "全部都抓走",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "大家快逃阿",
         "btnName": "大家快逃阿",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "等我長大了 再回來找我",
         "btnName": "等我長大了 再回來找我",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       }
     ]
   },
@@ -321,22 +412,32 @@
       {
         "fileName": "皮卡皮卡",
         "btnName": "皮卡皮卡",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "哀噁1",
         "btnName": "哀噁1",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "哀噁2",
         "btnName": "哀噁2",
-        "sourceUrl": ""
+        "sourceType": "twitter"
       },
       {
         "fileName": "哀噁3",
         "btnName": "哀噁3",
-        "sourceUrl": ""
+        "sourceType": "twitter"
+      },
+      {
+        "fileName": "安壓",
+        "btnName": "安壓",
+        "sourceUrl": "https://youtu.be/bgde0LC6SWs?t=868"
+      },
+      {
+        "fileName": "防空警報",
+        "btnName": "防空警報",
+        "sourceUrl": "https://youtu.be/6SX2zqeV7FI?t=4045"
       }
     ]
   },
@@ -377,6 +478,11 @@
         "fileName": "笑聲7(奸笑)",
         "btnName": "笑聲7(奸笑)",
         "sourceUrl": "https://www.youtube.com/watch?v=IypzP3FMRo8&t=14046s"
+      },
+      {
+        "fileName": "笑聲8(奸笑)",
+        "btnName": "笑聲8(奸笑)",
+        "sourceUrl": "https://youtu.be/W_J4UyMkxlM?t=3251"
       }
     ]
   },

@@ -26,13 +26,22 @@
         <i class="bi bi-volume-up-fill icon" />
       </button>
       <a
-        v-if="sourceUrl != ''"
+        v-if="sourceType == ''"
         class="btn btn-outline-danger"
         :href="sourceUrl"
         target="_blank"
         title="來源"
       >
         <i class="bi bi-youtube" />
+      </a>
+      <a
+        v-else-if="sourceUrl != ''"
+        class="btn btn-twitter btn-outline-twitter"
+        :href="sourceUrl"
+        target="_blank"
+        title="來源"
+      >
+        <i class="bi bi-twitter" />
       </a>
       <a
         v-else
@@ -59,6 +68,10 @@ export default {
       type: String,
       default: ''
     },
+    sourceType: {
+      type: String,
+      default: ''
+    }
   },
   methods: {
     play() {

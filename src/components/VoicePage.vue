@@ -80,6 +80,7 @@
             :voice-file-name="btnData.fileName"
             :button-name="btnData.btnName"
             :source-url="btnData.sourceUrl"
+            :source-type="btnData.sourceType"
             @displayOther="displayOtherVoice"
           />
         </div>
