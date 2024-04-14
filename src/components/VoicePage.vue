@@ -51,20 +51,6 @@
     </button>
     <hr>
     <div class="container mb-5">
-      <p class="fs-3">
-        亂入 王祈菈
-      </p>
-      註: 一次會亂入10隻祈菈，最多200隻祈菈，祈菈會慢慢消失
-      <div class="d-flex flex-wrap justify-content-center">
-        <VoiceButton2
-          :key="0"
-          voice-file-name="王祈菈"
-          button-name="亂入王祈菈"
-          source-url="https://youtu.be/M88KVpnyNbE?t=479"
-          @displayOther="photobombVoice"
-        />
-      </div>
-      <hr v-if="index !== btnDataList.length - 1">
       <div
         v-for="(item, index) in btnDataList"
         :key="index"
@@ -73,6 +59,9 @@
         <p class="fs-3">
           {{ item.category }}
         </p>
+        <a v-if="item.type == 'photobomb'">
+          註: 一次會亂入10隻祈菈，最多200隻祈菈，祈菈會慢慢消失
+        </a>
         <div class="d-flex flex-wrap justify-content-center">
           <VoiceButton2
             v-for="(btnData, btnIndex) in item.btnList"
@@ -81,7 +70,7 @@
             :button-name="btnData.btnName"
             :source-url="btnData.sourceUrl"
             :source-type="btnData.sourceType"
-            @displayOther="displayOtherVoice"
+            @displayOther="item.type == 'photobomb' ? photobombVoice() : displayOtherVoice()"
           />
         </div>
         <hr v-if="index !== btnDataList.length - 1">
