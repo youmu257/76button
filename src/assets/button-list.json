@@ -29,11 +29,6 @@
         "sourceUrl": "https://www.youtube.com/watch?v=-pl6s56d7Cs&t=16987s"
       },
       {
-        "fileName": "不會吧",
-        "btnName": "不會吧(菈米亞)",
-        "sourceUrl": "https://www.youtube.com/watch?v=-pl6s56d7Cs&t=5394s"
-      },
-      {
         "fileName": "一定是後面那兩個帶雖",
         "btnName": "一定是後面那兩個帶雖(菈米亞)",
         "sourceUrl": "https://www.youtube.com/watch?v=-pl6s56d7Cs&t=5525s"
@@ -120,19 +115,14 @@
         "sourceUrl": "https://twitter.com/Chilla_Storia/status/1519655378426146816"
       },
       {
-        "fileName": "我殺了你這王八蛋",
-        "btnName": "我殺了你這王八蛋",
-        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=4299"
-      },
-      {
-        "fileName": "吹小力一點不然會噴出來",
-        "btnName": "吹小力一點不然會噴出來",
-        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=2740"
+        "fileName": "吵死了小不點",
+        "btnName": "吵死了小不點",
+        "sourceUrl": "https://youtu.be/NXhjFoAQk1I?t=942"
       }
     ]
   },
   {
-    "category": "做作女台詞 祈菈菈",
+    "category": "祈菈菈",
     "btnList": [
       {
         "fileName": "今天心情壞壞想要起司團給我摸摸",
@@ -198,6 +188,11 @@
         "fileName": "祈菈菈挖嘎奈",
         "btnName": "祈菈菈挖嘎奈",
         "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=8061"
+      },
+      {
+        "fileName": "吹小力一點不然會噴出來",
+        "btnName": "吹小力一點不然會噴出來",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=2740"
       }
     ]
   },
@@ -253,6 +248,16 @@
         "fileName": "親愛的北鼻",
         "btnName": "親愛的北鼻",
         "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=4514"
+      },
+      {
+        "fileName": "女僕祈菈道晚安日文",
+        "btnName": "女僕祈菈道晚安(日文)",
+        "sourceUrl": "https://www.youtube.com/watch?v=IhTPaZoYw2s&t=23601s"
+      },
+      {
+        "fileName": "arara",
+        "btnName": "arara",
+        "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=7322"
       }
     ]
   },
@@ -307,7 +312,7 @@
     ]
   },
   {
-    "category": "姐姐聲線",
+    "category": "台詞配音",
     "btnList": [
       {
         "fileName": "我現在就要把他吃掉",
@@ -315,25 +320,39 @@
         "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=1910s"
       },
       {
-        "fileName": "女僕祈菈道晚安日文",
-        "btnName": "女僕祈菈道晚安(日文)",
-        "sourceUrl": "https://www.youtube.com/watch?v=IhTPaZoYw2s&t=23601s"
-      },
-      {
         "fileName": "起司團站起來加把勁站起來",
         "btnName": "起司團站起來 加把勁站起來",
         "sourceUrl": "https://youtu.be/ULNi3gfe6ZM?t=13054"
       },
-
       {
         "fileName": "當初就跟你說要戴你看現在兩條線了",
         "btnName": "當初就跟你說要戴，你看現在兩條線了",
         "sourceUrl": "https://youtu.be/ULNi3gfe6ZM?t=13091"
       },
       {
-        "fileName": "arara",
-        "btnName": "arara",
-        "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=7322"
+        "fileName": "不會吧",
+        "btnName": "不會吧(菈米亞)",
+        "sourceUrl": "https://www.youtube.com/watch?v=-pl6s56d7Cs&t=5394s"
+      },
+      {
+        "fileName": "我殺了你這王八蛋",
+        "btnName": "我殺了你這王八蛋",
+        "sourceUrl": "https://youtu.be/DgtKv38b5uc?t=4299"
+      },
+      {
+        "fileName": "我此生無怨無悔",
+        "btnName": "我此生無怨無悔",
+        "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=3240s"
+      },
+      {
+        "fileName": "你這小調皮",
+        "btnName": "你這小調皮",
+        "sourceUrl": "https://youtu.be/NxvDXNwlv6I?t=4167"
+      },
+      {
+        "fileName": "不要瞎掰好嗎",
+        "btnName": "不要瞎掰好嗎",
+        "sourceUrl": "https://youtu.be/NxvDXNwlv6I?t=8986"
       }
     ]
   },
@@ -494,31 +513,6 @@
         "fileName": "笑聲8(奸笑)",
         "btnName": "笑聲8(奸笑)",
         "sourceUrl": "https://youtu.be/W_J4UyMkxlM?t=3251"
-      }
-    ]
-  },
-  {
-    "category": "祈哥",
-    "btnList": [
-      {
-        "fileName": "我此生無怨無悔",
-        "btnName": "我此生無怨無悔",
-        "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=3240s"
-      },
-      {
-        "fileName": "吵死了小不點",
-        "btnName": "吵死了小不點",
-        "sourceUrl": "https://youtu.be/NXhjFoAQk1I?t=942"
-      },
-      {
-        "fileName": "你這小調皮",
-        "btnName": "你這小調皮",
-        "sourceUrl": "https://youtu.be/NxvDXNwlv6I?t=4167"
-      },
-      {
-        "fileName": "不要瞎掰好嗎",
-        "btnName": "不要瞎掰好嗎",
-        "sourceUrl": "https://youtu.be/NxvDXNwlv6I?t=8986"
       }
     ]
   },
