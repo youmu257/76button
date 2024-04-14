@@ -118,6 +118,21 @@
         "fileName": "吵死了小不點",
         "btnName": "吵死了小不點",
         "sourceUrl": "https://youtu.be/NXhjFoAQk1I?t=942"
+      },
+      {
+        "fileName": "天公北阿",
+        "btnName": "天公北阿",
+        "sourceUrl": "https://www.youtube.com/live/tr9-98v_E7s?si=Gc3cCWGmrK1GsXFl&t=3637"
+      },
+      {
+        "fileName": "摳妮基挖",
+        "btnName": "摳妮基挖",
+        "sourceUrl": "https://www.youtube.com/live/BXANjES-DFk?feature=share&t=4984"
+      },
+      {
+        "fileName": "打到他花花",
+        "btnName": "打到他花花",
+        "sourceUrl": "https://www.youtube.com/live/j9SywBH6LlE?si=-4IDaD0naGDmxJxM&t=4659"
       }
     ]
   },
@@ -258,6 +273,11 @@
         "fileName": "arara",
         "btnName": "arara",
         "sourceUrl": "https://youtu.be/b7rJ8GcrMMs?t=7322"
+      },
+      {
+        "fileName": "早安老公",
+        "btnName": "早安 老公",
+        "sourceUrl": "https://www.youtube.com/live/7O7uhDc7h48?si=2fvJ9ThMbH6C5qQJ&t=5051"
       }
     ]
   },
@@ -353,6 +373,11 @@
         "fileName": "不要瞎掰好嗎",
         "btnName": "不要瞎掰好嗎",
         "sourceUrl": "https://youtu.be/NxvDXNwlv6I?t=8986"
+      },
+      {
+        "fileName": "妳真是無藥可救",
+        "btnName": "妳真是無藥可救",
+        "sourceUrl": "https://www.youtube.com/live/NmbRM2IY_R4?si=9Y1plQxc6SZvBqCW&t=6887"
       }
     ]
   },
@@ -468,6 +493,41 @@
         "fileName": "防空警報",
         "btnName": "防空警報",
         "sourceUrl": "https://youtu.be/6SX2zqeV7FI?t=4045"
+      },
+      {
+        "fileName": "達達達",
+        "btnName": "達達達",
+        "sourceUrl": "https://youtu.be/24x5-FZrcVs?t=4219"
+      },
+      {
+        "fileName": "AMA",
+        "btnName": "AMA",
+        "sourceUrl": "https://www.youtube.com/live/-Uk-lwxpbbw?si=bkDpT2hmJB6H3JAr&t=10110"
+      },
+      {
+        "fileName": "阿巴阿巴",
+        "btnName": "阿巴阿巴",
+        "sourceUrl": "https://www.youtube.com/live/aLPElFhu4bE?si=Uzp_IHHm41c36PDo&t=11885"
+      },
+      {
+        "fileName": "怪叫",
+        "btnName": "怪叫",
+        "sourceUrl": "https://www.youtube.com/live/McizZ_585EE?si=B3fQ381Wdlge6WAh&t=3894"
+      },
+      {
+        "fileName": "嗷嗚",
+        "btnName": "嗷嗚",
+        "sourceUrl": "https://www.youtube.com/live/BImwlylmThU?si=yXxdszppXocYZbbj&t=5159"
+      },
+      {
+        "fileName": "momomomo",
+        "btnName": "momomomo",
+        "sourceUrl": "https://youtu.be/u7DrB_M82Rs?t=3324"
+      },
+      {
+        "fileName": "mamamama",
+        "btnName": "mamamama",
+        "sourceUrl": "https://www.youtube.com/live/u7DrB_M82Rs?si=5zWCm1PpA5HoG8n0&t=5839"
       }
     ]
   },
@@ -513,6 +573,56 @@
         "fileName": "笑聲8(奸笑)",
         "btnName": "笑聲8(奸笑)",
         "sourceUrl": "https://youtu.be/W_J4UyMkxlM?t=3251"
+      },
+      {
+        "fileName": "笑聲9",
+        "btnName": "笑聲9",
+        "sourceUrl": "https://www.youtube.com/live/5cZKPdDwIbo?si=oXP3fmPnJrI1LYhD&t=9173"
+      },
+      {
+        "fileName": "笑聲10",
+        "btnName": "笑聲10",
+        "sourceUrl": "https://www.youtube.com/live/ri6TXWKy2yE?si=UWco09Ye0zsUe0xU&t=2446"
+      },
+      {
+        "fileName": "笑聲11",
+        "btnName": "笑聲11",
+        "sourceUrl": "https://www.youtube.com/live/jSU43uapcqY?si=PquDGVSlBHwKV_7s&t=7164"
+      },
+      {
+        "fileName": "笑聲12",
+        "btnName": "笑聲12",
+        "sourceUrl": "https://www.youtube.com/live/haczG6J8M3U?si=5jZbh0Nlbr4uoAft&t=1398"
+      },
+      {
+        "fileName": "笑聲13(大小姐笑)",
+        "btnName": "笑聲13(大小姐笑)",
+        "sourceUrl": "https://www.youtube.com/live/qriv8i_D0TE?si=xdgjouPBN1iiG7za&t=7072"
+      },
+      {
+        "fileName": "笑聲14(中二笑)",
+        "btnName": "笑聲14(中二笑)",
+        "sourceUrl": "https://www.youtube.com/live/x9T-Vt_M9eY?si=oo54rZZnko4PT0mD&t=4588"
+      },
+      {
+        "fileName": "笑聲15(豪邁笑)",
+        "btnName": "笑聲15(豪邁笑)",
+        "sourceUrl": "https://www.youtube.com/live/WOVBYKY-x_c?si=1JWV-mrwE6603eFT&t=3046"
+      }
+    ]
+  },
+  {
+    "category": "呼麻鼠",
+    "btnList": [
+      {
+        "fileName": "Let me do it for you",
+        "btnName": "Let me do it for you",
+        "sourceUrl": "https://www.youtube.com/live/L9n3Upm_v1c?si=0GJ8Cg_rSm1xYa5N&t=5507"
+      },
+      {
+        "fileName": "呼麻笑聲",
+        "btnName": "呼麻笑聲",
+        "sourceUrl": "https://www.youtube.com/live/9BMQYv4Qgzw?si=soFZUGZm-MIfFSrU&t=13323"
       }
     ]
   },
