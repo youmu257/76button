@@ -70,7 +70,7 @@
             :button-name="btnData.btnName"
             :source-url="btnData.sourceUrl"
             :source-type="btnData.sourceType"
-            @displayOther="item.type == 'photobomb' ? photobombVoice() : displayOtherVoice()"
+            @displayOther="(audio) => item.type == 'photobomb' ? photobombVoice(audio) : displayOtherVoice(audio)"
           />
         </div>
         <hr v-if="index !== btnDataList.length - 1">
