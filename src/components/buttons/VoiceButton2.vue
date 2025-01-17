@@ -49,6 +49,13 @@
       >
         <i class="bi bi-twitter" />
       </a>
+      <button
+        type="button"
+        class="btn btn-danger"
+        @click="downloadMp3()"
+      >
+        <i class="bi bi-download" />
+      </button>
     </div>
   </div>
 </template>
@@ -80,7 +87,22 @@ export default {
       this.$emit('displayOther', audio)
       audio.load()
       audio.play()
-    }
+    },
+    downloadMp3() {
+      // 取得音訊元素的 URL
+      const audioElement = this.$refs[this.voiceFileName]
+      const audioSrc = audioElement.src
+
+      if (!audioSrc) {
+        console.error('音訊檔案來源不存在！')
+        return
+      }
+
+      // 建立下載連結
+      const link = document.createElement('a')
+      link.href = audioSrc
+      link.click()
+    },
   }
 }
 </script>

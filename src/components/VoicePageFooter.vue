@@ -35,6 +35,7 @@
           感謝 阿圖 設計的按鈕樣式 |
           感謝 瑋ホン 提供推特音訊檔
         </div>
+        <div>v.{{ appVersion }}</div>
       </div>
     </div>
   </footer>
@@ -42,7 +43,14 @@
 
 <script>
 export default {
-  name: 'VoicePageFooter'
+  name: 'VoicePageFooter',
+  data() {
+    console.log(process.env)
+    return {
+      // 取得版本號
+      appVersion: process.env.VUE_APP_VERSION,
+    }
+  },
 }
 </script>
 <style scoped src="../css/Footer.css"></style>
