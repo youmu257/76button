@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center container">
       <img
         ref="img-circle"
@@ -50,19 +50,51 @@
       >勾選開啟重疊播放
     </button>
     <hr>
-    <div class="container mb-5">
+    <!-- 語音按鈕區塊 -->
+    <div
+      v-for="(item, index) in btnDataList"
+      id="accordionExample"
+      :key="index"
+      class="d-flex flex-column background accordion"
+    >
+      <!-- 亂入王祈菈區塊 -->
       <div
-        v-for="(item, index) in btnDataList"
-        :key="index"
-        class="d-flex flex-column background"
+        v-if="item.type == 'photobomb'"
       >
-        <p class="fs-3">
+        <h3>
           {{ item.category }}
-        </p>
-        <a v-if="item.type == 'photobomb'">
+        </h3>
+        <a>
           註: 一次會亂入10隻祈菈，最多200隻祈菈，祈菈會慢慢消失
         </a>
-        <div class="d-flex flex-wrap justify-content-center">
+      </div>
+      <!-- 正常語音按鈕區塊 -->
+      <div
+        v-if="item.type != 'photobomb'"
+        class="accordion-item"
+      >
+        <h2 class="accordion-header">
+          <button
+            type="button"
+            class="accordion-button collapsed text-center w-100 clickable"
+            data-toggle="collapse"
+            :data-target="'#collapseRegion_' + index"
+            aria-expanded="true"
+            :aria-controls="'collapseRegion_' + index"
+          >
+            <h3>
+              {{ item.category }}
+            </h3>
+          </button>
+        </h2>
+      </div>
+      <div
+        :id="'collapseRegion_' + index"
+        class="accordion-collapse collapse show"
+        aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
           <VoiceButton2
             v-for="(btnData, btnIndex) in item.btnList"
             :key="btnIndex"
@@ -73,7 +105,6 @@
             @displayOther="(audio) => item.type == 'photobomb' ? photobombVoice(audio) : displayOtherVoice(audio)"
           />
         </div>
-        <hr v-if="index !== btnDataList.length - 1">
       </div>
     </div>
   </div>
@@ -225,5 +256,10 @@ export default {
 <style>
 .img-circle{
   border-radius: 50%;
+}
+
+.accordion-button h3 {
+  flex: 1; /* 確保內部的 h3 填滿按鈕 */
+  margin: 0; /* 移除預設外邊距 */
 }
 </style>
