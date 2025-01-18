@@ -53,3 +53,15 @@
     background-color: #FAF7F7;
     border-color: #FAF7F7;
 }
+
+.btn-danger::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--progress, 0%);
+    background-color: rgba(241, 137, 137, 0.4); /* 半透明白色 */
+    z-index: 0;
+    transition: width 0.1s linear;
+  }
