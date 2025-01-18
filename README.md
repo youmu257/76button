@@ -6,7 +6,7 @@
 # Description
 * 如要更改按鈕可以調整 assets/button-list.json<br>
 * 另外 head 部分寫死在 App.vue 中<br>
-* 建置步驟
+* 上版步驟(推上 github page)
     ```
     # 建置專案
     npm run build
@@ -17,6 +17,10 @@
     git add -A
     git commit -m 'deploy'
     git push -f https://github.com/youmu257/76button.git master:gh-pages
+    ```
+* 開發時建置
+    ```
+    npm run serve
     ```
 * Coding style
     * 使用 Eslint 統一 style
