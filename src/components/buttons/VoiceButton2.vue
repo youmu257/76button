@@ -23,7 +23,7 @@
       <!-- Yotube 來源 -->
       <a
         v-if="sourceType == ''"
-        class="btn btn-outline-danger"
+        class="btn btn-outline-danger d-flex align-items-center justify-content-center"
         :href="sourceUrl"
         target="_blank"
         title="來源"
@@ -33,7 +33,7 @@
       <!-- Twitter 來源 -->
       <a
         v-else-if="sourceUrl != ''"
-        class="btn btn-twitter btn-outline-twitter"
+        class="btn btn-twitter btn-outline-twitter d-flex align-items-center justify-content-center"
         :href="sourceUrl"
         target="_blank"
         title="來源"
@@ -80,6 +80,7 @@ export default {
   },
   data() {
     return {
+      audio: null,
       isPlaying: false,
       progress: 0,
     }
@@ -101,23 +102,22 @@ export default {
       link.click()
     },
     togglePlay() {
-      const audio = this.$refs[this.voiceFileName]
+      this.audio = this.$refs[this.voiceFileName].cloneNode()
       if (this.isPlaying) {
-        audio.pause()
+        this.audio.pause()
       } else {
         // 傳給 VoicePage 用來停止撥放上一個聲音
-        this.$emit('displayOther', audio)
-        audio.load()
-        audio.play()
+        this.$emit('displayOther', this.audio)
+        this.audio.load()
+        this.audio.play()
         // 開始播放進度條
         this.updateProgressSmooth()
       }
       this.isPlaying = !this.isPlaying
     },
     updateProgressSmooth() {
-      const audio = this.$refs[this.voiceFileName]
-      this.progress = (audio.currentTime / audio.duration) * 100
-      if (audio.paused || audio.ended) {
+      this.progress = (this.audio.currentTime / this.audio.duration) * 100
+      if (this.audio.paused || this.audio.ended) {
         // 停止音訊
         this.isPlaying = false
         this.progress = 0

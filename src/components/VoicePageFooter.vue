@@ -62,7 +62,6 @@
 export default {
   name: 'VoicePageFooter',
   data() {
-    console.log(process.env)
     return {
       // 取得版本號
       appVersion: process.env.VUE_APP_VERSION,

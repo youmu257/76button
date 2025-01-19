@@ -185,32 +185,40 @@ export default {
         return
       }
       // 產生一張亂入圖
-      let x = this.getRandom(100)
-      let y = this.getRandom(100)
-      let positionStyle = 'z-index:10;position: absolute;'
-      let centerX = x >= 40 && x <= 50
-      let centerY = y >= 40 && y <= 50
-      let randomX = ((centerX ? x - 15 : x)/100) * this.windowWidth
-      let randomY = ((centerY ? y - 15 : y)/100) * this.windowHeight
-      positionStyle += 'right:'+randomX+'px; top: '+randomY+'px;'
+      const x = this.getRandom(100)
+      const y = this.getRandom(100)
+      const isCenterX = x >= 40 && x <= 50
+      const isCenterY = y >= 40 && y <= 50
 
-      let mapKey = this.getRandom(99999 + num)
+      const randomX = ((isCenterX ? x - 15 : x) / 100) * this.windowWidth
+      const randomY = ((isCenterY ? y - 15 : y) / 100) * this.windowHeight
+
+      // 設定初始樣式
+      const mapKey = this.getRandom(99999 + num)
+      const positionStyle = `z-index: 10; position: absolute; right: ${randomX}px; top: ${randomY}px;`
       this.photobombList.set(mapKey, positionStyle)
-      let styleNow = positionStyle
-      let self = this
-      for (let time = 10; time >= 0; time--) {
-        setTimeout(function() {
-          if (self.photobombList.has(mapKey) == false) {
-            return
-          }
-          if (time == 0) {
-            // 秒數倒數結束後移除圖片
-            self.photobombList.delete(mapKey)
+
+      // 開始倒數動畫
+      this.startFadeOut(mapKey, positionStyle)
+    },
+    startFadeOut(mapKey, baseStyle) {
+      const fadeDuration = 3000 // 總消失時間 (毫秒)
+      const steps = 10 // 消失過程的步數
+      const interval = fadeDuration / steps
+
+      for (let i = 0; i <= steps; i++) {
+        setTimeout(() => {
+          if (!this.photobombList.has(mapKey)) return // 如果已刪除，直接跳過
+
+          if (i === steps) {
+            // 移除圖片
+            this.photobombList.delete(mapKey)
           } else {
-            // 讓圖片慢慢變透明
-            self.photobombList.set(mapKey, styleNow + 'opacity:' + (time / 10))
+            // 漸變透明度
+            const opacity = (steps - i) / steps
+            this.photobombList.set(mapKey, `${baseStyle} opacity: ${opacity};`)
           }
-        }, 300 * (10 - time))
+        }, i * interval)
       }
     },
     getRandom(x) {
