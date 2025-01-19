@@ -31,14 +31,24 @@
           Icons made by <a
             href="https://www.freepik.com"
             title="Freepik"
+            target="_blank"
           >Freepik</a> from <a
             href="https://www.flaticon.com/"
             title="Flaticon"
+            target="_blank"
           >www.flaticon.com</a>
         </div>
         <div>
-          感謝 Cow Lo 提供<a href="https://twitter.com/ud83xji4g/status/1444297977388945411?s=21">圖片素材</a> |
-          感謝 老爹 提供<a href="https://discord.com/channels/699160319960023071/833581544223277068/901992965520638032">彩蛋素材</a> |
+          感謝 Cow Lo 提供
+          <a
+            href="https://twitter.com/ud83xji4g/status/1444297977388945411?s=21"
+            target="_blank"
+          >圖片素材</a> |
+          感謝 老爹 提供
+          <a
+            href="https://discord.com/channels/699160319960023071/833581544223277068/901992965520638032"
+            target="_blank"
+          >彩蛋素材</a> |
           感謝 阿圖 設計的按鈕樣式 |
           感謝 瑋ホン 提供推特音訊檔
         </div>

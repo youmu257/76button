@@ -76,7 +76,7 @@
         <h2 class="accordion-header">
           <button
             type="button"
-            class="accordion-button collapsed text-center w-100 clickable"
+            class="accordion-button text-center w-100 clickable"
             data-toggle="collapse"
             :data-target="'#collapseRegion_' + index"
             aria-expanded="true"
