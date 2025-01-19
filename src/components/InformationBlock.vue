@@ -33,6 +33,45 @@
           </a>
         </div>
       </div>
+      <div class="d-flex flex-wrap justify-content-center">
+        <div class="col">
+          <a
+            href="https://www.facebook.com/Chilla76?locale=zh_TW"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="bi bi-facebook" />
+          </a>
+        </div>
+        <div class="col">
+          <a
+            href="https://www.plurk.com/Chilla76"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              width="48"
+              height="48"
+              style="margin-top: 9px;"
+              :src="require('@/assets/plurk.png')"
+            >
+          </a>
+        </div>
+        <div class="col">
+          <a
+            href="https://bsky.app/profile/chillastoria.bsky.social"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              width="48"
+              height="42"
+              style="margin-top: 14px;"
+              src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg"
+            >
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -60,5 +99,9 @@ export default {
 .info-block .bi-discord{
   font-size: 3rem;
   color: #7289d9;
+}
+.info-block .bi-facebook{
+  font-size: 3rem;
+  color: #1877F2;
 }
 </style>
