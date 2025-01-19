@@ -14,6 +14,11 @@
         "category": "祈菈",
         "btnList": [
             {
+                "fileName": "真都假都",
+                "btnName": "真都假都",
+                "sourceUrl": "https://www.youtube.com/live/rxi_4pwa_fA?t=7129s"
+            },
+            {
                 "fileName": "哭邀喔",
                 "btnName": "哭邀喔",
                 "sourceUrl": "https://www.youtube.com/watch?v=U9idhTDzZzU&t=9936s"
@@ -220,6 +225,11 @@
         "category": "福利(祈菈最寵起司團了)",
         "btnList": [
             {
+                "fileName": "喜翻你們拉",
+                "btnName": "喜翻你們拉",
+                "sourceUrl": "https://www.youtube.com/live/HT-cdv-pj6o?t=16236s"
+            },
+            {
                 "fileName": "就喜歡你們拉",
                 "btnName": "就喜歡你們拉",
                 "sourceUrl": "https://www.youtube.com/live/s7-ni2_ysZg?t=12964s"
@@ -345,6 +355,16 @@
         "category": "台詞配音",
         "btnList": [
             {
+                "fileName": "告訴你一個秘密 我已經單身30年了(魔法師餅乾)",
+                "btnName": "告訴你一個秘密 我已經單身30年了(魔法師餅乾)",
+                "sourceUrl": "https://www.youtube.com/watch?v=Kxdig2DNrVU&t=3020s"
+            },
+            {
+                "fileName": "真是倒了八輩子的楣才有你這朋友(夸伏)",
+                "btnName": "真是倒了八輩子的楣才有你這朋友(夸伏)",
+                "sourceUrl": "https://www.youtube.com/live/0Dudympg5_s?t=14771s"
+            },
+            {
                 "fileName": "我現在就要把他吃掉",
                 "btnName": "我現在就要把他吃掉",
                 "sourceUrl": "https://www.youtube.com/watch?v=hTMjjZZRndM&t=1910s"
@@ -399,6 +419,31 @@
     {
         "category": "祈特音效",
         "btnList": [
+            {
+                "fileName": "彈舌",
+                "btnName": "彈舌",
+                "sourceUrl": "https://www.youtube.com/watch?v=Kxdig2DNrVU&t=4373s"
+            },
+            {
+                "fileName": "壓哈(烏薩奇)",
+                "btnName": "壓哈(烏薩奇)",
+                "sourceUrl": "https://www.youtube.com/live/JpXVE-Admqk?t=6340s"
+            },
+            {
+                "fileName": "彈舌(烏薩奇)",
+                "btnName": "彈舌(烏薩奇)",
+                "sourceUrl": "https://www.youtube.com/live/JpXVE-Admqk?t=6341s"
+            },
+            {
+                "fileName": "蛤1(烏薩奇)",
+                "btnName": "蛤1(烏薩奇)",
+                "sourceUrl": "https://www.youtube.com/live/JpXVE-Admqk?t=6375s"
+            },
+            {
+                "fileName": "蛤2(烏薩奇)",
+                "btnName": "蛤2(烏薩奇)",
+                "sourceUrl": "https://www.youtube.com/live/JpXVE-Admqk?t=6377s"
+            },
             {
                 "fileName": "打呼聲(模仿毛絲弟)",
                 "btnName": "打呼聲(模仿毛絲弟)",
@@ -658,6 +703,11 @@
                 "fileName": "笑聲17",
                 "btnName": "笑聲17",
                 "sourceUrl": "https://www.youtube.com/live/EXiE0Fg13Z4?t=3922s"
+            },
+            {
+              "fileName": "笑聲18",
+              "btnName": "笑聲18",
+              "sourceUrl": "https://www.youtube.com/live/EeG4CIJUGQI?t=2335s"
             }
         ]
     },
@@ -665,14 +715,19 @@
         "category": "呼麻鼠",
         "btnList": [
             {
+                "fileName": "等下掰鋪疑",
+                "btnName": "等下掰鋪疑",
+                "sourceUrl": "https://www.youtube.com/live/9BMQYv4Qgzw?t=13860s"
+            },
+            {
                 "fileName": "Let me do it for you",
                 "btnName": "Let me do it for you",
-                "sourceUrl": "https://www.youtube.com/live/L9n3Upm_v1c?si=0GJ8Cg_rSm1xYa5N&t=5507"
+                "sourceUrl": "https://www.youtube.com/live/L9n3Upm_v1c?t=5507s"
             },
             {
                 "fileName": "呼麻笑聲",
                 "btnName": "呼麻笑聲",
-                "sourceUrl": "https://www.youtube.com/live/9BMQYv4Qgzw?si=soFZUGZm-MIfFSrU&t=13323"
+                "sourceUrl": "https://www.youtube.com/live/9BMQYv4Qgzw?t=13323s"
             }
         ]
     },
