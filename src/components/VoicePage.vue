@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <CollapseSidebar />
     <div class="d-flex flex-wrap align-items-center justify-content-center container">
       <img
         ref="img-circle"
@@ -113,6 +114,7 @@
 <script>
 import VoiceButton2 from './buttons/VoiceButton2.vue'
 import InformationBlock from './InformationBlock.vue'
+import CollapseSidebar from './CollapseSidebar.vue'
 import btnList from '../assets/button-list.json'
 
 export default {
@@ -120,6 +122,7 @@ export default {
   components: {
     VoiceButton2,
     InformationBlock,
+    CollapseSidebar,
   },
   props: {
     msg:  {
