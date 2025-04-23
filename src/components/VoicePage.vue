@@ -1,20 +1,11 @@
 <template>
   <div class="container">
-    <CollapseSidebar />
-    <div class="d-flex flex-wrap align-items-center justify-content-center container">
-      <img
-        ref="img-circle"
-        class="img-circle"
-        height="200"
-        src="https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096"
-      >
-      <div>
-        <p class="fs-1 py-1">
-          {{ msg }}
-        </p>
-        <InformationBlock :title="getInfoBlockTitle()" />
-      </div>
-    </div>
+    <PageHeader
+      ref="pageHeader"
+      :msg="msg"
+      :img-src="headerImgSrc"
+      :title="infoBlockTitle"
+    />
     <iframe
       ref="rick-roll"
       :class="{ hidden: !f12push }"
@@ -113,16 +104,14 @@
 
 <script>
 import VoiceButton2 from './buttons/VoiceButton2.vue'
-import InformationBlock from './InformationBlock.vue'
-import CollapseSidebar from './CollapseSidebar.vue'
+import PageHeader from './PageHeader.vue'
 import btnList from '../assets/button-list.json'
 
 export default {
   name: 'VoicePage',
   components: {
     VoiceButton2,
-    InformationBlock,
-    CollapseSidebar,
+    PageHeader,
   },
   props: {
     msg:  {
@@ -137,6 +126,7 @@ export default {
       playNowList: [],
       f12push: false,
       infoBlockTitle: '祈菈的資訊',
+      headerImgSrc: 'https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096',
       overlapPlayback: false,
       photobombList: new Map(),
       windowHeight: window.innerHeight,
@@ -150,10 +140,11 @@ export default {
         self.stopPlay(true)
         e.preventDefault()
       } else if (self.f12push == false && e.code === 'F12') {
+        // 進入 F12 模式就祈菈搖
         window.scrollTo(0,0)
         self.f12push = true
         self.$refs['rick-roll']['src'] = 'https://www.youtube.com/embed/O1FWa6vRFTA?start=19&autoplay=1&mute=0'
-        self.$refs['img-circle']['src'] = 'https://media.discordapp.net/attachments/833581544223277068/901992965227048980/a945144c73db5c24.png'
+        self.headerImgSrc = require('@/assets/chiila_is_our_wife.png')
         self.infoBlockTitle = '毛主祈萬歲'
         setTimeout(function () {
           console.log('%c請看向左邊祈菈搖', 'color:red; font-size: 50px')

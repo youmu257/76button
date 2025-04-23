@@ -59,7 +59,7 @@ export default {
   name: 'CollapseSidebar',
   data() {
     return {
-      isSidebarOpen: false,
+      isSidebarOpen: true,
       sidebarItems: sidebarItemList,
     }
   },

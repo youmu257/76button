@@ -1,25 +1,31 @@
 <template>
   <div id="app">
-    <VoicePage :msg="getTitle()" />
+    <CollapseSidebar />
+    <!-- 用於渲染路由對應的組件 -->
+    <router-view v-bind="{ msg: getTitle() }" />
     <VoicePageFooter />
   </div>
 </template>
 
 <script>
+import { createRouter, createWebHistory } from 'vue-router'
+import CollapseSidebar from './components/CollapseSidebar.vue'
 import VoicePage from './components/VoicePage.vue'
+import FeedbackForm from './components/FeedbackForm.vue'
+import ContributorsPage from './components/ContributorsPage.vue'
 import VoicePageFooter from './components/VoicePageFooter.vue'
 
 export default {
   name: 'App',
   components: {
-    VoicePage,
+    CollapseSidebar,
     VoicePageFooter,
   },
   data() {
     return {
       chillaTitle: '祈菈‧貝希毛絲的語音按鈕',
       chillaContent: '純粹推廣可愛帥氣迷人性感的遜炮毛絲鼠用',
-      chillaPicture: 'https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096'
+      chillaPicture: 'https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096',
     }
   },
   head() {
@@ -78,4 +84,19 @@ export default {
     }
   },
 }
+
+// 路由配置
+const routes = [
+  { path: '/', component: VoicePage }, // 預設路徑
+  { path: '/voice', component: VoicePage },
+  { path: '/feedback', component: FeedbackForm },
+  { path: '/contributors', component: ContributorsPage },
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+export { router }
 </script>
