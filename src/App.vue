@@ -1,9 +1,14 @@
 <template>
-  <div id="app">
-    <CollapseSidebar />
-    <!-- 用於渲染路由對應的組件 -->
-    <router-view v-bind="{ msg: getTitle() }" />
-    <VoicePageFooter />
+  <div
+    id="app"
+    :class="{ 'content-shifted': isSidebarOpen }"
+  >
+    <CollapseSidebar @sidebar-toggle="handleSidebarToggle" />
+    <div class="main-content">
+      <!-- 用於渲染路由對應的組件 -->
+      <router-view v-bind="{ msg: getTitle() }" />
+      <VoicePageFooter />
+    </div>
   </div>
 </template>
 
@@ -26,6 +31,7 @@ export default {
       chillaTitle: '祈菈‧貝希毛絲的語音按鈕',
       chillaContent: '純粹推廣可愛帥氣迷人性感的遜炮毛絲鼠用',
       chillaPicture: 'https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096',
+      isSidebarOpen: true,
     }
   },
   head() {
@@ -81,7 +87,10 @@ export default {
     },
     getPicture: function() {
       return this.chillaPicture
-    }
+    },
+    handleSidebarToggle(isOpen) {
+      this.isSidebarOpen = isOpen
+    },
   },
 }
 
@@ -100,3 +109,20 @@ const router = createRouter({
 
 export { router }
 </script>
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+.main-content {
+  transition: margin-left 0.3s ease;
+  margin-left: 60px; /* 預設邊距等於折疊側邊欄寬度 */
+}
+
+.content-shifted .main-content {
+  margin-left: 250px; /* 側邊欄打開時的邊距 */
+}
+</style>

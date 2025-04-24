@@ -1,22 +1,9 @@
-/* General Styles */
-body {
-  font-family: "Roboto", Arial, sans-serif;
-  background: #f8f9fa;
-  color: #2f3e4e;
-  margin: 0;
-  padding: 0;
-}
-  
-a {
-  color: #2f3e4e;
-  text-decoration: none;
+/* ---- 基本樣式 ---- */
+.sidebar-container {
+  height: 100%;
 }
 
-a:hover {
-  color: #0077b6;
-}
-
-/* Sidebar Styles */
+/* ---- 側邊欄樣式 ---- */
 #sidebar {
   width: 250px;
   height: 100vh;
@@ -35,7 +22,7 @@ a:hover {
   width: 60px; /* 折疊後保留更小的寬度 */
 }
 
-/* Header */
+/* ---- 側邊欄頭部 ---- */
 #sidebar .sidebar-header {
   position: relative;
   padding: 20px;
@@ -46,6 +33,11 @@ a:hover {
   border-bottom: 1px solid #e0e0e0;
   height: 70px;
   box-sizing: border-box;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
 }
 
 #sidebar .sidebar-header h3 {
@@ -69,7 +61,7 @@ a:hover {
   display: block; /* 顯示縮寫 */
 }
 
-/* Collapse Button */
+/* ---- 收合按鈕 ---- */
 #sidebarCollapse {
   position: absolute;
   top: 20px;
@@ -95,10 +87,11 @@ a:hover {
   transform: scale(1.1); /* 放大按鈕 */
 }
 
-/* Menu */
+/* ---- 選單項目 ---- */
 #sidebar ul.components {
   padding: 20px 0;
   list-style: none;
+  margin: 0;
 }
 
 #sidebar ul.components li {
@@ -114,9 +107,11 @@ a:hover {
   border-radius: 8px;
   margin: 4px 12px;
   transition: background 0.3s ease, padding 0.3s ease;
+  text-decoration: none;
 }
 
-#sidebar ul.components li a i {
+#sidebar ul.components li a i,
+#sidebar ul.components li a span[class^="icon-"] {
   margin-right: 12px;
   font-size: 18px;
   width: 20px;
@@ -128,7 +123,7 @@ a:hover {
   transition: opacity 0.3s ease;
 }
 
-#sidebar.active ul.components li a span {
+#sidebar.active ul.components li a span:not([class^="icon-"]) {
   opacity: 0; /* 折疊後隱藏文字 */
   width: 0;
   overflow: hidden;

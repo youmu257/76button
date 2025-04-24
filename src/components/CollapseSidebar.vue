@@ -1,5 +1,5 @@
 <template>
-  <div :class="['app-wrapper', { 'msb-x': !isSidebarOpen }]">
+  <div class="sidebar-container">
     <!-- Sidebar -->
     <nav
       id="sidebar"
@@ -42,10 +42,10 @@
           v-for="(item, index) in sidebarItems"
           :key="index"
         >
-          <a :href="item.href">
+          <router-link :to="item.href">
             <span :class="item.icon" />
             <span style="margin-left: 10px;">{{ item.text }}</span>
-          </a>
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -66,9 +66,12 @@ export default {
   methods: {
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen
+      // 通知父組件側邊欄狀態變更
+      this.$emit('sidebar-toggle', this.isSidebarOpen)
     }
   }
 }
 </script>
+
 <style scoped src="../css/CollapseSidebar.css"></style>
 <style scoped src="../css/ItemIcon.css"></style>
