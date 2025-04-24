@@ -14,6 +14,31 @@
         "category": "祈菈",
         "btnList": [
             {
+              "fileName": "晚安",
+              "btnName": "晚安",
+              "sourceUrl": "https://www.youtube.com/live/VA9Y6PDXQBs?t=4852s"
+            },
+            {
+              "fileName": "怎麼會這樣",
+              "btnName": "怎麼會這樣",
+              "sourceUrl": "https://www.youtube.com/live/LdQPd6vtnqU?t=3202s"
+            },
+            {
+              "fileName": "我要把你變成小ㄐㄐ",
+              "btnName": "我要把你變成小ㄐㄐ",
+              "sourceUrl": "https://www.youtube.com/live/PN2WOEHD56g?t=14796s"
+            },
+            {
+              "fileName": "歐以洗苦娜內 屋阿阿阿",
+              "btnName": "歐以洗苦娜內 屋阿阿阿",
+              "sourceUrl": "https://www.youtube.com/live/_ilVdQ8OjUc?t=2161s"
+            },
+            {
+              "fileName": "吃大便",
+              "btnName": "吃大便吃大便",
+              "sourceUrl": "https://www.youtube.com/live/TS-rkKr8AYw?t=9012s"
+            },
+            {
                 "fileName": "真都假都",
                 "btnName": "真都假都",
                 "sourceUrl": "https://www.youtube.com/live/rxi_4pwa_fA?t=7129s"
@@ -355,6 +380,11 @@
         "category": "台詞配音",
         "btnList": [
             {
+              "fileName": "親愛的(秋霞姊)",
+              "btnName": "親愛的(秋霞姊)",
+              "sourceUrl": "https://www.youtube.com/live/cwst0tVJGsE?t=3231s"
+            },
+            {
                 "fileName": "告訴你一個秘密 我已經單身30年了(魔法師餅乾)",
                 "btnName": "告訴你一個秘密 我已經單身30年了(魔法師餅乾)",
                 "sourceUrl": "https://www.youtube.com/watch?v=Kxdig2DNrVU&t=3020s"
@@ -419,6 +449,26 @@
     {
         "category": "祈特音效",
         "btnList": [
+            {
+              "fileName": "咪貓貓",
+              "btnName": "咪貓貓",
+              "sourceUrl": "https://www.youtube.com/live/aZ2OY94GLJw?t=2644s"
+            },
+            {
+              "fileName": "怪叫(落下)",
+              "btnName": "怪叫(落下)",
+              "sourceUrl": "https://www.youtube.com/live/VtmtbTIemY0?t=4099s"
+            },
+            {
+              "fileName": "蛙阿阿阿",
+              "btnName": "蛙阿阿阿",
+              "sourceUrl": "https://www.youtube.com/live/0yiKxRtAqhA?t=10689s"
+            },
+            {
+              "fileName": "阿恰恰恰恰",
+              "btnName": "阿恰恰恰恰",
+              "sourceUrl": "https://www.youtube.com/watch?v=xL4cJmQ-YGE&t=7977s"
+            },
             {
                 "fileName": "彈舌",
                 "btnName": "彈舌",
