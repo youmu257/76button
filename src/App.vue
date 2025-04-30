@@ -13,11 +13,12 @@
 </template>
 
 <script>
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import CollapseSidebar from './components/CollapseSidebar.vue'
 import VoicePage from './components/VoicePage.vue'
 import FeedbackForm from './components/FeedbackForm.vue'
 import ContributorsPage from './components/ContributorsPage.vue'
+import TimelinePage from './components/Timeline.vue'
 import VoicePageFooter from './components/VoicePageFooter.vue'
 
 export default {
@@ -100,10 +101,11 @@ const routes = [
   { path: '/voice', component: VoicePage },
   { path: '/feedback', component: FeedbackForm },
   { path: '/contributors', component: ContributorsPage },
+  { path: '/timeline', component: TimelinePage },
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 })
 
