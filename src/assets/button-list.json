@@ -14,6 +14,11 @@
         "category": "祈菈",
         "btnList": [
             {
+                "fileName": "挖幹",
+                "btnName": "挖幹",
+                "sourceUrl": "https://www.youtube.com/live/eDVbZvQV1P8?t=2656s"
+              },
+            {
               "fileName": "晚安",
               "btnName": "晚安",
               "sourceUrl": "https://www.youtube.com/live/VA9Y6PDXQBs?t=4852s"
@@ -250,6 +255,11 @@
         "category": "福利(祈菈最寵起司團了)",
         "btnList": [
             {
+                "fileName": "5ma",
+                "btnName": "5ma",
+                "sourceUrl": "https://www.youtube.com/live/XEtre9BSfpQ?t=1196s"
+            },
+            {
                 "fileName": "喜翻你們拉",
                 "btnName": "喜翻你們拉",
                 "sourceUrl": "https://www.youtube.com/live/HT-cdv-pj6o?t=16236s"
@@ -329,6 +339,16 @@
     {
         "category": "祈蘿",
         "btnList": [
+            {
+                "fileName": "跟他們說哈啾",
+                "btnName": "跟他們說哈啾",
+                "sourceUrl": "https://www.youtube.com/live/jG8Erxgx0HQ?t=10230s"
+            },
+            {
+                "fileName": "嗯瑞瑞瑞",
+                "btnName": "嗯瑞瑞瑞",
+                "sourceUrl": "https://www.youtube.com/live/jG8Erxgx0HQ?t=2460s"
+            },
             {
                 "fileName": "跨沙小拉",
                 "btnName": "跨沙小拉",
@@ -449,6 +469,11 @@
     {
         "category": "祈特音效",
         "btnList": [
+            {
+                "fileName": "慘叫",
+                "btnName": "慘叫",
+                "sourceUrl": "https://www.youtube.com/live/ObchEbJ1zrM?t=5913s"
+              },
             {
               "fileName": "咪貓貓",
               "btnName": "咪貓貓",

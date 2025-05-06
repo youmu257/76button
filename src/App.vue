@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      chillaTitle: '祈菈‧貝希毛絲的語音按鈕',
+      chillaTitle: '祈菈‧貝希毛絲博物館',
       chillaContent: '純粹推廣可愛帥氣迷人性感的遜炮毛絲鼠用',
       chillaPicture: 'https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096',
       isSidebarOpen: true,
