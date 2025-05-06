@@ -59,7 +59,7 @@ export default {
   name: 'CollapseSidebar',
   data() {
     return {
-      isSidebarOpen: true,
+      isSidebarOpen: !this.isSmallDevice(), // 如果是小裝置預設為 false
       sidebarItems: sidebarItemList,
     }
   },
@@ -68,7 +68,25 @@ export default {
       this.isSidebarOpen = !this.isSidebarOpen
       // 通知父組件側邊欄狀態變更
       this.$emit('sidebar-toggle', this.isSidebarOpen)
+    },
+    isSmallDevice() {
+      // 檢查是否為小裝置
+      return window.innerWidth < 768
     }
+  },
+  created() {
+    // 在組件創建時通知父組件初始狀態
+    this.$nextTick(() => {
+      this.$emit('sidebar-toggle', this.isSidebarOpen)
+    })
+    
+    // 監聽視窗大小變化，調整側邊欄狀態
+    window.addEventListener('resize', () => {
+      if (this.isSmallDevice() && this.isSidebarOpen) {
+        this.isSidebarOpen = false
+        this.$emit('sidebar-toggle', false)
+      }
+    })
   }
 }
 </script>

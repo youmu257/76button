@@ -2,9 +2,18 @@
   "title": "鴨子出沒的時間點",
   "items": [
     {
+      "date": "2021-07-06",
+      "title": "第一篇提到祈菈的噗文",
+      "description": "應該是更早之前就開始看台 但這篇噗文是最早的紀錄",
+      "link": {
+        "text": "查看連結",
+        "url": "https://www.plurk.com/p/og86ch"
+      }
+    },
+    {
       "date": "2021-10-02",
       "title": "【會限12】海巡鼠",
-      "description": "變成起司團的時刻",
+      "description": "正式變成起司團的時刻",
       "link": {
         "text": "觀看完整直播",
         "url": "https://youtu.be/S3wgEu371uc?t=20150"
@@ -16,7 +25,7 @@
       "description": "初版長好醜阿",
       "video": "https://www.youtube.com/embed/P74vO0VLv08?si=SemoUgxsbUj6IFwZ&amp;start=16861",
       "link": {
-        "text": "觀看完整影片",
+        "text": "觀看完整直播",
         "url": "https://youtu.be/P74vO0VLv08?t=16857"
       }
     },
@@ -28,6 +37,15 @@
       "link": {
         "text": "觀看完整直播",
         "url": "https://youtu.be/NQ2t_7PvSg0?t=4185"
+      }
+    },
+    {
+      "date": "2021-12-14",
+      "title": "語音按鈕被放上祈菈 lit.link",
+      "description": "此生無憾",
+      "link": {
+        "text": "查看連結",
+        "url": "https://lit.link/en/chilla"
       }
     },
     {
@@ -47,6 +65,10 @@
       "link": {
         "text": "觀看完整直播",
         "url": "https://youtu.be/WOiIk4NY2EQ?t=16743"
+      },
+      "link2": {
+        "text": "查看 X 連結",
+        "url": "https://x.com/youmu257/status/1475040590316568579"
       }
     },
     {
@@ -57,16 +79,20 @@
       "link": {
         "text": "觀看完整直播",
         "url": "https://www.youtube.com/live/TvjHRENTAGA?t=1771s"
+      },
+      "link2": {
+        "text": "查看 X 連結",
+        "url": "https://x.com/youmu257/status/1476943867782254592"
       }
     },
     {
       "date": "2022-04-07",
       "title": "一週年",
-      "description": "參與一周年唱歌企劃",
-      "video": "https://www.youtube.com/embed/9JSr8aKzFsQ?si=17V7YhReDo8CN0Yq",
+      "description": "參與一週年唱歌企劃",
+      "video": "https://www.youtube.com/embed/9JSr8aKzFsQ?si=KntLSLOSsKI-aSM9&amp;start=7048",
       "link": {
         "text": "觀看完整直播",
-        "url": "https://www.youtube.com/live/9JSr8aKzFsQ?si=17V7YhReDo8CN0Yq"
+        "url": "https://www.youtube.com/live/9JSr8aKzFsQ?si=1JObBcj3x-9BKAt8&t=7048"
       }
     },
     {
@@ -90,6 +116,16 @@
       }
     },
     {
+      "date": "2022-07-31",
+      "title": "2022漫博 - 祈菈百萬問答",
+      "description": "考試失敗>A<",
+      "video": "https://www.youtube.com/embed/3St3lIKs8zw?si=QUTxq5kEi4bwq2gf",
+      "link": {
+        "text": "觀看完整直播",
+        "url": "https://www.youtube.com/live/3St3lIKs8zw?si=QUTxq5kEi4bwq2gf"
+      }
+    },
+    {
       "date": "2022-10-30",
       "title": "【會限43】畫大頭貼",
       "description": "鴨子大頭貼",
@@ -97,6 +133,10 @@
       "link": {
         "text": "觀看完整直播",
         "url": "https://www.youtube.com/watch?v=YfD_67NCj-s&t=10761s"
+      },
+      "link2": {
+        "text": "查看 X 連結",
+        "url": "https://x.com/youmu257/status/1586695486177652736"
       }
     },
     {
@@ -105,7 +145,7 @@
       "description": "1對1見面會",
       "image": "https://pbs.twimg.com/media/Fg0yeg-VEAATXgT?format=jpg&name=large",
       "link": {
-        "text": "X 連結",
+        "text": "查看 X 連結",
         "url": "https://x.com/youmu257/status/1588981754412797953"
       }
     },
@@ -160,36 +200,6 @@
       }
     },
     {
-      "date": "2024-02-02",
-      "title": "2024動漫節",
-      "description": "猜拳輸給祈菈",
-      "video": "https://www.youtube.com/embed/TFyhfWpNv-0?si=IwWdboOqgDGBTP1f&amp;start=1931",
-      "link": {
-        "text": "觀看完整直播",
-        "url": "https://www.youtube.com/live/TFyhfWpNv-0?si=QWcRDk3VxuXKyloI&t=1931"
-      }
-    },
-    {
-      "date": "2024-09-24",
-      "title": "【會限69】Gartic Phone",
-      "description": "電話畫畫會限",
-      "image": "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/273482664_285622576970083_8565069084343252132_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=HQ3-Wln0-MsQ7kNvwE50I4z&_nc_oc=AdmgKSpq3TuFaHDGOsJzXDYQi8CgpyGSe7L9dG2RN2YaOiNoRjbssqIi2FEjrGV_ILE&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=Y1yizrBhrO3pWpamgzbKWQ&oh=00_AfE-DeD2oD5MTyHok80GAyYhgVMPzG_8xh7FcHpscCSbjg&oe=68168C53",
-      "link": {
-        "text": "觀看完整直播",
-        "url": "https://www.youtube.com/live/b-ht28_vIFo?si=OiOmkQbaz4Oil3rK&t=5983"
-      }
-    },
-    {
-      "date": "2024-11-11",
-      "title": "第二張大頭貼",
-      "description": "呼麻鼠騎鴨子",
-      "image": "https://pbs.twimg.com/media/F-pwPojbAAAtxcN?format=jpg&name=medium",
-      "link": {
-        "text": "觀看完整直播",
-        "url": "https://www.youtube.com/live/Lb3n5IdS08U?t=8861s"
-      }
-    },
-    {
       "date": "2023-12-30",
       "title": "【會限76】call in",
       "description": "聊聊今年跟明年",
@@ -197,6 +207,16 @@
       "link": {
         "text": "觀看完整直播",
         "url": "https://www.youtube.com/live/sX6t8UU-vN0?t=1711s"
+      }
+    },
+    {
+      "date": "2024-02-02",
+      "title": "2024台北國際動漫節",
+      "description": "猜拳輸給祈菈",
+      "video": "https://www.youtube.com/embed/TFyhfWpNv-0?si=IwWdboOqgDGBTP1f&amp;start=1931",
+      "link": {
+        "text": "觀看完整直播",
+        "url": "https://www.youtube.com/live/TFyhfWpNv-0?si=QWcRDk3VxuXKyloI&t=1931"
       }
     },
     {
@@ -220,6 +240,29 @@
       }
     },
     {
+      "date": "2024-09-24",
+      "title": "【會限69】Gartic Phone",
+      "description": "電話畫畫會限",
+      "link": {
+        "text": "觀看完整直播",
+        "url": "https://www.youtube.com/live/b-ht28_vIFo?si=OiOmkQbaz4Oil3rK&t=5983"
+      }
+    },
+    {
+      "date": "2024-11-11",
+      "title": "第二張大頭貼",
+      "description": "呼麻鼠騎鴨子",
+      "image": "https://pbs.twimg.com/media/F-pwPojbAAAtxcN?format=jpg&name=medium",
+      "link": {
+        "text": "觀看完整直播",
+        "url": "https://www.youtube.com/live/Lb3n5IdS08U?t=8861s"
+      },
+      "link2": {
+        "text": "查看 X 連結",
+        "url": "https://x.com/Chilla_Storia/status/1723313270726209989"
+      }
+    },
+    {
       "date": "2024-12-04",
       "title": "遊記分享",
       "description": "把祈菈拍胖了",
@@ -227,6 +270,10 @@
       "link": {
         "text": "觀看完整直播",
         "url": "https://www.youtube.com/live/YfpY9oAC8_g?t=13726s"
+      },
+      "link2": {
+        "text": "查看 X 連結",
+        "url": "https://x.com/youmu257/status/1864712550954483851"
       }
     },
     {

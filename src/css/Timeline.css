@@ -176,14 +176,21 @@
   border-radius: 8px;
 }
 
+.link-container {
+  display: flex;
+  gap: 10px; /* 按鈕之間的間距 */
+  margin-top: 10px; /* 與上方內容的間距 */
+}
+
 .timeline-link {
   display: inline-block;
+  padding: 8px 12px;
   background-color: #0077b6;
   color: white;
   text-decoration: none;
   padding: 8px 16px;
   border-radius: 4px;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s;
   align-self: center; /* 修改為置中 */
   margin: 0 auto; /* 增加這行確保水平置中 */
   font-weight: 500;

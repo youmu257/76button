@@ -7,7 +7,6 @@
         <span class="slider"></span>
       </label>
     </div>
-
     <h1 class="timeline-title">{{ title }}</h1>
     <div class="timeline">
       <div
@@ -33,11 +32,21 @@
               class="timeline-image"
               @click="openLightbox(item.image)"
             />
-            <div v-if="item.video" class="video-container">
+            <div
+              v-if="item.video"
+              class="video-container"
+              ref="videoContainers"
+              :data-index="index"
+            >
               <iframe
+                v-if="visibleVideos[index]"
                 :src="item.video"
+                width="560"
+                height="315"
+                title="YouTube video player"
                 frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
               />
             </div>
@@ -48,6 +57,14 @@
               class="timeline-link"
             >
               {{ item.link.text }}
+            </a>
+            <a
+              v-if="item.link2"
+              :href="item.link2.url"
+              target="_blank"
+              class="timeline-link"
+            >
+              {{ item.link2.text }}
             </a>
           </div>
         </div>
@@ -71,6 +88,7 @@ export default {
       timelineItems: timelineData.items,
       title: timelineData.title, 
       isAlternate: false, // 控制是否切換到另一組 JSON
+      visibleVideos: {}, // 控制每個 iframe 是否可見
     }
   },
   methods: {
@@ -89,7 +107,40 @@ export default {
         this.timelineItems = timelineData.items
         this.title = timelineData.title
       }
+      
+      // 重置可見性狀態
+      this.visibleVideos = {}
+      
+      // 下一個渲染週期後重新初始化 IntersectionObserver
+      this.$nextTick(() => {
+        this.observeVideos()
+      })
     },
+    observeVideos() {
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = entry.target.dataset.index
+            this.visibleVideos[index] = true // 直接修改對象屬性
+            observer.unobserve(entry.target) // 停止觀察已載入的元素
+          }
+        })
+      }, options)
+
+      this.$refs.videoContainers.forEach((container) => {
+        observer.observe(container)
+      })
+    },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.observeVideos()
+    })
   },
 }
 </script>
