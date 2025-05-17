@@ -103,17 +103,12 @@ export default {
     },
     togglePlay() {
       this.audio = this.$refs[this.voiceFileName].cloneNode()
-      if (this.isPlaying) {
-        this.audio.pause()
-      } else {
-        // 傳給 VoicePage 用來停止撥放上一個聲音
-        this.$emit('displayOther', this.audio)
-        this.audio.load()
-        this.audio.play()
-        // 開始播放進度條
-        this.updateProgressSmooth()
-      }
-      this.isPlaying = !this.isPlaying
+      // 傳給 VoicePage 用來停止撥放上一個聲音
+      this.$emit('displayOther', this.audio)
+      this.audio.load()
+      this.audio.play()
+      // 開始播放進度條
+      this.updateProgressSmooth()
     },
     updateProgressSmooth() {
       this.progress = (this.audio.currentTime / this.audio.duration) * 100
