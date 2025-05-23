@@ -29,8 +29,9 @@
     ```
 # To list
 * 隨機播放按鈕
-* 多語系
-* 畫面優化(會擺後面)
+* 懸浮播放器介面
+* 精華推薦頁面
+* 語音考題頁面(大概)
 
 # Reference
 * [Button 樣式](https://www.bestcssbuttongenerator.com/#/19)
