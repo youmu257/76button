@@ -129,6 +129,7 @@ export default {
       headerImgSrc: 'https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096',
       overlapPlayback: false,
       photobombList: new Map(),
+      photobombDeleteList: new Set(),
       windowHeight: window.innerHeight,
       windowWidth: window.innerWidth,
     }
@@ -169,6 +170,20 @@ export default {
     photobombVoice(playVoice) {
       // 王祈菈亂入圖產生
       this.displayOtherVoice(playVoice)
+
+      // 移除已隱藏的圖片
+      const iterator = this.photobombDeleteList.values()
+      let next = iterator.next()
+      while (!next.done) {
+        const mapKey = next.value
+        if (this.photobombList.has(mapKey)) {
+          this.photobombList.delete(mapKey)
+        }
+        this.photobombDeleteList.delete(mapKey)
+
+        next = iterator.next()
+      }
+
       for (var i of Array(10)) {
         this.generatePhotobomb(i)
       }
@@ -196,24 +211,19 @@ export default {
       this.startFadeOut(mapKey, positionStyle)
     },
     startFadeOut(mapKey, baseStyle) {
-      const fadeDuration = 3000 // 總消失時間 (毫秒)
-      const steps = 10 // 消失過程的步數
-      const interval = fadeDuration / steps
+      const fadeDuration = this.getRandom(3000) + 2000 // 總消失時間 (2000~4999毫秒)
+      const delay = Math.floor(fadeDuration / 1000)
+      const fadeOutStyle = `${baseStyle} opacity:1; transition: opacity ${delay}s ease-out;`
+      this.photobombList.set(mapKey, `${fadeOutStyle}`)
 
-      for (let i = 0; i <= steps; i++) {
+      requestAnimationFrame(() => {
+        this.photobombList.set(mapKey, `${fadeOutStyle} opacity: 0;`)
+
         setTimeout(() => {
-          if (!this.photobombList.has(mapKey)) return // 如果已刪除，直接跳過
-
-          if (i === steps) {
-            // 移除圖片
-            this.photobombList.delete(mapKey)
-          } else {
-            // 漸變透明度
-            const opacity = (steps - i) / steps
-            this.photobombList.set(mapKey, `${baseStyle} opacity: ${opacity};`)
-          }
-        }, i * interval)
-      }
+          this.photobombList.set(mapKey, `${fadeOutStyle} opacity: 0; display:none`)
+          this.photobombDeleteList.add(mapKey)
+        }, fadeDuration)
+      })
     },
     getRandom(x) {
       return Math.floor(Math.random()*x) + 1
