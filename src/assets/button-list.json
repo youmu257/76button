@@ -14,10 +14,25 @@
         "category": "祈菈",
         "btnList": [
             {
+                "fileName": "你這間諜起司團",
+                "btnName": "你這間諜起司團",
+                "sourceUrl": "https://www.youtube.com/live/aLaG4c158YA?t=828"
+            },
+            {
+                "fileName": "不能只有我破滅",
+                "btnName": "不能只有我破滅",
+                "sourceUrl": "https://www.youtube.com/live/9-6LbqzX5sk?t=4234"
+            },
+            {
+                "fileName": "打你ㄐㄐ",
+                "btnName": "打你ㄐㄐ",
+                "sourceUrl": "https://www.youtube.com/live/EMWzhaQoJRY?t=7656"
+            },
+            {
                 "fileName": "挖幹",
                 "btnName": "挖幹",
                 "sourceUrl": "https://www.youtube.com/live/eDVbZvQV1P8?t=2656s"
-              },
+            },
             {
               "fileName": "晚安",
               "btnName": "晚安",
@@ -470,10 +485,15 @@
         "category": "祈特音效",
         "btnList": [
             {
-                "fileName": "慘叫",
-                "btnName": "慘叫",
-                "sourceUrl": "https://www.youtube.com/live/ObchEbJ1zrM?t=5913s"
-              },
+                "fileName": "哈阿啾",
+                "btnName": "哈阿啾",
+                "sourceUrl": "https://www.youtube.com/live/78_ATW_5FVo?t=9998"
+            },
+            {
+                "fileName": "阿巴督巴布",
+                "btnName": "阿巴督巴布",
+                "sourceUrl": "https://www.youtube.com/live/10MSFS8AFew?t=2905"
+            },
             {
               "fileName": "咪貓貓",
               "btnName": "咪貓貓",
@@ -783,6 +803,31 @@
               "fileName": "笑聲18",
               "btnName": "笑聲18",
               "sourceUrl": "https://www.youtube.com/live/EeG4CIJUGQI?t=2335s"
+            },
+            {
+              "fileName": "笑聲19(猖狂笑聲)",
+              "btnName": "笑聲19(猖狂笑聲)",
+              "sourceUrl": "https://www.youtube.com/live/Lu7sgiZME9E?t=2114"
+            },
+            {
+              "fileName": "笑聲20",
+              "btnName": "笑聲20",
+              "sourceUrl": "https://www.youtube.com/live/KZszwaSIPAg?t=9992"
+            },
+            {
+              "fileName": "笑聲21(傻笑)",
+              "btnName": "笑聲21(傻笑)",
+              "sourceUrl": "https://www.youtube.com/live/ulp2ThE9DLk?t=2056"
+            },
+            {
+              "fileName": "笑聲22(大笑)",
+              "btnName": "笑聲22(大笑)",
+              "sourceUrl": "https://www.youtube.com/live/MenmnmnRjYQ?t=6218"
+            },
+            {
+              "fileName": "笑聲23(嘲諷笑)",
+              "btnName": "笑聲23(嘲諷笑)",
+              "sourceUrl": "https://www.youtube.com/live/86lIv3fg0es?t=3040"
             }
         ]
     },
