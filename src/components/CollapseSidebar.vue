@@ -1,34 +1,50 @@
 <template>
+  <!-- 側邊欄容器 -->
   <div class="sidebar-container">
-    <!-- Sidebar -->
+    <!-- 導航側邊欄 -->
+    <!-- active class: 當側邊欄收合時套用 -->
     <nav
       id="sidebar"
       :class="{ 'active': !isSidebarOpen }"
+      role="navigation"
+      aria-label="主要導航選單"
     >
+      <!-- 側邊欄標題區塊 -->
       <div class="sidebar-header">
+        <!-- 側邊欄標題（僅在展開時顯示） -->
         <h3 v-if="isSidebarOpen">
           毛絲選單
         </h3>
+        
+        <!-- 收合/展開按鈕 -->
         <button
           id="sidebarCollapse"
+          type="button"
+          :aria-label="isSidebarOpen ? '收合側邊欄' : '展開側邊欄'"
+          :aria-expanded="isSidebarOpen"
           @click="toggleSidebar"
         >
+          <!-- 左箭頭 SVG（收合狀態） -->
           <svg
             v-if="isSidebarOpen"
             width="16"
             height="16"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               fill="currentColor"
               d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
             />
           </svg>
+          
+          <!-- 右箭頭 SVG（展開狀態） -->
           <svg
             v-else
             width="16"
             height="16"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               fill="currentColor"
@@ -37,13 +53,19 @@
           </svg>
         </button>
       </div>
+      
+      <!-- 側邊欄選單列表 -->
       <ul class="list-unstyled components">
+        <!-- 遍歷選單項目 -->
         <li
           v-for="(item, index) in sidebarItems"
-          :key="index"
+          :key="item.id || index"
         >
+          <!-- 路由連結 -->
           <router-link :to="item.href">
-            <span :class="item.icon" />
+            <!-- 選單圖示 -->
+            <span :class="item.icon" aria-hidden="true" />
+            <!-- 選單文字 -->
             <span style="margin-left: 10px;">{{ item.text }}</span>
           </router-link>
         </li>
@@ -55,24 +77,81 @@
 <script>
 import sidebarItemList from '../assets/sidebar-list.json'
 
+/**
+ * CollapseSidebar 組件
+ * 
+ * 功能說明：
+ * - 可收合的側邊欄導航選單
+ * - 響應式設計：小裝置預設收合，大裝置預設展開
+ * - 支援手動切換收合/展開狀態
+ * - 監聽視窗大小變化自動調整
+ * - 透過事件通知父組件狀態變更
+ * 
+ * 資料結構範例（sidebar-list.json）：
+ * [
+ *   {
+ *     "id": "1",
+ *     "text": "選單名稱",
+ *     "href": "/path",
+ *     "icon": "icon-class-name"
+ *   }
+ * ]
+ * 
+ * 事件：
+ * @emits sidebar-toggle - 側邊欄狀態變更時觸發，參數為 boolean（true=展開，false=收合）
+ * 
+ * @component
+ */
 export default {
   name: 'CollapseSidebar',
   data() {
     return {
-      isSidebarOpen: !this.isSmallDevice(), // 如果是小裝置預設為 false
+      /**
+       * 側邊欄開啟狀態
+       * 小裝置（< 768px）預設為 false（收合）
+       * 大裝置預設為 true（展開）
+       * @type {boolean}
+       */
+      isSidebarOpen: !this.isSmallDevice(),
+      
+      /**
+       * 側邊欄選單項目列表
+       * 從 JSON 檔案匯入
+       * @type {Array<Object>}
+       */
       sidebarItems: sidebarItemList,
     }
   },
   methods: {
+    /**
+     * 切換側邊欄開啟/收合狀態
+     * 並通知父組件狀態變更
+     */
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen
       // 通知父組件側邊欄狀態變更
       this.$emit('sidebar-toggle', this.isSidebarOpen)
     },
+    
+    /**
+     * 檢查是否為小裝置
+     * 小裝置定義為視窗寬度 < 768px
+     * @returns {boolean} true 表示小裝置，false 表示大裝置
+     */
     isSmallDevice() {
-      // 檢查是否為小裝置
       return window.innerWidth < 768
-    }
+    },
+    
+    /**
+     * 處理視窗大小變化
+     * 當視窗縮小至小裝置尺寸時，自動收合側邊欄
+     */
+    handleResize() {
+      if (this.isSmallDevice() && this.isSidebarOpen) {
+        this.isSidebarOpen = false
+        this.$emit('sidebar-toggle', false)
+      }
+    },
   },
   created() {
     // 在組件創建時通知父組件初始狀態
@@ -81,15 +160,16 @@ export default {
     })
     
     // 監聽視窗大小變化，調整側邊欄狀態
-    window.addEventListener('resize', () => {
-      if (this.isSmallDevice() && this.isSidebarOpen) {
-        this.isSidebarOpen = false
-        this.$emit('sidebar-toggle', false)
-      }
-    })
-  }
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeUnmount() {
+    // 組件卸載前移除事件監聽器，防止記憶體洩漏
+    window.removeEventListener('resize', this.handleResize)
+  },
 }
 </script>
 
+<!-- 引入外部樣式表 -->
+<!-- scoped 確保樣式只作用於此組件 -->
 <style scoped src="../css/CollapseSidebar.css"></style>
 <style scoped src="../css/ItemIcon.css"></style>
