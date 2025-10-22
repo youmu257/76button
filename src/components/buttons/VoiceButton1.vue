@@ -33,17 +33,17 @@
 export default {
   name: 'VoiceButton1',
   props: {
-    voiceFileName:  {
+    voiceFileName: {
       type: String,
-      default: ''
+      default: '',
     },
-    buttonName:  {
+    buttonName: {
       type: String,
-      default: ''
+      default: '',
     },
-    sourceUrl:  {
+    sourceUrl: {
       type: String,
-      default: ''
+      default: '',
     },
   },
   methods: {
@@ -53,8 +53,8 @@ export default {
       this.$emit('displayOther', audio)
       audio.load()
       audio.play()
-    }
-  }
+    },
+  },
 }
 </script>
 <style scoped src="../../css/VoiceButton1.css"></style>

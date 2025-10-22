@@ -77,7 +77,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
   z-index: 1100; /* 確保按鈕在 Sidebar 上方 */
 }
 
@@ -106,12 +109,14 @@
   color: #2f3e4e;
   border-radius: 8px;
   margin: 4px 12px;
-  transition: background 0.3s ease, padding 0.3s ease;
+  transition:
+    background 0.3s ease,
+    padding 0.3s ease;
   text-decoration: none;
 }
 
 #sidebar ul.components li a i,
-#sidebar ul.components li a span[class^="icon-"] {
+#sidebar ul.components li a span[class^='icon-'] {
   margin-right: 12px;
   font-size: 18px;
   width: 20px;
@@ -123,7 +128,7 @@
   transition: opacity 0.3s ease;
 }
 
-#sidebar.active ul.components li a span:not([class^="icon-"]) {
+#sidebar.active ul.components li a span:not([class^='icon-']) {
   opacity: 0; /* 折疊後隱藏文字 */
   width: 0;
   overflow: hidden;

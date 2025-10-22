@@ -40,7 +40,7 @@ export default {
       // creates a title tag in header.
       title() {
         return {
-          inner: this.getTitle()
+          inner: this.getTitle(),
         }
       },
       meta: [
@@ -67,7 +67,7 @@ export default {
   },
   created() {
     var self = this
-    window.addEventListener('keydown', function(e) {
+    window.addEventListener('keydown', function (e) {
       if (e.code === 'F12') {
         self.chillaTitle = '歡迎加入大鼠維埃共婆黨'
       }
@@ -77,16 +77,16 @@ export default {
     this.init()
   },
   methods: {
-    init: function() {
+    init: function () {
       console.log('%c祈菈我婆', 'color:red; font-size: 50px')
     },
-    getTitle: function() {
+    getTitle: function () {
       return this.chillaTitle
     },
-    getContent: function() {
+    getContent: function () {
       return this.chillaContent
     },
-    getPicture: function() {
+    getPicture: function () {
       return this.chillaPicture
     },
     handleSidebarToggle(isOpen) {

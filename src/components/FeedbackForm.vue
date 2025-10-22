@@ -8,7 +8,7 @@
       :img-src="headerImgSrc"
       :title="infoBlockTitle"
     />
-    
+
     <!-- Google 表單嵌入容器 -->
     <div class="form-wrapper">
       <!-- 
@@ -37,16 +37,16 @@ import PageHeader from './PageHeader.vue'
 
 /**
  * FeedbackForm 組件
- * 
+ *
  * 功能說明：
  * - 顯示意見回饋表單頁面
  * - 嵌入 Google Forms 表單
  * - 包含頁面標題和表單容器
  * - 響應式設計，最大寬度 960px
- * 
+ *
  * 使用範例：
  * <FeedbackForm msg="聯絡我們" />
- * 
+ *
  * @component
  */
 export default {
@@ -73,7 +73,7 @@ export default {
        * @type {string}
        */
       headerImgSrc: 'https://pbs.twimg.com/media/FBl1nswVEAIDNyw?format=jpg&name=4096x4096',
-      
+
       /**
        * 資訊區塊標題
        * 傳遞給 PageHeader 組件的 title prop

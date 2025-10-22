@@ -8,7 +8,7 @@
       :img-src="headerImgSrc"
       :title="infoBlockTitle"
     />
-    
+
     <!-- 隱藏的彩蛋影片（按 F12 觸發） -->
     <iframe
       ref="rick-roll"
@@ -21,18 +21,19 @@
       allowfullscreen
       loading="lazy"
     />
-    
+
     <hr>
-    
+
     <!-- 播放規則說明 -->
     <div class="rules-section">
       <b>播放規則</b><br>
       語音預設不重疊播放，播放時再次點擊語音按鈕(同一顆或其他顆)會蓋掉原本的聲音<br>
       可以點擊下方按鈕打開重疊播放<br>
       <s>如果覺得太吵</s>可以按<b>空白鍵</b>停止播放(<b>重疊播放時會全部停止</b>)<br>
-      備註: 按鈕旁邊有音訊檔來源(Youtube)，如果是推特符號表示為推特音訊(所以沒有記錄檔，想聽更多去追蹤推特)<br>
+      備註:
+      按鈕旁邊有音訊檔來源(Youtube)，如果是推特符號表示為推特音訊(所以沒有記錄檔，想聽更多去追蹤推特)<br>
     </div>
-    
+
     <!-- 亂入的王祈菈圖片列表 -->
     <!-- 動態產生，位置隨機，會自動淡出消失 -->
     <img
@@ -47,7 +48,7 @@
       alt="亂入的王祈菈"
       loading="lazy"
     >
-    
+
     <!-- 重疊播放開關按鈕 -->
     <button
       type="button"
@@ -61,9 +62,9 @@
         aria-hidden="true"
       >勾選開啟重疊播放
     </button>
-    
+
     <hr>
-    
+
     <!-- 語音按鈕手風琴區塊 -->
     <div
       v-for="(item, index) in btnDataList"
@@ -76,11 +77,9 @@
         <h3>
           {{ item.category }}
         </h3>
-        <p>
-          註: 一次會亂入10隻祈菈，最多200隻祈菈，祈菈會慢慢消失
-        </p>
+        <p>註: 一次會亂入10隻祈菈，最多200隻祈菈，祈菈會慢慢消失</p>
       </div>
-      
+
       <!-- 正常語音按鈕區塊（手風琴標題） -->
       <div
         v-if="item.type !== 'photobomb'"
@@ -101,7 +100,7 @@
           </button>
         </h2>
       </div>
-      
+
       <!-- 手風琴內容區塊（語音按鈕列表） -->
       <div
         :id="`collapseRegion_${index}`"
@@ -133,7 +132,7 @@ import btnList from '../assets/button-list.json'
 
 /**
  * VoicePage 組件
- * 
+ *
  * 功能說明：
  * - 主要的語音按鈕頁面
  * - 支援語音播放、暫停、重疊播放
@@ -141,13 +140,13 @@ import btnList from '../assets/button-list.json'
  * - 包含 F12 彩蛋（Rick Roll）
  * - 使用手風琴式佈局組織語音按鈕
  * - 支援鍵盤快捷鍵（空白鍵停止播放、F12 觸發彩蛋）
- * 
+ *
  * 特殊功能：
  * 1. 單一播放模式：新音效會覆蓋舊音效
  * 2. 重疊播放模式：可同時播放多個音效
  * 3. 亂入功能：隨機產生王祈菈圖片，自動淡出消失
  * 4. F12 彩蛋：開啟特殊影片和更換頁面內容
- * 
+ *
  * @component
  */
 export default {
@@ -174,62 +173,62 @@ export default {
        * @type {Array<Object>}
        */
       btnDataList: btnList,
-      
+
       /**
        * 當前播放的音訊物件（單一播放模式）
        * @type {HTMLAudioElement|null}
        */
       playNow: null,
-      
+
       /**
        * 當前播放的音訊列表（重疊播放模式）
        * @type {Array<HTMLAudioElement>}
        */
       playNowList: [],
-      
+
       /**
        * F12 彩蛋是否已觸發
        * @type {boolean}
        */
       f12push: false,
-      
+
       /**
        * 資訊區塊標題
        * @type {string}
        */
       infoBlockTitle: '祈菈的資訊',
-      
+
       /**
        * 頁面標題圖片 URL
        * @type {string}
        */
       headerImgSrc: 'https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096',
-      
+
       /**
        * 是否開啟重疊播放模式
        * @type {boolean}
        */
       overlapPlayback: false,
-      
+
       /**
        * 亂入圖片的樣式 Map
        * key: 隨機 ID, value: CSS 樣式字串
        * @type {Map<number, string>}
        */
       photobombList: new Map(),
-      
+
       /**
        * 待刪除的亂入圖片 ID 集合
        * @type {Set<number>}
        */
       photobombDeleteList: new Set(),
-      
+
       /**
        * 視窗高度（用於計算亂入圖片位置）
        * @type {number}
        */
       windowHeight: window.innerHeight,
-      
+
       /**
        * 視窗寬度（用於計算亂入圖片位置）
        * @type {number}
@@ -244,7 +243,7 @@ export default {
       if (e.code === 'Space') {
         this.stopPlay(true)
         e.preventDefault()
-      } 
+      }
       // F12 鍵：觸發彩蛋
       else if (!this.f12push && e.code === 'F12') {
         this.triggerF12Easter()
@@ -435,7 +434,8 @@ export default {
       this.f12push = true
 
       // 播放祈菈搖影片
-      this.$refs['rick-roll'].src = 'https://www.youtube.com/embed/O1FWa6vRFTA?start=19&autoplay=1&mute=0'
+      this.$refs['rick-roll'].src =
+        'https://www.youtube.com/embed/O1FWa6vRFTA?start=19&autoplay=1&mute=0'
       this.headerImgSrc = require('@/assets/chiila_is_our_wife.png')
       this.infoBlockTitle = '毛主祈萬歲'
 
@@ -447,7 +447,8 @@ export default {
 
       // 5 秒後切換為 Rick Roll 影片
       setTimeout(() => {
-        this.$refs['rick-roll'].src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&rel=0'
+        this.$refs['rick-roll'].src =
+          'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&rel=0'
         console.log('%c按 F12 想做啥(́◕◞౪◟◕‵)', 'color:black; font-size: 20px')
       }, 5000)
     },

@@ -21,10 +21,10 @@
         <div class="contributor-info">
           <!-- 貢獻者名稱 -->
           <h3>{{ contributor.name }}</h3>
-          
+
           <!-- 貢獻描述 -->
           <p>{{ contributor.contribution }}</p>
-          
+
           <!-- 外部連結（如果有提供） -->
           <!-- rel="noopener noreferrer" 防止安全漏洞 -->
           <a
@@ -48,13 +48,13 @@ import contributorsList from '@/assets/contributors-list.json'
 
 /**
  * ContributorsPage 組件
- * 
+ *
  * 功能說明：
  * - 顯示專案貢獻者列表
  * - 以卡片網格形式呈現貢獻者資訊
  * - 包含貢獻者名稱、貢獻內容和外部連結
  * - 資料來源為 JSON 檔案，方便維護更新
- * 
+ *
  * 資料結構範例（contributors-list.json）：
  * [
  *   {
@@ -65,7 +65,7 @@ import contributorsList from '@/assets/contributors-list.json'
  *     "linkText": "查看作品"
  *   }
  * ]
- * 
+ *
  * @component
  */
 export default {

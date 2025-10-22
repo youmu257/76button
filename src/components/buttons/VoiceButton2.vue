@@ -63,20 +63,20 @@ export default {
   props: {
     voiceFileName: {
       type: String,
-      default: ''
+      default: '',
     },
-    buttonName:  {
+    buttonName: {
       type: String,
-      default: ''
+      default: '',
     },
-    sourceUrl:  {
+    sourceUrl: {
       type: String,
-      default: ''
+      default: '',
     },
     sourceType: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data() {
     return {
@@ -123,7 +123,7 @@ export default {
       // 繼續動畫，遞迴持續偵錯 progress
       this.animationFrame = requestAnimationFrame(this.updateProgressSmooth)
     },
-  }
+  },
 }
 </script>
 <style scoped src="../../css/VoiceButton2.css"></style>

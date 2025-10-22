@@ -1,7 +1,6 @@
-
 /* audio style */
 .sound-play {
-    display: none;
+  display: none;
 }
 
 .panel {
@@ -9,18 +8,18 @@
 }
 
 .icon {
-	padding: 3px;
-	padding-right: 3px;
+  padding: 3px;
+  padding-right: 3px;
 }
 
 .youtube-icon {
-	color: brown;
+  color: brown;
 }
 
 .youtube-icon:hover {
-	color: crimson;
+  color: crimson;
 }
 
 .fs-6 {
-	margin-bottom: 0rem;
+  margin-bottom: 0rem;
 }

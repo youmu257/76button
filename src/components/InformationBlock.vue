@@ -5,7 +5,7 @@
     <p class="fs-3">
       {{ title }}
     </p>
-    
+
     <!-- 社群媒體連結容器 -->
     <div class="container">
       <!-- 第一列：YouTube, Twitter, Discord -->
@@ -18,10 +18,13 @@
             rel="noopener noreferrer"
             aria-label="前往 YouTube 頻道"
           >
-            <i class="bi bi-youtube" aria-hidden="true" />
+            <i
+              class="bi bi-youtube"
+              aria-hidden="true"
+            />
           </a>
         </div>
-        
+
         <!-- Twitter 連結 -->
         <div class="col">
           <a
@@ -30,10 +33,13 @@
             rel="noopener noreferrer"
             aria-label="前往 Twitter"
           >
-            <i class="bi bi-twitter" aria-hidden="true" />
+            <i
+              class="bi bi-twitter"
+              aria-hidden="true"
+            />
           </a>
         </div>
-        
+
         <!-- Discord 連結 -->
         <div class="col">
           <a
@@ -42,11 +48,14 @@
             rel="noopener noreferrer"
             aria-label="加入 Discord 伺服器"
           >
-            <i class="bi bi-discord" aria-hidden="true" />
+            <i
+              class="bi bi-discord"
+              aria-hidden="true"
+            />
           </a>
         </div>
       </div>
-      
+
       <!-- 第二列：Facebook, Plurk, Bluesky -->
       <div class="d-flex flex-wrap justify-content-center">
         <!-- Facebook 連結 -->
@@ -57,10 +66,13 @@
             rel="noopener noreferrer"
             aria-label="前往 Facebook 粉絲專頁"
           >
-            <i class="bi bi-facebook" aria-hidden="true" />
+            <i
+              class="bi bi-facebook"
+              aria-hidden="true"
+            />
           </a>
         </div>
-        
+
         <!-- Plurk 連結 -->
         <div class="col">
           <a
@@ -72,14 +84,14 @@
             <img
               width="48"
               height="48"
-              style="margin-top: 9px;"
+              style="margin-top: 9px"
               :src="require('@/assets/plurk.png')"
               alt="Plurk"
               loading="lazy"
             >
           </a>
         </div>
-        
+
         <!-- Bluesky 連結 -->
         <div class="col">
           <a
@@ -91,7 +103,7 @@
             <img
               width="48"
               height="42"
-              style="margin-top: 14px;"
+              style="margin-top: 14px"
               src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg"
               alt="Bluesky"
               loading="lazy"
@@ -106,16 +118,16 @@
 <script>
 /**
  * InformationBlock 組件
- * 
+ *
  * 功能說明：
  * - 顯示標題和社群媒體連結區塊
  * - 包含 YouTube, Twitter, Discord, Facebook, Plurk, Bluesky 等平台連結
  * - 使用 Bootstrap Icons 和自訂圖片
  * - 響應式佈局，自動換行
- * 
+ *
  * 使用範例：
  * <InformationBlock title="追隨我們" />
- * 
+ *
  * @component
  */
 export default {
@@ -156,6 +168,6 @@ export default {
 /* Facebook 圖示樣式 */
 .info-block .bi-facebook {
   font-size: 3rem;
-  color: #1877F2; /* Facebook 品牌色 */
+  color: #1877f2; /* Facebook 品牌色 */
 }
 </style>

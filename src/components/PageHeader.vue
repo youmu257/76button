@@ -12,14 +12,14 @@
       :alt="msg || '頁面圖示'"
       loading="lazy"
     >
-    
+
     <!-- 標題與資訊區塊容器 -->
     <div>
       <!-- 主標題文字 -->
       <p class="fs-1 py-1">
         {{ msg }}
       </p>
-      
+
       <!-- 詳細資訊區塊 -->
       <InformationBlock :title="title" />
     </div>
@@ -31,19 +31,19 @@ import InformationBlock from './InformationBlock.vue'
 
 /**
  * PageHeader 組件
- * 
+ *
  * 功能說明：
  * - 顯示頁面頂部的標題區塊
  * - 包含圓形圖片、主標題文字和詳細資訊區塊
  * - 使用 flexbox 實現響應式排版
- * 
+ *
  * 使用範例：
- * <PageHeader 
+ * <PageHeader
  *   msg="王祈菈"
  *   imgSrc="/path/to/image.jpg"
  *   title="詳細資訊標題"
  * />
- * 
+ *
  * @component
  */
 export default {
@@ -61,7 +61,7 @@ export default {
       type: String,
       default: '',
     },
-    
+
     /**
      * 圖片來源 URL
      * 顯示為圓形圖片
@@ -71,7 +71,7 @@ export default {
       type: String,
       default: '',
     },
-    
+
     /**
      * 資訊區塊標題
      * 傳遞給 InformationBlock 組件

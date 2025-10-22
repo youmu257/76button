@@ -1,0 +1,29 @@
+# 忽略 Prettier 格式化的檔案和目錄
+
+# 依賴套件
+node_modules/
+
+# 建置輸出
+dist/
+build/
+
+# 日誌檔
+*.log
+
+# 環境變數檔
+.env
+.env.local
+.env.*.local
+
+# IDE 配置
+.vscode/
+.idea/
+
+# OS 檔案
+.DS_Store
+Thumbs.db
+
+# 其他
+coverage/
+*.min.js
+*.min.css

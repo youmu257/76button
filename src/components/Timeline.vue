@@ -3,11 +3,17 @@
     <!-- 滑動開關 -->
     <div class="toggle-switch">
       <label>
-        <input type="checkbox" v-model="isAlternate" @change="toggleTimeline" />
-        <span class="slider"></span>
+        <input
+          v-model="isAlternate"
+          type="checkbox"
+          @change="toggleTimeline"
+        >
+        <span class="slider" />
       </label>
     </div>
-    <h1 class="timeline-title">{{ currentData.title }}</h1>
+    <h1 class="timeline-title">
+      {{ currentData.title }}
+    </h1>
     <div class="timeline">
       <div
         v-for="(item, index) in currentData.items"
@@ -31,11 +37,11 @@
               :alt="item.title"
               class="timeline-image"
               @click="openLightbox(item.image)"
-            />
+            >
             <div
               v-if="item.video"
+              :ref="(el) => setVideoRef(el)"
               class="video-container"
-              :ref="el => setVideoRef(el)"
               :data-index="index"
             >
               <iframe
@@ -70,8 +76,15 @@
         </div>
       </div>
     </div>
-    <div v-if="lightboxImage" class="lightbox" @click="closeLightbox">
-      <img :src="lightboxImage" alt="放大圖片" />
+    <div
+      v-if="lightboxImage"
+      class="lightbox"
+      @click="closeLightbox"
+    >
+      <img
+        :src="lightboxImage"
+        alt="放大圖片"
+      >
     </div>
   </div>
 </template>
@@ -98,7 +111,17 @@ export default {
      */
     currentData() {
       return this.isAlternate ? alternateTimelineData : timelineData
-    }
+    },
+  },
+  mounted() {
+    // 組件掛載後，等待 DOM 完全渲染再初始化 observer
+    this.$nextTick(() => {
+      this.initObserver()
+    })
+  },
+  beforeUnmount() {
+    // 組件卸載前清理 observer，防止記憶體洩漏
+    this.cleanupObserver()
   },
   methods: {
     /**
@@ -135,7 +158,7 @@ export default {
       this.visibleVideos = {}
       // 清空影片容器引用
       this.videoContainers = []
-      
+
       // 等待 DOM 更新完成後重新初始化 observer
       this.$nextTick(() => {
         this.initObserver()
@@ -151,7 +174,7 @@ export default {
         rootMargin: '0px', // 不擴展視窗邊界
         threshold: 0.1, // 當 10% 的元素可見時觸發
       }
-      
+
       // 建立 IntersectionObserver 實例
       this.observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -184,16 +207,6 @@ export default {
         this.observer = null // 釋放引用
       }
     },
-  },
-  mounted() {
-    // 組件掛載後，等待 DOM 完全渲染再初始化 observer
-    this.$nextTick(() => {
-      this.initObserver()
-    })
-  },
-  beforeUnmount() {
-    // 組件卸載前清理 observer，防止記憶體洩漏
-    this.cleanupObserver()
   },
 }
 </script>
