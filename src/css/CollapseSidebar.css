@@ -138,3 +138,115 @@
   background: #e0f4ff;
   color: #0077b6;
 }
+
+/* ---- 分隔線 ---- */
+.sidebar-divider {
+  margin: 20px 15px;
+  border: 0;
+  border-top: 2px solid #6c757d;
+}
+
+/* ---- 社群媒體區塊 ---- */
+.social-media-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  gap: 10px;
+}
+
+/* 社群媒體連結 */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.social-link:hover {
+  background-color: #f8f9fa;
+  transform: scale(1.05);
+}
+
+/* 社群媒體名稱 */
+.social-name {
+  margin-left: 12px;
+  font-size: 0.95rem;
+  color: #495057;
+}
+
+/* 社群媒體圖示共用樣式 */
+.social-link .bi-youtube,
+.social-link .bi-twitter,
+.social-link .bi-discord,
+.social-link .bi-facebook {
+  flex-shrink: 0;
+  font-size: 2rem;
+}
+
+/* YouTube 圖示 */
+.social-link .bi-youtube {
+  color: #f40;
+}
+
+/* Twitter 圖示 */
+.social-link .bi-twitter {
+  color: #0d6efd;
+}
+
+/* Discord 圖示 */
+.social-link .bi-discord {
+  color: #7289d9;
+}
+
+/* Facebook 圖示 */
+.social-link .bi-facebook {
+  color: #1877f2;
+}
+
+/* 圖片圖示樣式 */
+.social-link img {
+  flex-shrink: 0;
+}
+
+/* ---- 收合狀態下的社群媒體 ---- */
+#sidebar.active .social-link {
+  padding: 5px;
+  justify-content: center;
+}
+
+/* 收合狀態下的圖示大小 */
+#sidebar.active .social-link .bi-youtube,
+#sidebar.active .social-link .bi-twitter,
+#sidebar.active .social-link .bi-discord,
+#sidebar.active .social-link .bi-facebook {
+  font-size: 1.5rem;
+}
+
+#sidebar.active .social-link img {
+  width: 24px;
+  height: auto;
+}
+
+/* ---- 收合狀態下的選單項目調整 ---- */
+#sidebar.active ul.components li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+}
+
+#sidebar.active ul.components li a span:first-child {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* 收合狀態下隱藏選單文字 */
+#sidebar.active ul.components li a span:last-child {
+  display: none;
+}

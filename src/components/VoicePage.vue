@@ -196,7 +196,7 @@ export default {
        * 資訊區塊標題
        * @type {string}
        */
-      infoBlockTitle: '祈菈的資訊',
+      infoBlockTitle: '語音按鈕列表',
 
       /**
        * 頁面標題圖片 URL

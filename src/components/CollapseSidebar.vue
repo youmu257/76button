@@ -73,6 +73,126 @@
           </router-link>
         </li>
       </ul>
+
+      <!-- 分隔線 -->
+      <hr class="sidebar-divider">
+
+      <!-- 社群媒體連結容器 -->
+      <div class="social-media-container">
+        <!-- YouTube 連結 -->
+        <a
+          href="https://www.youtube.com/c/STORIANarrator%E9%81%8A%E6%88%B2%E5%B7%A5%E4%BD%9C%E5%AE%A4/about"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="前往 YouTube 頻道"
+          class="social-link"
+        >
+          <i
+            class="bi bi-youtube"
+            aria-hidden="true"
+          />
+          <span
+            v-if="isSidebarOpen"
+            class="social-name"
+          >YouTube</span>
+        </a>
+
+        <!-- Twitter 連結 -->
+        <a
+          href="https://twitter.com/Chilla_Storia"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="前往 Twitter"
+          class="social-link"
+        >
+          <i
+            class="bi bi-twitter"
+            aria-hidden="true"
+          />
+          <span
+            v-if="isSidebarOpen"
+            class="social-name"
+          >Twitter</span>
+        </a>
+
+        <!-- Discord 連結 -->
+        <a
+          href="https://discord.gg/Y4fp3k2"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="加入 Discord 伺服器"
+          class="social-link"
+        >
+          <i
+            class="bi bi-discord"
+            aria-hidden="true"
+          />
+          <span
+            v-if="isSidebarOpen"
+            class="social-name"
+          >Discord</span>
+        </a>
+
+        <!-- Facebook 連結 -->
+        <a
+          href="https://www.facebook.com/Chilla76?locale=zh_TW"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="前往 Facebook 粉絲專頁"
+          class="social-link"
+        >
+          <i
+            class="bi bi-facebook"
+            aria-hidden="true"
+          />
+          <span
+            v-if="isSidebarOpen"
+            class="social-name"
+          >Facebook</span>
+        </a>
+
+        <!-- Plurk 連結 -->
+        <a
+          href="https://www.plurk.com/Chilla76"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="前往 Plurk"
+          class="social-link"
+        >
+          <img
+            width="32"
+            height="32"
+            :src="require('@/assets/plurk.png')"
+            alt="Plurk"
+            loading="lazy"
+          >
+          <span
+            v-if="isSidebarOpen"
+            class="social-name"
+          >Plurk</span>
+        </a>
+
+        <!-- Bluesky 連結 -->
+        <a
+          href="https://bsky.app/profile/chillastoria.bsky.social"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="前往 Bluesky"
+          class="social-link"
+        >
+          <img
+            width="32"
+            height="28"
+            src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg"
+            alt="Bluesky"
+            loading="lazy"
+          >
+          <span
+            v-if="isSidebarOpen"
+            class="social-name"
+          >Bluesky</span>
+        </a>
+      </div>
     </nav>
   </div>
 </template>
@@ -83,61 +203,55 @@ import sidebarItemList from '../assets/sidebar-list.json'
 /**
  * CollapseSidebar 組件
  *
- * 功能說明：
+ * 用途：
  * - 可收合的側邊欄導航選單
- * - 響應式設計：小裝置預設收合，大裝置預設展開
+ * - 響應式設計：小裝置（< 768px）預設收合，大裝置預設展開
  * - 支援手動切換收合/展開狀態
  * - 監聽視窗大小變化自動調整
- * - 透過事件通知父組件狀態變更
+ * - 包含社群媒體連結（YouTube, Twitter, Discord, Facebook, Plurk, Bluesky）
  *
- * 資料結構範例（sidebar-list.json）：
- * [
- *   {
- *     "id": "1",
- *     "text": "選單名稱",
- *     "href": "/path",
- *     "icon": "icon-class-name"
- *   }
- * ]
- *
- * 事件：
- * @emits sidebar-toggle - 側邊欄狀態變更時觸發，參數為 boolean（true=展開，false=收合）
+ * 使用範例：
+ * <CollapseSidebar @sidebar-toggle="handleSidebarToggle" />
  *
  * @component
+ * @emits {boolean} sidebar-toggle - 側邊欄狀態變更時觸發（true=展開，false=收合）
  */
 export default {
   name: 'CollapseSidebar',
+
   data() {
     return {
       /**
        * 側邊欄開啟狀態
-       * 小裝置（< 768px）預設為 false（收合）
-       * 大裝置預設為 true（展開）
-       * @type {boolean}
+       * 小裝置預設收合，大裝置預設展開
+       * @type {Boolean}
        */
       isSidebarOpen: !this.isSmallDevice(),
 
       /**
        * 側邊欄選單項目列表
-       * 從 JSON 檔案匯入
-       * @type {Array<Object>}
+       * 從 sidebar-list.json 匯入
+       * @type {Array}
        */
       sidebarItems: sidebarItemList,
     }
   },
+
   created() {
-    // 在組件創建時通知父組件初始狀態
+    // 組件創建時通知父組件初始狀態
     this.$nextTick(() => {
       this.$emit('sidebar-toggle', this.isSidebarOpen)
     })
 
-    // 監聽視窗大小變化，調整側邊欄狀態
+    // 監聽視窗大小變化
     window.addEventListener('resize', this.handleResize)
   },
+
   beforeUnmount() {
-    // 組件卸載前移除事件監聽器，防止記憶體洩漏
+    // 移除事件監聽器，防止記憶體洩漏
     window.removeEventListener('resize', this.handleResize)
   },
+
   methods: {
     /**
      * 切換側邊欄開啟/收合狀態
@@ -145,22 +259,20 @@ export default {
      */
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen
-      // 通知父組件側邊欄狀態變更
       this.$emit('sidebar-toggle', this.isSidebarOpen)
     },
 
     /**
      * 檢查是否為小裝置
-     * 小裝置定義為視窗寬度 < 768px
-     * @returns {boolean} true 表示小裝置，false 表示大裝置
+     * @returns {Boolean} 視窗寬度 < 768px 為 true，否則為 false
      */
     isSmallDevice() {
       return window.innerWidth < 768
     },
 
     /**
-     * 處理視窗大小變化
-     * 當視窗縮小至小裝置尺寸時，自動收合側邊欄
+     * 處理視窗大小變化事件
+     * 當視窗縮小至小裝置尺寸時自動收合側邊欄
      */
     handleResize() {
       if (this.isSmallDevice() && this.isSidebarOpen) {
@@ -173,6 +285,6 @@ export default {
 </script>
 
 <!-- 引入外部樣式表 -->
-<!-- scoped 確保樣式只作用於此組件 -->
 <style scoped src="../css/CollapseSidebar.css"></style>
 <style scoped src="../css/ItemIcon.css"></style>
+
