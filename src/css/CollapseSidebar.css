@@ -181,16 +181,27 @@
 
 /* 社群媒體圖示共用樣式 */
 .social-link .bi-youtube,
+.social-link .bi-twitch,
 .social-link .bi-twitter,
 .social-link .bi-discord,
 .social-link .bi-facebook {
   flex-shrink: 0;
-  font-size: 2rem;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* YouTube 圖示 */
 .social-link .bi-youtube {
   color: #f40;
+}
+
+/* Twitch 圖示 */
+.social-link .bi-twitch {
+  color: #9146ff;
 }
 
 /* Twitter 圖示 */
@@ -211,25 +222,31 @@
 /* 圖片圖示樣式 */
 .social-link img {
   flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 /* ---- 收合狀態下的社群媒體 ---- */
 #sidebar.active .social-link {
-  padding: 5px;
+  padding: 8px;
   justify-content: center;
 }
 
 /* 收合狀態下的圖示大小 */
 #sidebar.active .social-link .bi-youtube,
+#sidebar.active .social-link .bi-twitch,
 #sidebar.active .social-link .bi-twitter,
 #sidebar.active .social-link .bi-discord,
 #sidebar.active .social-link .bi-facebook {
-  font-size: 1.5rem;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 #sidebar.active .social-link img {
   width: 24px;
-  height: auto;
+  height: 24px;
 }
 
 /* ---- 收合狀態下的選單項目調整 ---- */
