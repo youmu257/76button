@@ -86,6 +86,14 @@
         alt="放大圖片"
       >
     </div>
+    <!-- 回到頂端按鈕 -->
+    <button
+      v-show="showBackToTop"
+      class="back-to-top"
+      @click="scrollToTop"
+    >
+      <span class="arrow">^</span>
+    </button>
   </div>
 </template>
 
@@ -102,6 +110,7 @@ export default {
       visibleVideos: {}, // 記錄哪些影片容器已進入可視範圍，用於延遲載入 iframe
       observer: null, // IntersectionObserver 實例，用於監控影片容器是否進入可視範圍
       videoContainers: [], // 儲存所有影片容器的 DOM 元素引用
+      showBackToTop: false, // 控制回到頂端按鈕的顯示
     }
   },
   computed: {
@@ -118,10 +127,14 @@ export default {
     this.$nextTick(() => {
       this.initObserver()
     })
+    // 監聽滾動事件
+    window.addEventListener('scroll', this.handleScroll)
   },
   beforeUnmount() {
     // 組件卸載前清理 observer，防止記憶體洩漏
     this.cleanupObserver()
+    // 移除滾動事件監聽
+    window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     /**
@@ -207,61 +220,24 @@ export default {
         this.observer = null // 釋放引用
       }
     },
+    /**
+     * 處理滾動事件，控制回到頂端按鈕的顯示
+     */
+    handleScroll() {
+      // 當滾動超過 300px 時顯示按鈕
+      this.showBackToTop = window.scrollY > 300
+    },
+    /**
+     * 平滑滾動到頁面頂端
+     */
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    },
   },
 }
 </script>
 
 <style scoped src="../css/Timeline.css"></style>
-<style scoped>
-/* 滑動開關樣式 */
-.toggle-switch {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.toggle-switch label {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-}
-
-.toggle-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 24px;
-}
-
-.slider:before {
-  position: absolute;
-  content: '';
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #0077b6;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-</style>
