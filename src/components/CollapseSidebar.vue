@@ -114,10 +114,10 @@ export default {
     return {
       /**
        * 側邊欄開啟狀態
-       * 小裝置預設收合，大裝置預設展開
+       * 預設關閉
        * @type {Boolean}
        */
-      isSidebarOpen: !this.isSmallDevice(),
+      isSidebarOpen: false,
 
       /**
        * 側邊欄選單項目列表

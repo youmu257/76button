@@ -222,14 +222,11 @@
 /* 圖片圖示樣式 */
 .social-link img {
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
 }
 
 /* ---- 收合狀態下的社群媒體 ---- */
 #sidebar.active .social-link {
-  padding: 8px;
+  padding: 5px;
   justify-content: center;
 }
 
@@ -239,14 +236,12 @@
 #sidebar.active .social-link .bi-twitter,
 #sidebar.active .social-link .bi-discord,
 #sidebar.active .social-link .bi-facebook {
-  font-size: 24px;
-  width: 24px;
-  height: 24px;
+  font-size: 1.5rem;
 }
 
 #sidebar.active .social-link img {
   width: 24px;
-  height: 24px;
+  height: auto;
 }
 
 /* ---- 收合狀態下的選單項目調整 ---- */
