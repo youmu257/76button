@@ -14,9 +14,39 @@
         "category": "祈菈",
         "btnList": [
             {
+                "fileName": "我好沒用阿",
+                "btnName": "我好沒用阿",
+                "sourceUrl": "https://www.youtube.com/live/31q3Rj7xoTM?t=5781"
+            },
+            {
+                "fileName": "我是壞毛絲",
+                "btnName": "我是壞毛絲",
+                "sourceUrl": "https://www.youtube.com/live/5jIABWvc--8?t=14537"
+            },
+            {
+                "fileName": "不要那樣看我",
+                "btnName": "不要那樣看我",
+                "sourceUrl": "https://www.youtube.com/live/8my5_03uX28?t=4859"
+            },
+            {
+                "fileName": "咪跌",
+                "btnName": "咪跌",
+                "sourceUrl": "https://www.youtube.com/live/p1tk3LTasx0?t=7745"
+            },
+            {
+                "fileName": "打噴嚏",
+                "btnName": "打噴嚏",
+                "sourceUrl": "https://www.youtube.com/live/9-6LbqzX5sk?t=12040"
+            },
+            {
+                "fileName": "哈阿啾",
+                "btnName": "哈阿啾",
+                "sourceUrl": "https://www.youtube.com/live/78_ATW_5FVo?t=9998"
+            },
+            {
                 "fileName": "你這間諜起司團",
                 "btnName": "你這間諜起司團",
-                "sourceUrl": "https://www.youtube.com/live/aLaG4c158YA?t=828"
+                "sourceUrl": "https://www.youtube.com/live/p1tk3LTasx0?t=828"
             },
             {
                 "fileName": "不能只有我破滅",
@@ -485,9 +515,19 @@
         "category": "祈特音效",
         "btnList": [
             {
-                "fileName": "哈阿啾",
-                "btnName": "哈阿啾",
-                "sourceUrl": "https://www.youtube.com/live/78_ATW_5FVo?t=9998"
+                "fileName": "逼逼逼逼",
+                "btnName": "逼逼逼逼",
+                "sourceUrl": "https://www.youtube.com/live/DiLxAQJ8l24?t=3951"
+            },
+            {
+                "fileName": "怪聲",
+                "btnName": "怪聲",
+                "sourceUrl": "https://www.youtube.com/live/tKKarVjazhk?t=6896"
+            },
+            {
+                "fileName": "媽咪咪哞",
+                "btnName": "媽咪咪哞",
+                "sourceUrl": "https://www.youtube.com/live/VFlZITrD1HY?t=4619"
             },
             {
                 "fileName": "阿巴督巴布",
@@ -828,6 +868,16 @@
               "fileName": "笑聲23(嘲諷笑)",
               "btnName": "笑聲23(嘲諷笑)",
               "sourceUrl": "https://www.youtube.com/live/86lIv3fg0es?t=3040"
+            },
+            {
+              "fileName": "笑聲24",
+              "btnName": "笑聲24",
+              "sourceUrl": "https://www.youtube.com/live/EMWzhaQoJRY?t=9649"
+            },
+            {
+              "fileName": "笑聲25",
+              "btnName": "笑聲25",
+              "sourceUrl": "https://www.youtube.com/live/78_ATW_5FVo?t=7515"
             }
         ]
     },
