@@ -9,76 +9,79 @@
       role="navigation"
       aria-label="主要導航選單"
     >
+      <!-- 收合/展開按鈕 -->
+      <button
+        id="sidebarCollapse"
+        type="button"
+        :aria-label="isSidebarOpen ? '收合側邊欄' : '展開側邊欄'"
+        :aria-expanded="isSidebarOpen"
+        @click="toggleSidebar"
+      >
+        <!-- 左箭頭 SVG（收合狀態） -->
+        <svg
+          v-if="isSidebarOpen"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+          />
+        </svg>
+
+        <!-- 右箭頭 SVG（展開狀態） -->
+        <svg
+          v-else
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"
+          />
+        </svg>
+      </button>
+
       <!-- 側邊欄標題區塊 -->
       <div class="sidebar-header">
         <!-- 側邊欄標題（僅在展開時顯示） -->
         <h3 v-if="isSidebarOpen">
           毛絲選單
         </h3>
-
-        <!-- 收合/展開按鈕 -->
-        <button
-          id="sidebarCollapse"
-          type="button"
-          :aria-label="isSidebarOpen ? '收合側邊欄' : '展開側邊欄'"
-          :aria-expanded="isSidebarOpen"
-          @click="toggleSidebar"
-        >
-          <!-- 左箭頭 SVG（收合狀態） -->
-          <svg
-            v-if="isSidebarOpen"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              fill="currentColor"
-              d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
-            />
-          </svg>
-
-          <!-- 右箭頭 SVG（展開狀態） -->
-          <svg
-            v-else
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              fill="currentColor"
-              d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"
-            />
-          </svg>
-        </button>
       </div>
 
-      <!-- 側邊欄選單列表 -->
-      <ul class="list-unstyled components">
-        <!-- 遍歷選單項目 -->
-        <li
-          v-for="(item, index) in sidebarItems"
-          :key="item.id || index"
-        >
-          <!-- 路由連結 -->
-          <router-link :to="item.href">
-            <!-- 選單圖示 -->
-            <span
-              :class="item.icon"
-              aria-hidden="true"
-            />
-            <!-- 選單文字 -->
-            <span style="margin-left: 10px">{{ item.text }}</span>
-          </router-link>
-        </li>
-      </ul>
+      <!-- 可滾動內容區域 -->
+      <div class="sidebar-content">
+        <!-- 側邊欄選單列表 -->
+        <ul class="list-unstyled components">
+          <!-- 遍歷選單項目 -->
+          <li
+            v-for="(item, index) in sidebarItems"
+            :key="item.id || index"
+          >
+            <!-- 路由連結 -->
+            <router-link :to="item.href">
+              <!-- 選單圖示 -->
+              <span
+                :class="item.icon"
+                aria-hidden="true"
+              />
+              <!-- 選單文字 -->
+              <span style="margin-left: 10px">{{ item.text }}</span>
+            </router-link>
+          </li>
+        </ul>
 
-      <!-- 分隔線 -->
-      <hr class="sidebar-divider">
+        <!-- 分隔線 -->
+        <hr class="sidebar-divider">
 
-      <!-- 社群媒體連結容器 -->
-      <InformationSidebar :is-sidebar-open="isSidebarOpen" />
+        <!-- 社群媒體連結容器 -->
+        <InformationSidebar :is-sidebar-open="isSidebarOpen" />
+      </div>
     </nav>
   </div>
 </template>

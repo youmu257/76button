@@ -16,6 +16,9 @@
   z-index: 1000;
   border-right: 1px solid #e0e0e0;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 #sidebar.active {
@@ -33,6 +36,8 @@
   border-bottom: 1px solid #e0e0e0;
   height: 70px;
   box-sizing: border-box;
+  flex-shrink: 0;
+  z-index: 100;
 }
 
 .header-title {
@@ -63,9 +68,9 @@
 
 /* ---- 收合按鈕 ---- */
 #sidebarCollapse {
-  position: absolute;
+  position: fixed;
   top: 20px;
-  right: -18px; /* 固定在 Sidebar 邊線上 */
+  left: 232px; /* 250px - 18px，固定在展開狀態的 Sidebar 邊線上 */
   width: 36px;
   height: 36px;
   background: #b3d9ff; /* 深一點的藍色背景 */
@@ -78,16 +83,32 @@
   align-items: center;
   justify-content: center;
   transition:
+    left 0.3s ease,
     transform 0.3s ease,
     background 0.3s ease,
     color 0.3s ease;
-  z-index: 1100; /* 確保按鈕在 Sidebar 上方 */
+  z-index: 10000; /* 確保按鈕在最上層 */
+}
+
+/* 收合狀態下的按鈕位置 */
+#sidebar.active ~ #sidebarCollapse,
+#sidebar.active #sidebarCollapse {
+  left: 42px; /* 60px - 18px，收合後的位置 */
 }
 
 #sidebarCollapse:hover {
   background: #99c2ff; /* Hover 時改變背景色為更深的藍色 */
   color: #003366; /* Hover 時箭頭顏色更深 */
   transform: scale(1.1); /* 放大按鈕 */
+}
+
+/* ---- 可滾動內容區域 ---- */
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 /* ---- 選單項目 ---- */
@@ -128,7 +149,13 @@
   transition: opacity 0.3s ease;
 }
 
-#sidebar.active ul.components li a span:not([class^='icon-']) {
+/* 確保 icon 在任何狀態下都正常顯示 */
+#sidebar ul.components li a span[class^='icon-'],
+#sidebar ul.components li a span[class*='icon-'] {
+  flex-shrink: 0;
+}
+
+#sidebar.active ul.components li a span:not([class^='icon-']):not([class*='icon-']) {
   opacity: 0; /* 折疊後隱藏文字 */
   width: 0;
   overflow: hidden;
@@ -253,12 +280,20 @@
   text-align: center;
 }
 
-#sidebar.active ul.components li a span:first-child {
+/* 收合狀態下保持 icon 顯示 */
+#sidebar.active ul.components li a span[class^='icon-'],
+#sidebar.active ul.components li a span[class*='icon-'] {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
-/* 收合狀態下隱藏選單文字 */
-#sidebar.active ul.components li a span:last-child {
+/* 收合狀態下隱藏選單文字 (只隱藏沒有 icon class 的 span) */
+#sidebar.active ul.components li a span:not([class^='icon-']):not([class*='icon-']) {
   display: none;
+  width: 0;
+  opacity: 0;
 }
