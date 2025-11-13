@@ -1,6 +1,7 @@
 [
   { "href": "voice", "icon": "icon-music", "text": "語音按鈕" },
   { "href": "timeline", "icon": "icon-history", "text": "重大歷史" },
+  { "href": "tag-search", "icon": "icon-tag", "text": "標籤搜尋" },
   { "href": "feedback", "icon": "icon-bubble", "text": "意見回饋" },
   { "href": "contributors", "icon": "icon-hipster", "text": "感謝名單" }
 ]
