@@ -8,7 +8,7 @@
       :img-src="headerImgSrc"
       :title="infoBlockTitle"
     />
-
+    <hr>
     <!-- Google 表單嵌入容器 -->
     <div class="form-wrapper">
       <!-- 

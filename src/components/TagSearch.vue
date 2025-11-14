@@ -106,7 +106,7 @@
         >
           <h3 class="video-title">
             <a
-              :href="video.url"
+              :href="`https://www.youtube.com/watch?v=${video.url}`"
               target="_blank"
               rel="noopener noreferrer"
               class="video-title-link"
@@ -122,10 +122,10 @@
             <span
               v-for="(tag, tagIndex) in video.tag"
               :key="tagIndex"
-              :class="['tag-badge', `tag-type-${tag.type}`]"
-              :title="getTagTypeName(tag.type)"
+              :class="['tag-badge', `tag-type-${tag.t}`]"
+              :title="getTagTypeName(tag.t)"
             >
-              {{ tag.name }}
+              {{ tag.n }}
             </span>
           </div>
         </div>
@@ -239,7 +239,7 @@ export default {
       if (this.selectedCategory) {
         results = results.filter((video) =>
           video.tag.some((tagObj) =>
-            tagObj.type === 1 && tagObj.name === this.selectedCategory
+            tagObj.t === 1 && tagObj.n === this.selectedCategory
           )
         )
       }
@@ -248,7 +248,7 @@ export default {
       if (this.selectedCharacter) {
         results = results.filter((video) =>
           video.tag.some((tagObj) =>
-            tagObj.type === 4 && tagObj.name === this.selectedCharacter
+            tagObj.t === 4 && tagObj.n === this.selectedCharacter
           )
         )
       }
@@ -259,7 +259,7 @@ export default {
         results = results.filter((video) => {
           // 搜尋標籤名稱
           const tagMatch = video.tag.some((tagObj) =>
-            tagObj.name && tagObj.name.toLowerCase().includes(keyword)
+            tagObj.n && tagObj.n.toLowerCase().includes(keyword)
           )
           // 搜尋影片標題
           const titleMatch = video.title && video.title.toLowerCase().includes(keyword)

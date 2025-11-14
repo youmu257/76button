@@ -1,5 +1,12 @@
 <template>
   <div class="timeline-container">
+    <!-- 頁面標題 -->
+    <PageHeader
+      :msg="currentData.title"
+      img-src="https://pbs.twimg.com/media/FBqv59MUcAk66Yy?format=jpg&name=900x900"
+      title="歷史時間軸"
+    />
+    <hr>
     <!-- 滑動開關 -->
     <div class="toggle-switch">
       <label>
@@ -11,9 +18,6 @@
         <span class="slider" />
       </label>
     </div>
-    <h1 class="timeline-title">
-      {{ currentData.title }}
-    </h1>
     <div class="timeline">
       <div
         v-for="(item, index) in currentData.items"
@@ -98,11 +102,15 @@
 </template>
 
 <script>
+import PageHeader from './PageHeader.vue'
 import timelineData from '../assets/timeline-chilla-data.json'
 import alternateTimelineData from '../assets/timeline-duck-data.json'
 
 export default {
   name: 'Timeline',
+  components: {
+    PageHeader,
+  },
   data() {
     return {
       lightboxImage: null, // 燈箱顯示的圖片 URL
