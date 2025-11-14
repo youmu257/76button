@@ -1,9 +1,9 @@
-<template>
+﻿<template>
   <div class="tag-search-container">
     <!-- 頁面標題 -->
     <PageHeader
       msg="祈菈直播標籤搜尋"
-      img-src="https://cdn.discordapp.com/attachments/832562348669009920/1059859135774064711/1nnnvvvcdf.jpg?ex=6916a4fd&is=6915537d&hm=30853379750e7808432751e39d5d86db22c67f4513d3fd6dcf96847666d56105"
+      img-src="https://media.discordapp.net/attachments/832562348669009920/1059859135774064711/1nnnvvvcdf.jpg?ex=6917f67d&is=6916a4fd&hm=46ed89b5db0f808dd5a2ce0299a30b7f28a113648949a8d524b0c72cdb6bcbf8&format=webp&width=227&height=220&quality=lossless"
       title="搜尋影片標籤或標題"
     />
     <hr>
@@ -138,11 +138,15 @@
         請輸入關鍵字開始搜尋
       </div>
     </div>
+
+    <!-- 回到頂端按鈕 -->
+    <BackToTop />
   </div>
 </template>
 
 <script>
 import PageHeader from './PageHeader.vue'
+import BackToTop from './BackToTop.vue'
 
 /**
  * TagSearch 組件
@@ -173,6 +177,7 @@ export default {
 
   components: {
     PageHeader,
+    BackToTop,
   },
 
   data() {
@@ -366,6 +371,7 @@ export default {
             try {
               tags = JSON.parse(tagString)
             } catch (e) {
+              console.log(fields)
               console.warn('標籤解析失敗:', tagString, e)
             }
           }

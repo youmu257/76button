@@ -91,18 +91,13 @@
       >
     </div>
     <!-- 回到頂端按鈕 -->
-    <button
-      v-show="showBackToTop"
-      class="back-to-top"
-      @click="scrollToTop"
-    >
-      <span class="arrow">^</span>
-    </button>
+    <BackToTop />
   </div>
 </template>
 
 <script>
 import PageHeader from './PageHeader.vue'
+import BackToTop from './BackToTop.vue'
 import timelineData from '../assets/timeline-chilla-data.json'
 import alternateTimelineData from '../assets/timeline-duck-data.json'
 
@@ -110,6 +105,7 @@ export default {
   name: 'Timeline',
   components: {
     PageHeader,
+    BackToTop,
   },
   data() {
     return {
@@ -118,7 +114,6 @@ export default {
       visibleVideos: {}, // 記錄哪些影片容器已進入可視範圍，用於延遲載入 iframe
       observer: null, // IntersectionObserver 實例，用於監控影片容器是否進入可視範圍
       videoContainers: [], // 儲存所有影片容器的 DOM 元素引用
-      showBackToTop: false, // 控制回到頂端按鈕的顯示
     }
   },
   computed: {
@@ -135,14 +130,10 @@ export default {
     this.$nextTick(() => {
       this.initObserver()
     })
-    // 監聽滾動事件
-    window.addEventListener('scroll', this.handleScroll)
   },
   beforeUnmount() {
     // 組件卸載前清理 observer，防止記憶體洩漏
     this.cleanupObserver()
-    // 移除滾動事件監聽
-    window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     /**
@@ -227,22 +218,6 @@ export default {
         this.observer.disconnect() // 停止所有觀察
         this.observer = null // 釋放引用
       }
-    },
-    /**
-     * 處理滾動事件，控制回到頂端按鈕的顯示
-     */
-    handleScroll() {
-      // 當滾動超過 300px 時顯示按鈕
-      this.showBackToTop = window.scrollY > 300
-    },
-    /**
-     * 平滑滾動到頁面頂端
-     */
-    scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      })
     },
   },
 }
