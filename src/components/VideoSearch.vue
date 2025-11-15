@@ -3,7 +3,7 @@
     <!-- 頁面標題 -->
     <PageHeader
       msg="祈菈直播標籤搜尋"
-      img-src="https://media.discordapp.net/attachments/832562348669009920/1059859135774064711/1nnnvvvcdf.jpg?ex=6917f67d&is=6916a4fd&hm=46ed89b5db0f808dd5a2ce0299a30b7f28a113648949a8d524b0c72cdb6bcbf8&format=webp&width=227&height=220&quality=lossless"
+      :img-src="require('@/assets/esu_chilla.png')"
       title="搜尋影片標籤或標題"
     />
     <hr>
