@@ -7,6 +7,7 @@
       title="搜尋影片標籤或標題"
     />
     <hr>
+
     <!-- 搜尋欄位 -->
     <div class="search-input-wrapper">
       <!-- 下拉選單區 -->
@@ -60,7 +61,7 @@
           v-model="searchKeyword"
           type="text"
           class="search-input"
-          placeholder="輸入關鍵字搜尋影片標題或標籤..."
+          placeholder="輸入關鍵字搜尋影片標題或標籤（多個關鍵字用空格分隔）..."
           aria-label="搜尋影片"
         >
         <i
@@ -260,15 +261,20 @@ export default {
 
       // 根據關鍵字搜尋（標籤名稱和影片標題）
       if (this.debouncedKeyword.trim()) {
-        const keyword = this.debouncedKeyword.toLowerCase()
+        // 分割多個關鍵字（用空格分隔）
+        const keywords = this.debouncedKeyword.toLowerCase().trim().split(/\s+/).filter(k => k)
+        
         results = results.filter((video) => {
-          // 搜尋標籤名稱
-          const tagMatch = video.tag.some((tagObj) =>
-            tagObj.n && tagObj.n.toLowerCase().includes(keyword)
-          )
-          // 搜尋影片標題
-          const titleMatch = video.title && video.title.toLowerCase().includes(keyword)
-          return tagMatch || titleMatch
+          // 每個關鍵字都要匹配（AND 邏輯）
+          return keywords.every(keyword => {
+            // 搜尋標籤名稱
+            const tagMatch = video.tag.some((tagObj) =>
+              tagObj.n && tagObj.n.toLowerCase().includes(keyword)
+            )
+            // 搜尋影片標題
+            const titleMatch = video.title && video.title.toLowerCase().includes(keyword)
+            return tagMatch || titleMatch
+          })
         })
       }
 
@@ -488,4 +494,4 @@ export default {
 }
 </script>
 
-<style scoped src="../css/TagSearch.css"></style>
+<style scoped src="../css/VideoSearch.css"></style>
