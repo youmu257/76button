@@ -58,16 +58,22 @@
       標籤下的數字代表在直播影片中出現的次數
     </div>
 
+    <!-- 載入中提示 -->
+    <div
+      v-if="isLoading"
+      class="loading-container"
+    >
+      <div class="loading-spinner" />
+      <p>載入中...</p>
+    </div>
+
     <!-- 列表顯示 -->
-    <div class="list-container">
+    <div
+      v-else
+      class="list-container"
+    >
       <div
-        v-if="filteredList.length === 0 && !searchKeyword"
-        class="empty-message"
-      >
-        載入中...
-      </div>
-      <div
-        v-else-if="searchKeyword && filteredList.length === 0"
+        v-if="searchKeyword && filteredList.length === 0"
         class="empty-message"
       >
         找不到符合的結果
@@ -167,6 +173,12 @@ export default {
        * @type {Array<{name: String, count: Number}>}
        */
       characters: [],
+
+      /**
+       * 是否正在載入資料
+       * @type {Boolean}
+       */
+      isLoading: true,
     }
   },
 
@@ -206,8 +218,9 @@ export default {
     },
   },
 
-  mounted() {
-    this.loadFilterOptions()
+  async mounted() {
+    await this.loadFilterOptions()
+    this.isLoading = false
   },
 
   methods: {

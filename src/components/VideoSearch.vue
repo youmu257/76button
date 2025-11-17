@@ -73,9 +73,18 @@
       </div>
     </div>
 
+    <!-- 載入中提示 -->
+    <div
+      v-if="isLoading"
+      class="loading-container"
+    >
+      <div class="loading-spinner" />
+      <p>載入中...</p>
+    </div>
+
     <!-- 搜尋結果數量 -->
     <div
-      v-if="filteredVideos.length > 0"
+      v-else-if="filteredVideos.length > 0"
       class="result-count"
     >
       找到 {{ filteredVideos.length }} 個結果
@@ -90,7 +99,14 @@
     <!-- 結果區塊 -->
     <div class="search-results">
       <div
-        v-if="searchKeyword && filteredVideos.length === 0"
+        v-if="isLoading"
+        class="placeholder-text"
+      >
+        <!-- 載入中時不顯示其他內容 -->
+      </div>
+
+      <div
+        v-else-if="searchKeyword && filteredVideos.length === 0"
         class="no-results"
       >
         找不到符合的結果
@@ -230,6 +246,12 @@ export default {
        * @type {Array}
        */
       characters: [],
+
+      /**
+       * 是否正在載入資料
+       * @type {Boolean}
+       */
+      isLoading: true,
     }
   },
 
@@ -324,11 +346,14 @@ export default {
     },
   },
 
-  mounted() {
-    // 載入影片標籤資料
-    this.loadVideoTags()
-    // 載入篩選選項資料
-    this.loadFilterOptions()
+  async mounted() {
+    // 載入影片標籤資料和篩選選項資料
+    await Promise.all([
+      this.loadVideoTags(),
+      this.loadFilterOptions()
+    ])
+    // 載入完成
+    this.isLoading = false
   },
 
   beforeUnmount() {
