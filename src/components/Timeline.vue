@@ -2,9 +2,9 @@
   <div class="timeline-container">
     <!-- 頁面標題 -->
     <PageHeader
-      :msg="currentData.title"
+      msg="祈菈‧貝希毛絲博物館"
       img-src="https://pbs.twimg.com/media/FBqv59MUcAk66Yy?format=jpg&name=900x900"
-      title="歷史時間軸"
+      :title="currentData.title"
     />
     <hr>
     <!-- 滑動開關 -->

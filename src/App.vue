@@ -20,6 +20,7 @@ import FeedbackForm from './components/FeedbackForm.vue'
 import ContributorsPage from './components/ContributorsPage.vue'
 import TimelinePage from './components/Timeline.vue'
 import VideoSearch from './components/VideoSearch.vue'
+import TagSummarySearch from './components/TagSummarySearch.vue'
 import VoicePageFooter from './components/VoicePageFooter.vue'
 
 export default {
@@ -104,6 +105,7 @@ const routes = [
   { path: '/contributors', component: ContributorsPage },
   { path: '/timeline', component: TimelinePage },
   { path: '/video-search', component: VideoSearch },
+  { path: '/tag-summary', component: TagSummarySearch },
 ]
 
 const router = createRouter({

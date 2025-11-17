@@ -2,7 +2,7 @@
   <div class="tag-search-container">
     <!-- 頁面標題 -->
     <PageHeader
-      msg="祈菈直播標籤搜尋"
+      msg="祈菈‧貝希毛絲博物館"
       :img-src="require('@/assets/esu_chilla.png')"
       title="搜尋影片標籤或標題"
     />

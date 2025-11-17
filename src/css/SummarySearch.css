@@ -1,0 +1,184 @@
+.summary-search-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* 切換按鈕區域 */
+.toggle-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.toggle-btn {
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid #0077b6;
+  background-color: white;
+  color: #0077b6;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.toggle-btn:hover {
+  background-color: #e6f3f9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 119, 182, 0.2);
+}
+
+.toggle-btn.active {
+  background-color: #0077b6;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+}
+
+.toggle-btn:active {
+  transform: translateY(0);
+}
+
+/* 搜尋輸入框 */
+.search-input-container {
+  max-width: 600px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 40px 12px 20px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.search-input:focus {
+  border-color: #0077b6;
+  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+}
+
+.clear-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.clear-icon:hover {
+  color: #0077b6;
+}
+
+/* 說明文字 */
+.info-text {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0 15px 0;
+  font-style: italic;
+}
+
+/* 列表容器 */
+.list-container {
+  margin-top: 30px;
+  min-height: 400px;
+}
+
+.empty-message {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  padding: 60px 20px;
+}
+
+/* 項目網格 */
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px 0;
+}
+
+.item-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.item-card:hover {
+  border-color: #0077b6;
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.15);
+  transform: translateY(-3px);
+}
+
+.item-name {
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.item-count {
+  font-size: 13px;
+  color: #0077b6;
+  font-weight: 600;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .summary-search-container {
+    padding: 15px;
+  }
+
+  .toggle-buttons {
+    gap: 10px;
+  }
+
+  .toggle-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  .item-card {
+    padding: 12px 15px;
+  }
+
+  .item-name {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .toggle-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
