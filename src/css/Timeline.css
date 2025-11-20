@@ -320,3 +320,41 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(26px);
 }
+
+/* 切換按鈕樣式 */
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.tab-buttons button {
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  background-color: #f0f0f0;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-buttons button:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab-buttons button.active {
+  background-color: #0077b6;
+  color: white;
+  border-color: #0077b6;
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+}
+
+.tab-buttons button.active:hover {
+  background-color: #005f8f;
+  border-color: #005f8f;
+}
