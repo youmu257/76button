@@ -63,11 +63,38 @@
       >勾選開啟重疊播放
     </button>
 
+    <!-- 搜尋欄 -->
+    <div class="search-section">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="bi bi-search" />
+        </span>
+        <input
+          v-model="searchQuery"
+          type="text"
+          class="form-control"
+          placeholder="搜尋語音按鈕..."
+          aria-label="搜尋語音按鈕"
+        >
+        <button
+          v-if="searchQuery"
+          class="btn btn-outline-secondary"
+          type="button"
+          @click="searchQuery = ''"
+        >
+          <i class="bi bi-x-lg" />
+        </button>
+      </div>
+      <div v-if="searchQuery && filteredBtnDataList.length === 0" class="alert alert-info mt-2">
+        找不到符合「{{ searchQuery }}」的語音按鈕
+      </div>
+    </div>
+
     <hr>
 
     <!-- 語音按鈕手風琴區塊 -->
     <div
-      v-for="(item, index) in btnDataList"
+      v-for="(item, index) in filteredBtnDataList"
       :id="`accordionExample-${index}`"
       :key="item.id || index"
       class="d-flex flex-column background accordion"
@@ -168,6 +195,12 @@ export default {
   data() {
     return {
       /**
+       * 搜尋關鍵字
+       * @type {string}
+       */
+      searchQuery: '',
+
+      /**
        * 語音按鈕列表資料
        * 從 JSON 檔案匯入，包含多個分類和按鈕
        * @type {Array<Object>}
@@ -234,6 +267,36 @@ export default {
        * @type {number}
        */
       windowWidth: window.innerWidth,
+    }
+  },
+  computed: {
+    /**
+     * 根據搜尋關鍵字過濾按鈕列表
+     * 如果沒有搜尋關鍵字，返回完整列表
+     * 否則只返回包含搜尋關鍵字的按鈕
+     * @returns {Array<Object>} 過濾後的按鈕列表
+     */
+    filteredBtnDataList() {
+      if (!this.searchQuery.trim()) {
+        return this.btnDataList
+      }
+
+      const query = this.searchQuery.toLowerCase()
+      return this.btnDataList.map(category => {
+        // 過濾每個分類中的按鈕
+        const filteredBtnList = category.btnList.filter(btn => 
+          btn.btnName.toLowerCase().includes(query)
+        )
+
+        // 只返回有按鈕的分類
+        if (filteredBtnList.length > 0) {
+          return {
+            ...category,
+            btnList: filteredBtnList
+          }
+        }
+        return null
+      }).filter(category => category !== null)
     }
   },
   created() {
@@ -457,20 +520,4 @@ export default {
 </script>
 <style scoped src="../css/VoiceButton.css"></style>
 <style scoped src="../css/VoiceButton2.css"></style>
-<style scoped>
-/* 圓形圖片樣式 */
-.img-circle {
-  border-radius: 50%;
-}
-
-/* 規則說明區塊 */
-.rules-section {
-  margin: 1rem 0;
-}
-
-/* 手風琴按鈕內的標題 */
-.accordion-button h3 {
-  flex: 1; /* 確保內部的 h3 填滿按鈕 */
-  margin: 0; /* 移除預設外邊距 */
-}
-</style>
+<style scoped src="../css/VoicePage.css"></style>
