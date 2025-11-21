@@ -158,6 +158,7 @@
       :playing-list="currentPlayingList"
       @stop-all="stopPlay(true)"
       @stop-single="stopSingleAudio"
+      @play-random="playRandomVoice"
     />
   </div>
 </template>
@@ -429,10 +430,10 @@ export default {
      * 從 Map 中移除標記為刪除的項目
      */
     cleanupPhotobombs() {
-      for (const mapKey of this.photobombDeleteList) {
+      this.photobombDeleteList.forEach(mapKey => {
         this.photobombList.delete(mapKey)
-        this.photobombDeleteList.delete(mapKey)
-      }
+      })
+      this.photobombDeleteList.clear()
     },
 
     /**
@@ -509,8 +510,6 @@ export default {
       })
     },
 
-
-
     /**
      * 停止播放音效
      * @param {boolean} stopAll - 是否停止所有效果（包含清空亂入圖）
@@ -538,13 +537,9 @@ export default {
      * 停止播放列表中的所有音效
      */
     stopPlayList() {
-      if (this.playNowList.length === 0) {
-        return
-      }
+      if (this.playNowList.length === 0) return
 
-      this.playNowList.forEach((item) => {
-        item.pause()
-      })
+      this.playNowList.forEach(audio => audio.pause())
       this.playNowList = []
     },
 
@@ -581,6 +576,32 @@ export default {
         if (playIndex !== -1) {
           this.playNowList.splice(playIndex, 1)
         }
+      }
+    },
+
+    /**
+     * 隨機播放一個語音
+     */
+    playRandomVoice() {
+      // 提取所有非 photobomb 類型的按鈕
+      const allButtons = this.btnDataList
+        .filter(cat => cat.type !== 'photobomb' && cat.btnList?.length > 0)
+        .flatMap(cat => cat.btnList)
+      
+      if (allButtons.length === 0) return
+
+      // 隨機選擇一個按鈕
+      const randomBtn = allButtons[Math.floor(Math.random() * allButtons.length)]
+      
+      try {
+        // 創建並播放音訊
+        const audio = new Audio(require(`@/assets/sound/${randomBtn.fileName}.mp3`))
+        audio.load()
+        audio.play()
+          .then(() => this.displayOtherVoice(audio, randomBtn.btnName))
+          .catch(error => console.error('播放失敗:', error))
+      } catch (error) {
+        console.error('載入音訊失敗:', error)
       }
     },
 

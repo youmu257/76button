@@ -4,14 +4,6 @@
       <h5 class="player-title">
         <i class="bi bi-music-note-beamed" /> 播放器
       </h5>
-      <button
-        v-if="playingList.length > 0"
-        class="btn btn-sm btn-danger stop-all-btn"
-        title="停止全部"
-        @click="stopAll"
-      >
-        <i class="bi bi-stop-fill" /> 全部停止
-      </button>
     </div>
     <div
       v-if="playingList.length > 0"
@@ -39,6 +31,23 @@
       <i class="bi bi-music-note" />
       <p>目前沒有播放中的音訊</p>
     </div>
+    <div class="player-actions">
+      <button
+        class="btn btn-sm btn-primary"
+        title="隨機播放一個語音"
+        @click="playRandom"
+      >
+        <i class="bi bi-shuffle" /> 隨機
+      </button>
+      <button
+        class="btn btn-sm btn-danger stop-all-btn"
+        title="停止全部"
+        :disabled="playingList.length === 0"
+        @click="stopAll"
+      >
+        <i class="bi bi-stop-fill" /> 全部停止
+      </button>
+    </div>
   </div>
 </template>
 
@@ -64,7 +73,7 @@ export default {
       default: () => []
     }
   },
-  emits: ['stop-all', 'stop-single'],
+  emits: ['stop-all', 'stop-single', 'play-random'],
   methods: {
     /**
      * 停止所有播放
@@ -78,6 +87,12 @@ export default {
      */
     stopSingle(id) {
       this.$emit('stop-single', id)
+    },
+    /**
+     * 觸發隨機播放
+     */
+    playRandom() {
+      this.$emit('play-random')
     }
   }
 }
