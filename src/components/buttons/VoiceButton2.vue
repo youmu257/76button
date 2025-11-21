@@ -103,8 +103,8 @@ export default {
     },
     togglePlay() {
       this.audio = this.$refs[this.voiceFileName].cloneNode()
-      // 傳給 VoicePage 用來停止撥放上一個聲音
-      this.$emit('displayOther', this.audio)
+      // 傳給 VoicePage 用來停止撥放上一個聲音，同時傳送按鈕名稱
+      this.$emit('displayOther', this.audio, this.buttonName)
       this.audio.load()
       this.audio.play()
       // 開始播放進度條

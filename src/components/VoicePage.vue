@@ -144,17 +144,25 @@
             :button-name="btnData.btnName"
             :source-url="btnData.sourceUrl"
             :source-type="btnData.sourceType"
-            @displayOther="handleVoicePlay(item.type, $event)"
+            @displayOther="(audio, buttonName) => handleVoicePlay(item.type, audio, buttonName)"
           />
         </div>
       </div>
     </div>
+
+    <!-- 固定在右下角的播放器 -->
+    <AudioPlayer
+      :playing-list="currentPlayingList"
+      @stop-all="stopPlay(true)"
+      @stop-single="stopSingleAudio"
+    />
   </div>
 </template>
 
 <script>
 import VoiceButton2 from './buttons/VoiceButton2.vue'
 import PageHeader from './PageHeader.vue'
+import AudioPlayer from './AudioPlayer.vue'
 import btnList from '../assets/button-list.json'
 
 /**
@@ -181,6 +189,7 @@ export default {
   components: {
     VoiceButton2, // 語音按鈕組件
     PageHeader, // 頁面標題組件
+    AudioPlayer, // 固定播放器組件
   },
   props: {
     /**
@@ -267,6 +276,18 @@ export default {
        * @type {number}
        */
       windowWidth: window.innerWidth,
+
+      /**
+       * 當前正在播放的音訊列表（用於顯示在固定播放器中）
+       * @type {Array<{id: string, name: string, audio: HTMLAudioElement}>}
+       */
+      currentPlayingList: [],
+
+      /**
+       * 音訊 ID 計數器（用於產生唯一 ID）
+       * @type {number}
+       */
+      audioIdCounter: 0,
     }
   },
   computed: {
@@ -324,12 +345,13 @@ export default {
      * 根據類型決定是正常播放還是觸發亂入效果
      * @param {string} type - 按鈕類型（'photobomb' 或其他）
      * @param {HTMLAudioElement} audio - 音訊物件
+     * @param {string} buttonName - 按鈕名稱
      */
-    handleVoicePlay(type, audio) {
+    handleVoicePlay(type, audio, buttonName) {
       if (type === 'photobomb') {
-        this.photobombVoice(audio)
+        this.photobombVoice(audio, buttonName)
       } else {
-        this.displayOtherVoice(audio)
+        this.displayOtherVoice(audio, buttonName)
       }
     },
 
@@ -337,15 +359,38 @@ export default {
      * 播放語音（正常模式）
      * 根據重疊播放設定決定播放策略
      * @param {HTMLAudioElement} playVoice - 要播放的音訊物件
+     * @param {string} buttonName - 按鈕名稱
      */
-    displayOtherVoice(playVoice) {
+    displayOtherVoice(playVoice, buttonName = '未知') {
+      const audioId = `audio_${this.audioIdCounter++}`
+      
+      // 監聽音訊結束事件，自動從播放列表移除
+      playVoice.addEventListener('ended', () => {
+        this.removeFromPlayingList(audioId)
+      })
+      
+      // 監聽音訊暫停事件（包含手動停止）
+      playVoice.addEventListener('pause', () => {
+        this.removeFromPlayingList(audioId)
+      })
+
       if (this.overlapPlayback) {
         // 重疊播放：加入播放列表
         this.playNowList.push(playVoice)
+        this.currentPlayingList.push({
+          id: audioId,
+          name: buttonName,
+          audio: playVoice
+        })
       } else {
         // 單一播放：停止前一個音效
         this.stopPlay()
         this.playNow = playVoice
+        this.currentPlayingList = [{
+          id: audioId,
+          name: buttonName,
+          audio: playVoice
+        }]
       }
     },
 
@@ -353,10 +398,11 @@ export default {
      * 播放語音並觸發亂入效果
      * 產生 10 張隨機位置的王祈菈圖片
      * @param {HTMLAudioElement} playVoice - 要播放的音訊物件
+     * @param {string} buttonName - 按鈕名稱
      */
-    photobombVoice(playVoice) {
+    photobombVoice(playVoice, buttonName) {
       // 播放語音
-      this.displayOtherVoice(playVoice)
+      this.displayOtherVoice(playVoice, buttonName)
 
       // 清理已隱藏的圖片
       this.cleanupPhotobombs()
@@ -459,6 +505,9 @@ export default {
         this.playNow.pause()
       }
 
+      // 清空播放列表顯示
+      this.currentPlayingList = []
+
       // 按空白鍵時清空所有亂入圖
       if (stopAll) {
         this.photobombList.clear()
@@ -485,6 +534,35 @@ export default {
      */
     switchOverlapPlayback() {
       this.overlapPlayback = !this.overlapPlayback
+    },
+
+    /**
+     * 從播放列表中移除指定音訊
+     * @param {string} audioId - 音訊 ID
+     */
+    removeFromPlayingList(audioId) {
+      const index = this.currentPlayingList.findIndex(item => item.id === audioId)
+      if (index !== -1) {
+        this.currentPlayingList.splice(index, 1)
+      }
+    },
+
+    /**
+     * 停止單個音訊播放
+     * @param {string} audioId - 音訊 ID
+     */
+    stopSingleAudio(audioId) {
+      const item = this.currentPlayingList.find(item => item.id === audioId)
+      if (item && item.audio) {
+        item.audio.pause()
+        this.removeFromPlayingList(audioId)
+        
+        // 從 playNowList 中移除
+        const playIndex = this.playNowList.indexOf(item.audio)
+        if (playIndex !== -1) {
+          this.playNowList.splice(playIndex, 1)
+        }
+      }
     },
 
     /**

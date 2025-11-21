@@ -1,0 +1,210 @@
+/* AudioPlayer.css - 固定在右下角的音訊播放器樣式 */
+
+.audio-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(33, 37, 41, 0.95);
+  border: 2px solid #dc3545;
+  border-radius: 12px;
+  padding: 15px;
+  min-width: 280px;
+  max-width: 400px;
+  max-height: 500px;
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dc3545;
+}
+
+.player-title {
+  color: #fff;
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.player-title i {
+  color: #dc3545;
+}
+
+.stop-all-btn {
+  font-size: 12px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.playing-list {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* 滾動條樣式 */
+.playing-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.playing-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.playing-list::-webkit-scrollbar-thumb {
+  background: #dc3545;
+  border-radius: 3px;
+}
+
+.playing-list::-webkit-scrollbar-thumb:hover {
+  background: #bb2d3b;
+}
+
+.playing-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 8px;
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.playing-item:hover {
+  background: rgba(220, 53, 69, 0.2);
+  border-color: rgba(220, 53, 69, 0.5);
+  transform: translateX(-2px);
+}
+
+.playing-name {
+  color: #fff;
+  font-size: 14px;
+  flex: 1;
+  margin-right: 10px;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.stop-btn {
+  font-size: 16px;
+  padding: 4px 8px;
+  flex-shrink: 0;
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.stop-btn:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* 空狀態樣式 */
+.empty-state {
+  text-align: center;
+  padding: 20px 10px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.empty-state i {
+  font-size: 32px;
+  color: rgba(220, 53, 69, 0.5);
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* 響應式設計 - 小螢幕調整 */
+@media (max-width: 768px) {
+  .audio-player {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+    max-width: none;
+    padding: 10px;
+  }
+
+  .player-header {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+  }
+
+  .player-title {
+    font-size: 13px;
+  }
+
+  .player-title i {
+    font-size: 14px;
+  }
+
+  .stop-all-btn {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .playing-item {
+    padding: 8px;
+    margin-bottom: 6px;
+  }
+
+  .playing-name {
+    font-size: 12px;
+  }
+
+  .stop-btn {
+    font-size: 14px;
+    padding: 3px 6px;
+  }
+
+  .empty-state {
+    padding: 15px 8px;
+  }
+
+  .empty-state i {
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+
+  .empty-state p {
+    font-size: 12px;
+  }
+}
