@@ -7,13 +7,16 @@
       <button
         v-if="playingList.length > 0"
         class="btn btn-sm btn-danger stop-all-btn"
-        @click="stopAll"
         title="停止全部"
+        @click="stopAll"
       >
         <i class="bi bi-stop-fill" /> 全部停止
       </button>
     </div>
-    <div v-if="playingList.length > 0" class="playing-list">
+    <div
+      v-if="playingList.length > 0"
+      class="playing-list"
+    >
       <div
         v-for="item in playingList"
         :key="item.id"
@@ -22,14 +25,17 @@
         <span class="playing-name">{{ item.name }}</span>
         <button
           class="btn btn-sm btn-outline-danger stop-btn"
-          @click="stopSingle(item.id)"
           title="停止播放"
+          @click="stopSingle(item.id)"
         >
           <i class="bi bi-stop-circle" />
         </button>
       </div>
     </div>
-    <div v-else class="empty-state">
+    <div
+      v-else
+      class="empty-state"
+    >
       <i class="bi bi-music-note" />
       <p>目前沒有播放中的音訊</p>
     </div>

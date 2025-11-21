@@ -85,7 +85,10 @@
           <i class="bi bi-x-lg" />
         </button>
       </div>
-      <div v-if="searchQuery && filteredBtnDataList.length === 0" class="alert alert-info mt-2">
+      <div
+        v-if="searchQuery && filteredBtnDataList.length === 0"
+        class="alert alert-info mt-2"
+      >
         找不到符合「{{ searchQuery }}」的語音按鈕
       </div>
     </div>
@@ -335,9 +338,18 @@ export default {
     }
     window.addEventListener('keydown', this.handleKeydown)
   },
+  mounted() {
+    // 監聽視窗大小變化，更新亂入圖片位置計算
+    this.handleResize = () => {
+      this.windowWidth = window.innerWidth
+      this.windowHeight = window.innerHeight
+    }
+    window.addEventListener('resize', this.handleResize)
+  },
   beforeUnmount() {
-    // 移除鍵盤事件監聽器，防止記憶體洩漏
+    // 移除事件監聽器，防止記憶體洩漏
     window.removeEventListener('keydown', this.handleKeydown)
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     /**
@@ -365,14 +377,13 @@ export default {
       const audioId = `audio_${this.audioIdCounter++}`
       
       // 監聽音訊結束事件，自動從播放列表移除
-      playVoice.addEventListener('ended', () => {
+      const handleEnd = () => {
         this.removeFromPlayingList(audioId)
-      })
-      
-      // 監聽音訊暫停事件（包含手動停止）
-      playVoice.addEventListener('pause', () => {
-        this.removeFromPlayingList(audioId)
-      })
+        playVoice.removeEventListener('ended', handleEnd)
+        playVoice.removeEventListener('pause', handleEnd)
+      }
+      playVoice.addEventListener('ended', handleEnd)
+      playVoice.addEventListener('pause', handleEnd)
 
       if (this.overlapPlayback) {
         // 重疊播放：加入播放列表
@@ -435,21 +446,37 @@ export default {
         return
       }
 
-      // 產生隨機位置（0-100%）
-      const x = this.getRandom(100)
-      const y = this.getRandom(100)
+      // 提前計算中心區域範圍（中間 30% 的區域）
+      const centerXStart = this.windowWidth * 0.35
+      const centerXEnd = this.windowWidth * 0.65
+      const centerYStart = this.windowHeight * 0.35
+      const centerYEnd = this.windowHeight * 0.65
 
-      // 檢查是否在中心區域（40%-50%）
-      const isCenterX = x >= 40 && x <= 50
-      const isCenterY = y >= 40 && y <= 50
+      let randomX, randomY
+      let attempts = 0
+      const maxAttempts = 100
 
-      // 如果在中心區域，偏移 15% 避免遮擋主要內容
-      const randomX = ((isCenterX ? x - 15 : x) / 100) * this.windowWidth
-      const randomY = ((isCenterY ? y - 15 : y) / 100) * this.windowHeight
+      // 持續產生隨機位置直到不在中心區域
+      do {
+        // 產生隨機位置（0 到視窗寬度/高度）
+        randomX = Math.floor(Math.random() * this.windowWidth)
+        randomY = Math.floor(Math.random() * this.windowHeight)
+
+        // 檢查是否在中心區域
+        const isInCenter = randomX >= centerXStart && randomX <= centerXEnd &&
+                          randomY >= centerYStart && randomY <= centerYEnd
+
+        // 如果不在中心區域，跳出迴圈
+        if (!isInCenter) {
+          break
+        }
+
+        attempts++
+      } while (attempts < maxAttempts)
 
       // 設定初始樣式和唯一 key
-      const mapKey = this.getRandom(99999 + num)
-      const positionStyle = `z-index: 10; position: absolute; right: ${randomX}px; top: ${randomY}px;`
+      const mapKey = Date.now() + Math.random() * 10000 + num
+      const positionStyle = `z-index: 10; position: absolute; left: ${randomX}px; top: ${randomY}px;`
       this.photobombList.set(mapKey, positionStyle)
 
       // 開始淡出動畫
@@ -463,10 +490,10 @@ export default {
      * @param {string} baseStyle - 基礎樣式字串
      */
     startFadeOut(mapKey, baseStyle) {
-      // 隨機淡出時間 2000~4999 毫秒
-      const fadeDuration = this.getRandom(3000) + 2000
-      const delay = Math.floor(fadeDuration / 1000)
-      const fadeOutStyle = `${baseStyle} opacity:1; transition: opacity ${delay}s ease-out;`
+      // 隨機淡出時間 2500~5000 毫秒
+      const fadeDuration = Math.floor(Math.random() * 2500) + 2500
+      const delaySeconds = (fadeDuration / 1000).toFixed(1)
+      const fadeOutStyle = `${baseStyle} opacity:1; transition: opacity ${delaySeconds}s ease-out;`
       this.photobombList.set(mapKey, fadeOutStyle)
 
       // 使用 requestAnimationFrame 確保 DOM 更新後再觸發動畫
@@ -482,27 +509,19 @@ export default {
       })
     },
 
-    /**
-     * 產生隨機數
-     * @param {number} max - 最大值（不包含）
-     * @returns {number} 1 到 max 之間的隨機整數
-     */
-    getRandom(max) {
-      return Math.floor(Math.random() * max) + 1
-    },
+
 
     /**
      * 停止播放音效
      * @param {boolean} stopAll - 是否停止所有效果（包含清空亂入圖）
      */
     stopPlay(stopAll = false) {
-      if (this.overlapPlayback) {
-        // 重疊播放模式：停止所有音效
-        this.stopPlayList()
-      } else if (this.playNow != null) {
-        // 單一播放模式：停止當前音效
-        this.stopPlayList()
+      // 停止所有正在播放的音效
+      this.stopPlayList()
+      
+      if (this.playNow) {
         this.playNow.pause()
+        this.playNow = null
       }
 
       // 清空播放列表顯示
