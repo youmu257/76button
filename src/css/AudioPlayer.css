@@ -178,10 +178,28 @@
   .audio-player {
     bottom: 10px;
     right: 10px;
-    left: 10px;
+    left: 70px; /* 60px sidebar collapsed width + 10px margin */
     min-width: auto;
     max-width: none;
     padding: 10px;
+    transition: left 0.3s ease, right 0.3s ease;
+  }
+
+  /* 當側邊欄打開時，播放器緊鄰 sidebar 完整顯示 */
+  .audio-player.sidebar-open {
+    left: 260px; /* 250px sidebar width + 10px margin */
+    right: 10px;
+    max-width: calc(100vw - 270px); /* 確保完整顯示不超出螢幕 */
+  }
+
+  /* 當側邊欄打開時，按鈕改為垂直排列 */
+  .audio-player.sidebar-open .player-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .audio-player.sidebar-open .player-actions button {
+    width: 100%;
   }
 
   .player-header {

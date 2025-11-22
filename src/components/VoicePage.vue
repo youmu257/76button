@@ -156,6 +156,7 @@
     <!-- 固定在右下角的播放器 -->
     <AudioPlayer
       :playing-list="currentPlayingList"
+      :is-sidebar-open="isSidebarOpen"
       @stop-all="stopPlay(true)"
       @stop-single="stopSingleAudio"
       @play-random="playRandomVoice"
@@ -196,6 +197,14 @@ export default {
     AudioPlayer, // 固定播放器組件
   },
   props: {
+    /**
+     * 側邊欄開啟狀態
+     * @type {Boolean}
+     */
+    isSidebarOpen: {
+      type: Boolean,
+      default: false
+    },
     /**
      * 頁面主標題
      * @type {string}

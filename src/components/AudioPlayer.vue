@@ -1,5 +1,8 @@
 <template>
-  <div class="audio-player">
+  <div
+    class="audio-player"
+    :class="{ 'sidebar-open': isSidebarOpen }"
+  >
     <div class="player-header">
       <h5 class="player-title">
         <i class="bi bi-music-note-beamed" /> 播放器
@@ -71,6 +74,14 @@ export default {
     playingList: {
       type: Array,
       default: () => []
+    },
+    /**
+     * 側邊欄開啟狀態
+     * @type {Boolean}
+     */
+    isSidebarOpen: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['stop-all', 'stop-single', 'play-random'],

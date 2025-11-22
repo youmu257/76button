@@ -6,7 +6,7 @@
     <CollapseSidebar @sidebar-toggle="handleSidebarToggle" />
     <div class="main-content">
       <!-- 用於渲染路由對應的組件 -->
-      <router-view v-bind="{ msg: getTitle() }" />
+      <router-view v-bind="{ msg: getTitle(), isSidebarOpen: isSidebarOpen }" />
       <VoicePageFooter />
     </div>
   </div>

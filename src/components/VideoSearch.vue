@@ -67,8 +67,8 @@
         <i
           v-if="searchKeyword"
           class="bi bi-x-circle clear-icon"
-          @click="clearSearch"
           aria-label="清除搜尋"
+          @click="clearSearch"
         />
       </div>
     </div>
