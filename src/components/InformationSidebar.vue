@@ -3,7 +3,7 @@
   <div class="social-media-container">
     <!-- YouTube 連結 -->
     <a
-      href="https://www.youtube.com/c/STORIANarrator%E9%81%8A%E6%88%B2%E5%B7%A5%E4%BD%9C%E5%AE%A4/about"
+      href="https://www.youtube.com/@ChillaBehemos"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="前往 YouTube 頻道"
@@ -19,9 +19,30 @@
       >YouTube</span>
     </a>
 
+    <!-- 官方網站連結 -->
+    <a
+      href="https://lit.link/zh-tw/ChillaBehamos"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="lit.link"
+      class="social-link"
+    >
+      <img
+        width="32"
+        height="32"
+        src="https://lit.link/favicon.ico"
+        alt="lit.link"
+        loading="lazy"
+      >
+      <span
+        v-if="isSidebarOpen"
+        class="social-name"
+      >官方網站</span>
+    </a>
+
     <!-- Twitch 連結 -->
     <a
-      href="https://www.twitch.tv/storiavtuber00"
+      href="https://www.twitch.tv/vtuberchilla76"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="前往 Twitch 頻道"
@@ -39,7 +60,7 @@
 
     <!-- Twitter 連結 -->
     <a
-      href="https://twitter.com/Chilla_Storia"
+      href="https://x.com/ChillaBehemos"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="前往 Twitter"
@@ -57,7 +78,7 @@
 
     <!-- Discord 連結 -->
     <a
-      href="https://discord.gg/Y4fp3k2"
+      href="https://discord.gg/cAhnWs9a"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="加入 Discord 伺服器"
@@ -73,12 +94,30 @@
       >Discord</span>
     </a>
 
-    <!-- Facebook 連結 -->
+    <!-- Facebook 粉絲專頁連結 -->
     <a
       href="https://www.facebook.com/Chilla76?locale=zh_TW"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="前往 Facebook 粉絲專頁"
+      class="social-link"
+    >
+      <i
+        class="bi bi-facebook"
+        aria-hidden="true"
+      />
+      <span
+        v-if="isSidebarOpen"
+        class="social-name"
+      >Facebook</span>
+    </a>
+
+    <!-- Facebook 毛絲專頁連結 -->
+    <a
+      href="https://www.facebook.com/mao.si.924237/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="前往 Facebook 毛絲專頁"
       class="social-link"
     >
       <i
@@ -114,7 +153,7 @@
 
     <!-- Bluesky 連結 -->
     <a
-      href="https://bsky.app/profile/chillastoria.bsky.social"
+      href="https://bsky.app/profile/chillabehemos.bsky.social"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="前往 Bluesky"
@@ -156,7 +195,7 @@
 
     <!-- 三視圖連結 -->
     <a
-      href="https://bsky.app/profile/chillastoria.bsky.social/post/3l6p664qkim25"
+      href="https://bsky.app/profile/chillabehemos.bsky.social/post/3l6p664qkim25"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Views of Objects"
@@ -175,25 +214,40 @@
       >三視圖</span>
     </a>
 
-    <!-- 官方網站連結 -->
+    <!-- 舊 YouTube 頻道連結 -->
     <a
-      href="https://lit.link/zh-tw/chilla"
+      href="https://www.youtube.com/c/STORIANarrator%E9%81%8A%E6%88%B2%E5%B7%A5%E4%BD%9C%E5%AE%A4/about"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="lit.link"
+      aria-label="前往舊 YouTube 頻道"
       class="social-link"
     >
-      <img
-        width="32"
-        height="32"
-        src="https://lit.link/favicon.ico"
-        alt="lit.link"
-        loading="lazy"
-      >
+      <i
+        class="bi bi-youtube"
+        aria-hidden="true"
+      />
       <span
         v-if="isSidebarOpen"
         class="social-name"
-      >官方網站</span>
+      >舊 YT 頻道</span>
+    </a>
+
+    <!-- 舊 Discord 連結 -->
+    <a
+      href="https://discord.gg/Y4fp3k2"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="加入 Discord 伺服器"
+      class="social-link"
+    >
+      <i
+        class="bi bi-discord"
+        aria-hidden="true"
+      />
+      <span
+        v-if="isSidebarOpen"
+        class="social-name"
+      >舊 DC</span>
     </a>
   </div>
 </template>
