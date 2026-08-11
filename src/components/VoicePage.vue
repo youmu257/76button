@@ -1,19 +1,15 @@
 <template>
-  <div class="hello">
-    <div class="d-flex flex-wrap align-items-center justify-content-center container">
-      <img
-        ref="img-circle"
-        class="img-circle"
-        height="200"
-        src="https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096"
-      >
-      <div>
-        <p class="fs-1 py-1">
-          {{ msg }}
-        </p>
-        <InformationBlock :title="getInfoBlockTitle()" />
-      </div>
-    </div>
+  <!-- 主容器 -->
+  <div class="container">
+    <!-- 頁面標題區塊 -->
+    <PageHeader
+      ref="pageHeader"
+      :msg="msg"
+      :img-src="headerImgSrc"
+      :title="infoBlockTitle"
+    />
+
+    <!-- 隱藏的彩蛋影片（按 F12 觸發） -->
     <iframe
       ref="rick-roll"
       :class="{ hidden: !f12push }"
@@ -23,207 +19,632 @@
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
+      loading="lazy"
     />
+
     <hr>
-    <b>播放規則</b><br>
-    語音預設不重疊播放，播放時再次點擊語音按鈕(同一顆或其他顆)會蓋掉原本的聲音<br>
-    可以點擊下方按鈕打開重疊播放<br>
-    <s>如果覺得太吵</s>可以按<b>空白鍵</b>停止播放(<b>重疊播放時會全部停止</b>)<br>
-    備註: 按鈕旁邊有音訊檔來源(Youtube)，如果是推特符號表示為推特音訊(所以沒有記錄檔，想聽更多去追蹤推特)<br>
+
+    <!-- 播放規則說明 -->
+    <div class="rules-section">
+      <b>播放規則</b><br>
+      語音預設不重疊播放，播放時再次點擊語音按鈕(同一顆或其他顆)會蓋掉原本的聲音<br>
+      可以點擊下方按鈕打開重疊播放<br>
+      <s>如果覺得太吵</s>可以按<b>空白鍵</b>停止播放(<b>重疊播放時會全部停止</b>)<br>
+      備註:
+      按鈕旁邊有音訊檔來源(Youtube)，如果是推特符號表示為推特音訊(所以沒有記錄檔，想聽更多去追蹤推特)<br>
+    </div>
+
+    <!-- 亂入的王祈菈圖片列表 -->
+    <!-- 動態產生，位置隨機，會自動淡出消失 -->
     <img
-      v-for="item in photobombList"
-      :key="item.key"
+      v-for="(item, key) in photobombList"
+      :key="key"
       ref="photobomb"
       class="img-circle"
       height="150"
-      weight="150"
+      width="150"
       :style="item"
       :src="require('@/assets/photobomb_chilla.png')"
+      alt="亂入的王祈菈"
+      loading="lazy"
     >
+
+    <!-- 重疊播放開關按鈕 -->
     <button
+      type="button"
       class="btn btn-danger"
+      :aria-label="overlapPlayback ? '關閉重疊播放' : '開啟重疊播放'"
       @click="switchOverlapPlayback()"
     >
       <input
         type="checkbox"
-        :checked="getOverlapPlaybackStatus()"
+        :checked="overlapPlayback"
+        aria-hidden="true"
       >勾選開啟重疊播放
     </button>
-    <hr>
-    <div class="container mb-5">
+
+    <!-- 搜尋欄 -->
+    <div class="search-section">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="bi bi-search" />
+        </span>
+        <input
+          v-model="searchQuery"
+          type="text"
+          class="form-control"
+          placeholder="搜尋語音按鈕..."
+          aria-label="搜尋語音按鈕"
+        >
+        <button
+          v-if="searchQuery"
+          class="btn btn-outline-secondary"
+          type="button"
+          @click="searchQuery = ''"
+        >
+          <i class="bi bi-x-lg" />
+        </button>
+      </div>
       <div
-        v-for="(item, index) in btnDataList"
-        :key="index"
-        class="d-flex flex-column background"
+        v-if="searchQuery && filteredBtnDataList.length === 0"
+        class="alert alert-info mt-2"
       >
-        <p class="fs-3">
+        找不到符合「{{ searchQuery }}」的語音按鈕
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- 語音按鈕手風琴區塊 -->
+    <div
+      v-for="(item, index) in filteredBtnDataList"
+      :id="`accordionExample-${index}`"
+      :key="item.id || index"
+      class="d-flex flex-column background accordion"
+    >
+      <!-- 亂入王祈菈特殊區塊 -->
+      <div v-if="item.type === 'photobomb'">
+        <h3>
           {{ item.category }}
-        </p>
-        <a v-if="item.type == 'photobomb'">
-          註: 一次會亂入10隻祈菈，最多200隻祈菈，祈菈會慢慢消失
-        </a>
-        <div class="d-flex flex-wrap justify-content-center">
+        </h3>
+        <p>註: 一次會亂入10隻祈菈，最多200隻祈菈，祈菈會慢慢消失</p>
+      </div>
+
+      <!-- 正常語音按鈕區塊（手風琴標題） -->
+      <div
+        v-if="item.type !== 'photobomb'"
+        class="accordion-item"
+      >
+        <h2 class="accordion-header">
+          <button
+            type="button"
+            class="accordion-button text-center w-100 clickable"
+            data-toggle="collapse"
+            :data-target="`#collapseRegion_${index}`"
+            :aria-expanded="true"
+            :aria-controls="`collapseRegion_${index}`"
+          >
+            <h3>
+              {{ item.category }}
+            </h3>
+          </button>
+        </h2>
+      </div>
+
+      <!-- 手風琴內容區塊（語音按鈕列表） -->
+      <div
+        :id="`collapseRegion_${index}`"
+        class="accordion-collapse collapse show"
+        aria-labelledby="headingOne"
+        :data-bs-parent="`#accordionExample-${index}`"
+      >
+        <div class="accordion-body">
+          <!-- 遍歷語音按鈕 -->
           <VoiceButton2
             v-for="(btnData, btnIndex) in item.btnList"
-            :key="btnIndex"
+            :key="btnData.id || btnIndex"
             :voice-file-name="btnData.fileName"
             :button-name="btnData.btnName"
             :source-url="btnData.sourceUrl"
             :source-type="btnData.sourceType"
-            @displayOther="item.type == 'photobomb' ? photobombVoice() : displayOtherVoice()"
+            @displayOther="(audio, buttonName) => handleVoicePlay(item.type, audio, buttonName)"
           />
         </div>
-        <hr v-if="index !== btnDataList.length - 1">
       </div>
     </div>
+
+    <!-- 固定在右下角的播放器 -->
+    <AudioPlayer
+      :playing-list="currentPlayingList"
+      :is-sidebar-open="isSidebarOpen"
+      @stop-all="stopPlay(true)"
+      @stop-single="stopSingleAudio"
+      @play-random="playRandomVoice"
+    />
   </div>
 </template>
 
 <script>
 import VoiceButton2 from './buttons/VoiceButton2.vue'
-import InformationBlock from './InformationBlock.vue'
+import PageHeader from './PageHeader.vue'
+import AudioPlayer from './AudioPlayer.vue'
 import btnList from '../assets/button-list.json'
 
+/**
+ * VoicePage 組件
+ *
+ * 功能說明：
+ * - 主要的語音按鈕頁面
+ * - 支援語音播放、暫停、重疊播放
+ * - 包含「亂入王祈菈」彩蛋功能
+ * - 包含 F12 彩蛋（Rick Roll）
+ * - 使用手風琴式佈局組織語音按鈕
+ * - 支援鍵盤快捷鍵（空白鍵停止播放、F12 觸發彩蛋）
+ *
+ * 特殊功能：
+ * 1. 單一播放模式：新音效會覆蓋舊音效
+ * 2. 重疊播放模式：可同時播放多個音效
+ * 3. 亂入功能：隨機產生王祈菈圖片，自動淡出消失
+ * 4. F12 彩蛋：開啟特殊影片和更換頁面內容
+ *
+ * @component
+ */
 export default {
   name: 'VoicePage',
   components: {
-    VoiceButton2,
-    InformationBlock,
+    VoiceButton2, // 語音按鈕組件
+    PageHeader, // 頁面標題組件
+    AudioPlayer, // 固定播放器組件
   },
   props: {
-    msg:  {
+    /**
+     * 側邊欄開啟狀態
+     * @type {Boolean}
+     */
+    isSidebarOpen: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * 頁面主標題
+     * @type {string}
+     */
+    msg: {
       type: String,
-      default: ''
+      default: '',
     },
   },
   data() {
     return {
+      /**
+       * 搜尋關鍵字
+       * @type {string}
+       */
+      searchQuery: '',
+
+      /**
+       * 語音按鈕列表資料
+       * 從 JSON 檔案匯入，包含多個分類和按鈕
+       * @type {Array<Object>}
+       */
       btnDataList: btnList,
+
+      /**
+       * 當前播放的音訊物件（單一播放模式）
+       * @type {HTMLAudioElement|null}
+       */
       playNow: null,
+
+      /**
+       * 當前播放的音訊列表（重疊播放模式）
+       * @type {Array<HTMLAudioElement>}
+       */
       playNowList: [],
+
+      /**
+       * F12 彩蛋是否已觸發
+       * @type {boolean}
+       */
       f12push: false,
-      infoBlockTitle: '祈菈的資訊',
+
+      /**
+       * 資訊區塊標題
+       * @type {string}
+       */
+      infoBlockTitle: '語音按鈕列表',
+
+      /**
+       * 頁面標題圖片 URL
+       * @type {string}
+       */
+      headerImgSrc: 'https://pbs.twimg.com/media/FAss4LSVkAIm7hV?format=jpg&name=4096x4096',
+
+      /**
+       * 是否開啟重疊播放模式
+       * @type {boolean}
+       */
       overlapPlayback: false,
+
+      /**
+       * 亂入圖片的樣式 Map
+       * key: 隨機 ID, value: CSS 樣式字串
+       * @type {Map<number, string>}
+       */
       photobombList: new Map(),
+
+      /**
+       * 待刪除的亂入圖片 ID 集合
+       * @type {Set<number>}
+       */
+      photobombDeleteList: new Set(),
+
+      /**
+       * 視窗高度（用於計算亂入圖片位置）
+       * @type {number}
+       */
       windowHeight: window.innerHeight,
+
+      /**
+       * 視窗寬度（用於計算亂入圖片位置）
+       * @type {number}
+       */
       windowWidth: window.innerWidth,
+
+      /**
+       * 當前正在播放的音訊列表（用於顯示在固定播放器中）
+       * @type {Array<{id: string, name: string, audio: HTMLAudioElement}>}
+       */
+      currentPlayingList: [],
+
+      /**
+       * 音訊 ID 計數器（用於產生唯一 ID）
+       * @type {number}
+       */
+      audioIdCounter: 0,
+    }
+  },
+  computed: {
+    /**
+     * 根據搜尋關鍵字過濾按鈕列表
+     * 如果沒有搜尋關鍵字，返回完整列表
+     * 否則只返回包含搜尋關鍵字的按鈕
+     * @returns {Array<Object>} 過濾後的按鈕列表
+     */
+    filteredBtnDataList() {
+      if (!this.searchQuery.trim()) {
+        return this.btnDataList
+      }
+
+      const query = this.searchQuery.toLowerCase()
+      return this.btnDataList.map(category => {
+        // 過濾每個分類中的按鈕
+        const filteredBtnList = category.btnList.filter(btn => 
+          btn.btnName.toLowerCase().includes(query)
+        )
+
+        // 只返回有按鈕的分類
+        if (filteredBtnList.length > 0) {
+          return {
+            ...category,
+            btnList: filteredBtnList
+          }
+        }
+        return null
+      }).filter(category => category !== null)
     }
   },
   created() {
-    var self = this
-    window.addEventListener('keydown', function(e) {
+    // 註冊鍵盤事件監聽器
+    this.handleKeydown = (e) => {
+      // 空白鍵：停止所有音效
       if (e.code === 'Space') {
-        self.stopPlay(true)
+        this.stopPlay(true)
         e.preventDefault()
-      } else if (self.f12push == false && e.code === 'F12') {
-        window.scrollTo(0,0)
-        self.f12push = true
-        self.$refs['rick-roll']['src'] = 'https://www.youtube.com/embed/O1FWa6vRFTA?start=19&autoplay=1&mute=0'
-        self.$refs['img-circle']['src'] = 'https://media.discordapp.net/attachments/833581544223277068/901992965227048980/a945144c73db5c24.png'
-        self.infoBlockTitle = '毛主祈萬歲'
-        setTimeout(function () {
-          console.log('%c請看向左邊祈菈搖', 'color:red; font-size: 50px')
-          console.log('%c←←←←←←', 'color:red; font-size: 50px')
-        }, 1000)
-        setTimeout(function () {
-          self.$refs['rick-roll']['src'] = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&rel=0'
-          console.log('%c按 F12 想做啥(́◕◞౪◟◕‵)', 'color:black; font-size: 20px')
-        }, 5000)
       }
-    })
+      // F12 鍵：觸發彩蛋
+      else if (!this.f12push && e.code === 'F12') {
+        this.triggerF12Easter()
+      }
+    }
+    window.addEventListener('keydown', this.handleKeydown)
   },
-  methods:{
-    displayOtherVoice(playVoice) {
-      if (this.getOverlapPlaybackStatus()) {
-        this.playNowList.push(playVoice)
+  mounted() {
+    // 監聽視窗大小變化，更新亂入圖片位置計算
+    this.handleResize = () => {
+      this.windowWidth = window.innerWidth
+      this.windowHeight = window.innerHeight
+    }
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeUnmount() {
+    // 移除事件監聽器，防止記憶體洩漏
+    window.removeEventListener('keydown', this.handleKeydown)
+    window.removeEventListener('resize', this.handleResize)
+  },
+  methods: {
+    /**
+     * 處理語音播放事件
+     * 根據類型決定是正常播放還是觸發亂入效果
+     * @param {string} type - 按鈕類型（'photobomb' 或其他）
+     * @param {HTMLAudioElement} audio - 音訊物件
+     * @param {string} buttonName - 按鈕名稱
+     */
+    handleVoicePlay(type, audio, buttonName) {
+      if (type === 'photobomb') {
+        this.photobombVoice(audio, buttonName)
       } else {
-        this.stopPlay()
-        this.playNow = playVoice
+        this.displayOtherVoice(audio, buttonName)
       }
     },
-    photobombVoice(playVoice) {
-      // 王祈菈亂入圖產生
-      this.displayOtherVoice(playVoice)
-      for (var i of Array(10)) {
+
+    /**
+     * 播放語音（正常模式）
+     * 根據重疊播放設定決定播放策略
+     * @param {HTMLAudioElement} playVoice - 要播放的音訊物件
+     * @param {string} buttonName - 按鈕名稱
+     */
+    displayOtherVoice(playVoice, buttonName = '未知') {
+      const audioId = `audio_${this.audioIdCounter++}`
+      
+      // 監聽音訊結束事件，自動從播放列表移除
+      const handleEnd = () => {
+        this.removeFromPlayingList(audioId)
+        playVoice.removeEventListener('ended', handleEnd)
+        playVoice.removeEventListener('pause', handleEnd)
+      }
+      playVoice.addEventListener('ended', handleEnd)
+      playVoice.addEventListener('pause', handleEnd)
+
+      if (this.overlapPlayback) {
+        // 重疊播放：加入播放列表
+        this.playNowList.push(playVoice)
+        this.currentPlayingList.push({
+          id: audioId,
+          name: buttonName,
+          audio: playVoice
+        })
+      } else {
+        // 單一播放：停止前一個音效
+        this.stopPlay()
+        this.playNow = playVoice
+        this.currentPlayingList = [{
+          id: audioId,
+          name: buttonName,
+          audio: playVoice
+        }]
+      }
+    },
+
+    /**
+     * 播放語音並觸發亂入效果
+     * 產生 10 張隨機位置的王祈菈圖片
+     * @param {HTMLAudioElement} playVoice - 要播放的音訊物件
+     * @param {string} buttonName - 按鈕名稱
+     */
+    photobombVoice(playVoice, buttonName) {
+      // 播放語音
+      this.displayOtherVoice(playVoice, buttonName)
+
+      // 清理已隱藏的圖片
+      this.cleanupPhotobombs()
+
+      // 產生 10 張亂入圖片
+      for (let i = 0; i < 10; i++) {
         this.generatePhotobomb(i)
       }
     },
-    generatePhotobomb(num = 1) {
-      // 最多 200 張亂入圖
-      if (this.photobombList.size > 200) {
-        return
-      }
-      // 產生一張亂入圖
-      let x = this.getRandom(100)
-      let y = this.getRandom(100)
-      let positionStyle = 'z-index:10;position: absolute;'
-      let centerX = x >= 40 && x <= 50
-      let centerY = y >= 40 && y <= 50
-      let randomX = ((centerX ? x - 15 : x)/100) * this.windowWidth
-      let randomY = ((centerY ? y - 15 : y)/100) * this.windowHeight
-      positionStyle += 'right:'+randomX+'px; top: '+randomY+'px;'
 
-      let mapKey = this.getRandom(99999 + num)
-      this.photobombList.set(mapKey, positionStyle)
-      let styleNow = positionStyle
-      let self = this
-      for (let time = 10; time >= 0; time--) {
-        setTimeout(function() {
-          if (self.photobombList.has(mapKey) == false) {
-            return
-          }
-          if (time == 0) {
-            // 秒數倒數結束後移除圖片
-            self.photobombList.delete(mapKey)
-          } else {
-            // 讓圖片慢慢變透明
-            self.photobombList.set(mapKey, styleNow + 'opacity:' + (time / 10))
-          }
-        }, 300 * (10 - time))
-      }
+    /**
+     * 清理已隱藏的亂入圖片
+     * 從 Map 中移除標記為刪除的項目
+     */
+    cleanupPhotobombs() {
+      this.photobombDeleteList.forEach(mapKey => {
+        this.photobombList.delete(mapKey)
+      })
+      this.photobombDeleteList.clear()
     },
-    getRandom(x) {
-      return Math.floor(Math.random()*x) + 1
-    },
-    stopPlay(stopAll = false) {
-      if (this.getOverlapPlaybackStatus()) {
-        this.stopPlayList()
-      } else if (this.playNow != null) {
-        this.stopPlayList()
-        // 停止播放上一個聲音
-        this.playNow.pause()
-      }
-      // 按空白鍵進入要觸發的事件
-      if (stopAll) {
-        // 清空亂入圖
-        this.photobombList.clear()
-      }
-    },
-    stopPlayList() {
-      if (this.playNowList.length == 0) {
+
+    /**
+     * 產生一張亂入圖片
+     * 隨機位置，避免在中心區域，會自動淡出消失
+     * @param {number} num - 圖片編號（用於產生唯一 key）
+     */
+    generatePhotobomb(num = 0) {
+      // 最多 200 張亂入圖
+      if (this.photobombList.size >= 200) {
         return
       }
-      this.playNowList.forEach(function(item) {
-        item.pause()
+
+      // 提前計算中心區域範圍（中間 30% 的區域）
+      const centerXStart = this.windowWidth * 0.35
+      const centerXEnd = this.windowWidth * 0.65
+      const centerYStart = this.windowHeight * 0.35
+      const centerYEnd = this.windowHeight * 0.65
+
+      let randomX, randomY
+      let attempts = 0
+      const maxAttempts = 100
+
+      // 持續產生隨機位置直到不在中心區域
+      do {
+        // 產生隨機位置（0 到視窗寬度/高度）
+        randomX = Math.floor(Math.random() * this.windowWidth)
+        randomY = Math.floor(Math.random() * this.windowHeight)
+
+        // 檢查是否在中心區域
+        const isInCenter = randomX >= centerXStart && randomX <= centerXEnd &&
+                          randomY >= centerYStart && randomY <= centerYEnd
+
+        // 如果不在中心區域，跳出迴圈
+        if (!isInCenter) {
+          break
+        }
+
+        attempts++
+      } while (attempts < maxAttempts)
+
+      // 設定初始樣式和唯一 key
+      const mapKey = Date.now() + Math.random() * 10000 + num
+      const positionStyle = `z-index: 10; position: absolute; left: ${randomX}px; top: ${randomY}px;`
+      this.photobombList.set(mapKey, positionStyle)
+
+      // 開始淡出動畫
+      this.startFadeOut(mapKey, positionStyle)
+    },
+
+    /**
+     * 開始淡出動畫
+     * 使用 CSS transition 實現平滑淡出效果
+     * @param {number} mapKey - 圖片的唯一識別碼
+     * @param {string} baseStyle - 基礎樣式字串
+     */
+    startFadeOut(mapKey, baseStyle) {
+      // 隨機淡出時間 2500~5000 毫秒
+      const fadeDuration = Math.floor(Math.random() * 2500) + 2500
+      const delaySeconds = (fadeDuration / 1000).toFixed(1)
+      const fadeOutStyle = `${baseStyle} opacity:1; transition: opacity ${delaySeconds}s ease-out;`
+      this.photobombList.set(mapKey, fadeOutStyle)
+
+      // 使用 requestAnimationFrame 確保 DOM 更新後再觸發動畫
+      requestAnimationFrame(() => {
+        // 設定 opacity 為 0，觸發淡出動畫
+        this.photobombList.set(mapKey, `${fadeOutStyle} opacity: 0;`)
+
+        // 動畫結束後隱藏並標記為待刪除
+        setTimeout(() => {
+          this.photobombList.set(mapKey, `${fadeOutStyle} opacity: 0; display:none`)
+          this.photobombDeleteList.add(mapKey)
+        }, fadeDuration)
       })
+    },
+
+    /**
+     * 停止播放音效
+     * @param {boolean} stopAll - 是否停止所有效果（包含清空亂入圖）
+     */
+    stopPlay(stopAll = false) {
+      // 停止所有正在播放的音效
+      this.stopPlayList()
+      
+      if (this.playNow) {
+        this.playNow.pause()
+        this.playNow = null
+      }
+
+      // 清空播放列表顯示
+      this.currentPlayingList = []
+
+      // 按空白鍵時清空所有亂入圖
+      if (stopAll) {
+        this.photobombList.clear()
+        this.photobombDeleteList.clear()
+      }
+    },
+
+    /**
+     * 停止播放列表中的所有音效
+     */
+    stopPlayList() {
+      if (this.playNowList.length === 0) return
+
+      this.playNowList.forEach(audio => audio.pause())
       this.playNowList = []
     },
-    getInfoBlockTitle() {
-      return this.infoBlockTitle
-    },
-    getOverlapPlaybackStatus() {
-      return this.overlapPlayback
-    },
+
+    /**
+     * 切換重疊播放模式
+     */
     switchOverlapPlayback() {
       this.overlapPlayback = !this.overlapPlayback
+    },
+
+    /**
+     * 從播放列表中移除指定音訊
+     * @param {string} audioId - 音訊 ID
+     */
+    removeFromPlayingList(audioId) {
+      const index = this.currentPlayingList.findIndex(item => item.id === audioId)
+      if (index !== -1) {
+        this.currentPlayingList.splice(index, 1)
+      }
+    },
+
+    /**
+     * 停止單個音訊播放
+     * @param {string} audioId - 音訊 ID
+     */
+    stopSingleAudio(audioId) {
+      const item = this.currentPlayingList.find(item => item.id === audioId)
+      if (item && item.audio) {
+        item.audio.pause()
+        this.removeFromPlayingList(audioId)
+        
+        // 從 playNowList 中移除
+        const playIndex = this.playNowList.indexOf(item.audio)
+        if (playIndex !== -1) {
+          this.playNowList.splice(playIndex, 1)
+        }
+      }
+    },
+
+    /**
+     * 隨機播放一個語音
+     */
+    playRandomVoice() {
+      // 提取所有非 photobomb 類型的按鈕
+      const allButtons = this.btnDataList
+        .filter(cat => cat.type !== 'photobomb' && cat.btnList?.length > 0)
+        .flatMap(cat => cat.btnList)
+      
+      if (allButtons.length === 0) return
+
+      // 隨機選擇一個按鈕
+      const randomBtn = allButtons[Math.floor(Math.random() * allButtons.length)]
+      
+      try {
+        // 創建並播放音訊
+        const audio = new Audio(require(`@/assets/sound/${randomBtn.fileName}.mp3`))
+        audio.load()
+        audio.play()
+          .then(() => this.displayOtherVoice(audio, randomBtn.btnName))
+          .catch(error => console.error('播放失敗:', error))
+      } catch (error) {
+        console.error('載入音訊失敗:', error)
+      }
+    },
+
+    /**
+     * 觸發 F12 彩蛋
+     * 播放特殊影片並更換頁面內容
+     */
+    triggerF12Easter() {
+      // 滾動到頂部
+      window.scrollTo(0, 0)
+      this.f12push = true
+
+      // 播放祈菈搖影片
+      this.$refs['rick-roll'].src =
+        'https://www.youtube.com/embed/O1FWa6vRFTA?start=19&autoplay=1&mute=0'
+      this.headerImgSrc = require('@/assets/chiila_is_our_wife.png')
+      this.infoBlockTitle = '毛主祈萬歲'
+
+      // 1 秒後顯示控制台訊息
+      setTimeout(() => {
+        console.log('%c請看向左邊祈菈搖', 'color:red; font-size: 50px')
+        console.log('%c←←←←←←', 'color:red; font-size: 50px')
+      }, 1000)
+
+      // 5 秒後切換為 Rick Roll 影片
+      setTimeout(() => {
+        this.$refs['rick-roll'].src =
+          'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&rel=0'
+        console.log('%c按 F12 想做啥(́◕◞౪◟◕‵)', 'color:black; font-size: 20px')
+      }, 5000)
     },
   },
 }
 </script>
 <style scoped src="../css/VoiceButton.css"></style>
 <style scoped src="../css/VoiceButton2.css"></style>
-<style>
-.img-circle{
-  border-radius: 50%;
-}
-</style>
+<style scoped src="../css/VoicePage.css"></style>

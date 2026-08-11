@@ -1,6 +1,6 @@
 /* audio style */
 .sound-play {
-    display: none;
+  display: none;
 }
 
 .panel {
@@ -8,48 +8,60 @@
 }
 
 .icon {
-	padding: 3px;
-	padding-right: 3px;
+  padding: 3px;
+  padding-right: 3px;
 }
 
 .fs-6 {
-	margin-bottom: 0rem;
+  margin-bottom: 0rem;
 }
 
 .btn-danger {
-    background-color: rgba(238, 189, 164, 0.4);
-    border-color: rgba(238, 189, 164, 0.2);
-    color: #636163;
-    font-weight: bold;
+  background-color: rgba(238, 189, 164, 0.4);
+  border-color: rgba(238, 189, 164, 0.2);
+  color: #636163;
+  font-weight: bold;
 }
 
 .btn-danger:hover,
 .btn-outline-danger:hover {
-    background-color: #CF3E45;
-    border-color: #CF3E45;
-    color: #FFFFFF;
+  background-color: #cf3e45;
+  border-color: #cf3e45;
+  color: #ffffff;
 }
 
 .btn-outline-danger {
-    background-color: #FAF7F7;
-    border-color: #FAF7F7;
+  background-color: #faf7f7;
+  border-color: #faf7f7;
 }
 
 .btn-twitter {
-    background-color: #00ACEE;
-    border-color: #00ACEE;
-    color: #00ACEE;
-    font-weight: bold;
+  background-color: #00acee;
+  border-color: #00acee;
+  color: #00acee;
+  font-weight: bold;
 }
 
 .btn-twitter:hover,
 .btn-outline-twitter:hover {
-    background-color: #FFFFFF;
-    border-color: #FFFFFF;
-    color: #00ACEE;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #00acee;
 }
 
 .btn-outline-twitter {
-    background-color: #FAF7F7;
-    border-color: #FAF7F7;
+  background-color: #faf7f7;
+  border-color: #faf7f7;
+}
+
+.btn-danger::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress, 0%);
+  background-color: rgba(241, 137, 137, 0.4); /* 半透明白色 */
+  z-index: 0;
+  transition: width 0.1s linear;
 }

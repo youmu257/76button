@@ -1,0 +1,107 @@
+.contributors-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.contributors-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+  font-size: 2rem;
+}
+
+.contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.contributor-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.contributor-card:hover {
+  transform: translateY(-5px);
+}
+
+.contributor-info {
+  padding: 1.5rem;
+}
+
+.contributor-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: #0077b6;
+}
+
+.contributor-info p {
+  margin: 0 0 1rem 0;
+  color: #555;
+}
+
+.contributor-link {
+  display: inline-block;
+  color: #0077b6;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.contributor-link:hover {
+  color: #005f99;
+  text-decoration: underline;
+}
+
+.contributor-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.contributor-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.contributor-image img:hover {
+  transform: scale(1.05);
+}
+
+.button-sample,
+.audio-sample {
+  margin-top: 1rem;
+}
+
+.demo-button {
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.demo-button:hover {
+  background-color: #005f99;
+}
+
+audio {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .contributors-grid {
+    grid-template-columns: 1fr;
+  }
+}
