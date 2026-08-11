@@ -7,17 +7,9 @@
 * 如要更改按鈕可以調整 assets/button-list.json<br>
 * 另外 head 部分寫死在 App.vue 中<br>
 * 上版步驟(推上 github page)
-    ```
-    # 建置專案
-    npm run build
-    # 建置結果
-    cd dist
-    # 以下為推到 github page 步驟
-    git init
-    git add -A
-    git commit -m 'deploy'
-    git push -f https://github.com/youmu257/76button.git master:gh-pages
-    ```
+    * 已改為 GitHub Actions 自動部署，只要 push 到 `master` 分支即可，不用再手動 build / commit
+    * 也可以到 GitHub 頁面的 Actions 分頁手動觸發（workflow_dispatch）
+    * 詳細設定請參考 [.github/workflows/deploy.yml](.github/workflows/deploy.yml)
 * 開發時建置
     ```
     npm run serve
@@ -28,10 +20,9 @@
     npm run lint
     ```
 # To list
-* 隨機播放按鈕
-* 懸浮播放器介面
 * 精華推薦頁面
 * 語音考題頁面(大概)
+* 小遊戲
 
 # Reference
 * [Button 樣式](https://www.bestcssbuttongenerator.com/#/19)
