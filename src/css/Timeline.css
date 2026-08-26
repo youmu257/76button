@@ -321,6 +321,383 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+/* 歷史時間軸（依年份分組） */
+.history-view {
+  margin-top: 10px;
+}
+
+.history-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.history-rail {
+  position: sticky;
+  top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.history-search {
+  position: relative;
+}
+
+.history-search-input {
+  width: 100%;
+  padding: 8px 32px 8px 12px;
+  font-size: 14px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.history-search-input:focus {
+  border-color: #0077b6;
+}
+
+.history-clear-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+  transition: color 0.3s;
+}
+
+.history-clear-icon:hover {
+  color: #333;
+}
+
+.history-year-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+}
+
+.history-year-pill {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #555;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.history-year-pill .year-num {
+  font-size: 16px;
+}
+
+.history-year-pill .year-count {
+  font-size: 11.5px;
+  color: #999;
+}
+
+.history-year-pill:hover {
+  background-color: #f0f0f0;
+}
+
+.history-year-pill.active {
+  background-color: #e3f2fb;
+  color: #0077b6;
+}
+
+.history-year-pill.active .year-count {
+  color: #0077b6;
+}
+
+.history-year-pill[hidden] {
+  display: none;
+}
+
+.history-ledger {
+  position: relative;
+}
+
+.history-spine {
+  position: absolute;
+  left: 34px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: #e0e0e0;
+  z-index: 0;
+}
+
+.history-empty {
+  text-align: center;
+  color: #999;
+  padding: 60px 20px;
+  font-size: 16px;
+}
+
+.history-year-plaque {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  column-gap: 20px;
+  align-items: baseline;
+  padding: 12px 0 8px;
+}
+
+.history-year-plaque .year-num {
+  font-size: 34px;
+  font-weight: 800;
+  color: #0077b6;
+  line-height: 1;
+  background: #fff;
+}
+
+.history-year-plaque .year-meta {
+  font-size: 12.5px;
+  color: #888;
+  font-weight: 600;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.history-events {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-event {
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  column-gap: 20px;
+  padding: 12px 0;
+  position: relative;
+}
+
+.history-tick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3px;
+}
+
+.history-date {
+  font-size: 12px;
+  font-weight: 700;
+  color: #888;
+  background: #fff;
+}
+
+.history-dot {
+  margin-top: 8px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #0077b6;
+  position: relative;
+  z-index: 1;
+}
+
+.history-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.history-card h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: #333;
+}
+
+.history-card p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.history-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  padding: 3px 10px;
+  background: #f0f0f0;
+  border-radius: 999px;
+  font-size: 12px;
+  color: #666;
+}
+
+.history-media {
+  margin-top: 10px;
+}
+
+.history-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 260px;
+  border-radius: 8px;
+  cursor: pointer;
+  object-fit: contain;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.history-image:hover {
+  transform: scale(1.03);
+}
+
+.history-facade {
+  position: relative;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 320px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  background: #eee;
+}
+
+.history-thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.history-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: background-color 0.2s;
+}
+
+.history-facade:hover .history-play-btn,
+.history-facade:focus-visible .history-play-btn {
+  background: #0077b6;
+}
+
+.history-video-frame {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.history-video-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.history-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.history-link {
+  display: inline-block;
+  padding: 5px 12px;
+  background-color: #0077b6;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.history-link:hover {
+  background-color: #005b8a;
+}
+
+@media (max-width: 860px) {
+  .history-layout {
+    display: block;
+  }
+
+  .history-rail {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #fff;
+    padding: 10px 0 8px;
+    border-bottom: 1px solid #e0e0e0;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .history-year-nav {
+    flex-direction: row;
+    max-height: none;
+    overflow-x: auto;
+    gap: 6px;
+    padding-bottom: 2px;
+  }
+
+  .history-year-pill {
+    flex: none;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 0;
+    padding: 6px 12px;
+  }
+
+  .history-year-plaque {
+    top: 90px;
+  }
+
+  .history-spine {
+    left: 28px;
+  }
+
+  .history-event,
+  .history-year-plaque {
+    grid-template-columns: 52px 1fr;
+    column-gap: 14px;
+  }
+
+  .history-year-plaque .year-num {
+    font-size: 28px;
+  }
+}
+
 /* 切換按鈕樣式 */
 .tab-buttons {
   display: flex;

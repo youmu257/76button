@@ -86,6 +86,12 @@
           v-for="(item, index) in filteredList"
           :key="index"
           class="item-card"
+          role="button"
+          tabindex="0"
+          :title="`前往搜尋含「${item.name}」的影片`"
+          @click="goToVideoSearch(item)"
+          @keydown.enter="goToVideoSearch(item)"
+          @keydown.space.prevent="goToVideoSearch(item)"
         >
           <span class="item-name">{{ item.name }}</span>
           <span class="item-count">({{ item.count }})</span>
@@ -339,6 +345,27 @@ export default {
      */
     clearSearch() {
       this.searchKeyword = ''
+    },
+
+    /**
+     * 點擊標籤項目，帶入條件跳轉至影片搜尋頁
+     * @param {{name: String, count: Number}} item - 被點擊的標籤項目
+     */
+    goToVideoSearch(item) {
+      const typeByTab = {
+        streamType: TAG_TYPES.STREAM_TYPE,
+        game: TAG_TYPES.GAME,
+        song: TAG_TYPES.SONG,
+        character: TAG_TYPES.CHARACTER,
+      }
+
+      this.$router.push({
+        path: '/video-search',
+        query: {
+          tagType: typeByTab[this.activeTab],
+          tagName: item.name,
+        },
+      })
     },
   },
 }

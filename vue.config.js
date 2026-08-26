@@ -1,5 +1,6 @@
 module.exports = {
   publicPath: '',
+  productionSourceMap: false,
   configureWebpack: {
     plugins: [
       new (require('webpack').DefinePlugin)({

@@ -599,7 +599,7 @@
     },
     {
       "date": "2024-03-30",
-      "title": "三周年祈遇記 - 祈菈應援公車",
+      "title": "三週年祈遇記 - 祈菈應援公車",
       "description": "祈菈三週年活動，主辦人:玥",
       "image": "https://pbs.twimg.com/media/GJ4zbWUbYAA8Wm8?format=jpg&name=large",
       "link": {
@@ -754,6 +754,36 @@
       "link": {
         "text": "觀看完整直播",
         "url": "https://www.youtube.com/live/O7nr_iJ8fWY?si=tsX2Ka1HyzvHKum1"
+      }
+    },
+    {
+      "date": "2026-04-12",
+      "title": "五週年",
+      "description": "【歌枠】五週年這週想唱唱歌！！！狀況不好就唱可能比較輕鬆的一些！【祈菈．貝希毛絲】",
+      "video": "https://www.youtube.com/embed/znXDAY66Ak8?si=bfY_lEYxcEo_lHSl",
+      "link": {
+        "text": "觀看完整直播",
+        "url": "https://www.youtube.com/live/znXDAY66Ak8?si=bfY_lEYxcEo_lHSl"
+      }
+    },
+    {
+      "date": "2026-07-06",
+      "title": "2026生日 part1",
+      "description": "【今天我生日喔！】我今天要開一半，讓我的床有一個位置可以睡！！！【祈菈．貝希毛絲】",
+      "video": "https://www.youtube.com/embed/rn4CqdcW2mc?si=2JHOwc4N9wN2U9nR",
+      "link": {
+        "text": "觀看完整直播",
+        "url": "https://www.youtube.com/live/rn4CqdcW2mc?si=2JHOwc4N9wN2U9nR"
+      }
+    },
+    {
+      "date": "2026-07-12",
+      "title": "2026生日 part2",
+      "description": "【生日禮物！】等好久了～終於可以再拆生日禮物！【祈菈．貝希毛絲】",
+      "video": "https://www.youtube.com/embed/vErEFAyT7XU?si=IwbkzuzdEtx8oVr0",
+      "link": {
+        "text": "觀看完整直播",
+        "url": "https://www.youtube.com/live/vErEFAyT7XU?si=IwbkzuzdEtx8oVr0"
       }
     }
   ]

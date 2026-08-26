@@ -86,6 +86,27 @@
   color: #333;
 }
 
+/* 清除篩選按鈕 */
+.reset-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: #4a90e2;
+  background-color: #fff;
+  border: 1px solid #4a90e2;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.reset-filter-btn:hover {
+  background-color: #4a90e2;
+  color: #fff;
+}
+
 /* 搜尋結果數量 */
 .result-count {
   text-align: center;
@@ -170,7 +191,15 @@
   border-radius: 16px;
   font-size: 14px;
   color: #555;
-  cursor: help;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.2s;
+}
+
+.tag-badge:hover,
+.tag-badge:focus-visible {
+  filter: brightness(0.92);
+  transform: translateY(-1px);
+  outline: none;
 }
 
 /* 標籤類型顏色 */
@@ -227,6 +256,45 @@
   font-size: 16px;
   color: #666;
   margin: 0;
+}
+
+/* 分頁控制 */
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 8px;
+}
+
+.pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  color: #4a90e2;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  border-color: #4a90e2;
+}
+
+.pagination-btn:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #555;
 }
 
 /* 響應式設計 */
