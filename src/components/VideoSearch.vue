@@ -71,6 +71,16 @@
           @click="clearSearch"
         />
       </div>
+
+      <!-- 清除篩選按鈕 -->
+      <button
+        v-if="hasActiveFilters"
+        type="button"
+        class="reset-filter-btn"
+        @click="resetFilters"
+      >
+        <i class="bi bi-arrow-counterclockwise" /> 清除所有篩選
+      </button>
     </div>
 
     <!-- 載入中提示 -->
@@ -117,7 +127,7 @@
         class="results-list"
       >
         <div
-          v-for="(video, index) in filteredVideos"
+          v-for="(video, index) in paginatedVideos"
           :key="index"
           class="result-item"
         >
@@ -140,7 +150,12 @@
               v-for="(tag, tagIndex) in video.tag"
               :key="tagIndex"
               :class="['tag-badge', `tag-type-${tag.t}`]"
-              :title="getTagTypeName(tag.t)"
+              :title="`依「${tag.n}」（${getTagTypeName(tag.t)}）篩選`"
+              role="button"
+              tabindex="0"
+              @click="filterByTag(tag)"
+              @keydown.enter="filterByTag(tag)"
+              @keydown.space.prevent="filterByTag(tag)"
             >
               {{ tag.n }}
             </span>
@@ -153,6 +168,32 @@
         class="placeholder-text"
       >
         請輸入關鍵字開始搜尋
+      </div>
+
+      <!-- 分頁控制 -->
+      <div
+        v-if="totalPages > 1"
+        class="pagination-container"
+      >
+        <button
+          type="button"
+          class="pagination-btn"
+          :disabled="currentPage === 1"
+          aria-label="上一頁"
+          @click="prevPage"
+        >
+          <i class="bi bi-chevron-left" />
+        </button>
+        <span class="pagination-info">第 {{ currentPage }} / {{ totalPages }} 頁</span>
+        <button
+          type="button"
+          class="pagination-btn"
+          :disabled="currentPage === totalPages"
+          aria-label="下一頁"
+          @click="nextPage"
+        >
+          <i class="bi bi-chevron-right" />
+        </button>
       </div>
     </div>
 
@@ -252,6 +293,18 @@ export default {
        * @type {Boolean}
        */
       isLoading: true,
+
+      /**
+       * 目前頁碼
+       * @type {Number}
+       */
+      currentPage: 1,
+
+      /**
+       * 每頁顯示筆數
+       * @type {Number}
+       */
+      pageSize: 20,
     }
   },
 
@@ -326,6 +379,31 @@ export default {
       
       return this.formatDate(latestVideo.time)
     },
+
+    /**
+     * 是否有任何啟用中的篩選條件
+     * @returns {Boolean}
+     */
+    hasActiveFilters() {
+      return !!(this.selectedCategory || this.selectedCharacter || this.searchKeyword)
+    },
+
+    /**
+     * 總頁數
+     * @returns {Number}
+     */
+    totalPages() {
+      return Math.max(1, Math.ceil(this.filteredVideos.length / this.pageSize))
+    },
+
+    /**
+     * 當前頁面顯示的影片
+     * @returns {Array}
+     */
+    paginatedVideos() {
+      const start = (this.currentPage - 1) * this.pageSize
+      return this.filteredVideos.slice(start, start + this.pageSize)
+    },
   },
 
   watch: {
@@ -343,6 +421,19 @@ export default {
       this.searchTimeout = setTimeout(() => {
         this.debouncedKeyword = newValue
       }, 1000)
+    },
+
+    /**
+     * 篩選條件改變時，回到第一頁
+     */
+    selectedCategory() {
+      this.currentPage = 1
+    },
+    selectedCharacter() {
+      this.currentPage = 1
+    },
+    debouncedKeyword() {
+      this.currentPage = 1
     },
   },
 
@@ -514,6 +605,49 @@ export default {
     clearSearch() {
       this.searchKeyword = ''
       this.debouncedKeyword = ''
+    },
+
+    /**
+     * 點擊結果中的標籤，套用對應篩選條件
+     * 種類(1) 與 角色(4) 有專屬下拉選單，直接設定；其餘類型則併入關鍵字搜尋
+     * @param {Object} tag - 被點擊的標籤 { t: Number, n: String }
+     */
+    filterByTag(tag) {
+      if (tag.t === 1) {
+        this.selectedCategory = tag.n
+      } else if (tag.t === 4) {
+        this.selectedCharacter = tag.n
+      } else {
+        this.searchKeyword = tag.n
+        this.debouncedKeyword = tag.n
+      }
+    },
+
+    /**
+     * 清除所有篩選條件（種類、角色、關鍵字）
+     */
+    resetFilters() {
+      this.selectedCategory = ''
+      this.selectedCharacter = ''
+      this.clearSearch()
+    },
+
+    /**
+     * 上一頁
+     */
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage -= 1
+      }
+    },
+
+    /**
+     * 下一頁
+     */
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage += 1
+      }
     },
   },
 }
