@@ -445,6 +445,9 @@ export default {
     ])
     // 載入完成
     this.isLoading = false
+
+    // 套用從標籤總覽頁帶入的篩選條件
+    this.applyIncomingTagFilter()
   },
 
   beforeUnmount() {
@@ -621,6 +624,31 @@ export default {
         this.searchKeyword = tag.n
         this.debouncedKeyword = tag.n
       }
+    },
+
+    /**
+     * 套用從標籤總覽頁（TagSummarySearch）帶入網址查詢參數的篩選條件
+     * - 種類(1)：帶入種類下拉選單
+     * - 人員(4)：若存在於角色下拉選單中則帶入下拉選單，否則帶入搜尋欄
+     * - 其餘類型（遊戲、歌曲等）：帶入搜尋欄
+     */
+    applyIncomingTagFilter() {
+      const { tagType, tagName } = this.$route.query
+      if (!tagName) return
+
+      const type = Number(tagType)
+
+      if (type === 1) {
+        this.selectedCategory = tagName
+      } else if (type === 4 && this.characters.includes(tagName)) {
+        this.selectedCharacter = tagName
+      } else {
+        this.searchKeyword = tagName
+        this.debouncedKeyword = tagName
+      }
+
+      // 清除網址上的查詢參數，避免重新整理或返回時重複套用
+      this.$router.replace({ path: '/video-search' })
     },
 
     /**
