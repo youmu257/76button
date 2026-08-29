@@ -64,28 +64,95 @@
           placeholder="輸入關鍵字搜尋影片標題或標籤（多個關鍵字用空格分隔）..."
           aria-label="搜尋影片"
         >
+        <span
+          v-if="isSearching"
+          class="search-spinner"
+          aria-label="搜尋中"
+          role="status"
+        />
         <i
-          v-if="searchKeyword"
+          v-else-if="searchKeyword"
           class="bi bi-x-circle clear-icon"
           aria-label="清除搜尋"
           @click="clearSearch"
         />
       </div>
 
-      <!-- 清除篩選按鈕 -->
-      <button
+      <!-- 目前套用的篩選條件摘要 -->
+      <div
         v-if="hasActiveFilters"
-        type="button"
-        class="reset-filter-btn"
-        @click="resetFilters"
+        class="active-filters"
       >
-        <i class="bi bi-arrow-counterclockwise" /> 清除所有篩選
+        <span
+          v-if="selectedCategory"
+          class="filter-chip"
+        >
+          種類：{{ selectedCategory }}
+          <i
+            class="bi bi-x"
+            role="button"
+            tabindex="0"
+            :aria-label="`移除種類篩選：${selectedCategory}`"
+            @click="selectedCategory = ''"
+            @keydown.enter="selectedCategory = ''"
+          />
+        </span>
+        <span
+          v-if="selectedCharacter"
+          class="filter-chip"
+        >
+          角色：{{ selectedCharacter }}
+          <i
+            class="bi bi-x"
+            role="button"
+            tabindex="0"
+            :aria-label="`移除角色篩選：${selectedCharacter}`"
+            @click="selectedCharacter = ''"
+            @keydown.enter="selectedCharacter = ''"
+          />
+        </span>
+        <span
+          v-if="searchKeyword"
+          class="filter-chip"
+        >
+          關鍵字：「{{ searchKeyword }}」
+          <i
+            class="bi bi-x"
+            role="button"
+            tabindex="0"
+            aria-label="清除關鍵字搜尋"
+            @click="clearSearch"
+            @keydown.enter="clearSearch"
+          />
+        </span>
+        <button
+          type="button"
+          class="reset-filter-btn"
+          @click="resetFilters"
+        >
+          <i class="bi bi-arrow-counterclockwise" /> 清除所有篩選
+        </button>
+      </div>
+    </div>
+
+    <!-- 載入失敗提示 -->
+    <div
+      v-if="loadError"
+      class="load-error"
+    >
+      <i class="bi bi-exclamation-triangle" /> 資料載入失敗，請檢查網路連線後重試
+      <button
+        type="button"
+        class="retry-btn"
+        @click="retryLoad"
+      >
+        <i class="bi bi-arrow-clockwise" /> 重新載入
       </button>
     </div>
 
     <!-- 載入中提示 -->
     <div
-      v-if="isLoading"
+      v-else-if="isLoading"
       class="loading-container"
     >
       <div class="loading-spinner" />
@@ -109,7 +176,14 @@
     <!-- 結果區塊 -->
     <div class="search-results">
       <div
-        v-if="isLoading"
+        v-if="loadError"
+        class="placeholder-text"
+      >
+        <!-- 錯誤訊息已顯示於上方，此處不重複顯示 -->
+      </div>
+
+      <div
+        v-else-if="isLoading"
         class="placeholder-text"
       >
         <!-- 載入中時不顯示其他內容 -->
@@ -127,7 +201,7 @@
         class="results-list"
       >
         <div
-          v-for="(video, index) in paginatedVideos"
+          v-for="(video, index) in visibleVideos"
           :key="index"
           class="result-item"
         >
@@ -170,29 +244,20 @@
         請輸入關鍵字開始搜尋
       </div>
 
-      <!-- 分頁控制 -->
+      <!-- 無限捲動：捲到底自動載入更多，並保留手動按鈕作為可及性備援 -->
       <div
-        v-if="totalPages > 1"
-        class="pagination-container"
+        v-if="visibleVideos.length < filteredVideos.length"
+        class="load-more-container"
       >
+        <p class="load-more-info">
+          已顯示 {{ visibleVideos.length }} / {{ filteredVideos.length }} 筆
+        </p>
         <button
           type="button"
-          class="pagination-btn"
-          :disabled="currentPage === 1"
-          aria-label="上一頁"
-          @click="prevPage"
+          class="load-more-btn"
+          @click="loadMore"
         >
-          <i class="bi bi-chevron-left" />
-        </button>
-        <span class="pagination-info">第 {{ currentPage }} / {{ totalPages }} 頁</span>
-        <button
-          type="button"
-          class="pagination-btn"
-          :disabled="currentPage === totalPages"
-          aria-label="下一頁"
-          @click="nextPage"
-        >
-          <i class="bi bi-chevron-right" />
+          載入更多
         </button>
       </div>
     </div>
@@ -212,7 +277,7 @@ import BackToTop from './BackToTop.vue'
  * 用途：
  * - 提供影片標籤搜尋功能
  * - 支援標籤關鍵字搜尋
- * - 搜尋結果即時更新（延遲1秒）
+ * - 搜尋結果即時更新（延遲 350ms）
  *
  * @component
  */
@@ -295,16 +360,34 @@ export default {
       isLoading: true,
 
       /**
-       * 目前頁碼
-       * @type {Number}
+       * 資料載入是否失敗
+       * @type {Boolean}
        */
-      currentPage: 1,
+      loadError: false,
 
       /**
-       * 每頁顯示筆數
+       * 搜尋防抖期間是否顯示「搜尋中」提示
+       * @type {Boolean}
+       */
+      isSearching: false,
+
+      /**
+       * 無限捲動目前顯示的筆數
        * @type {Number}
        */
-      pageSize: 20,
+      visibleCount: 20,
+
+      /**
+       * 每次捲動到底或按「載入更多」時，增加顯示的筆數
+       * @type {Number}
+       */
+      loadBatchSize: 20,
+
+      /**
+       * scroll 事件節流用的旗標
+       * @type {Boolean}
+       */
+      scrollTicking: false,
     }
   },
 
@@ -389,26 +472,17 @@ export default {
     },
 
     /**
-     * 總頁數
-     * @returns {Number}
-     */
-    totalPages() {
-      return Math.max(1, Math.ceil(this.filteredVideos.length / this.pageSize))
-    },
-
-    /**
-     * 當前頁面顯示的影片
+     * 無限捲動目前應顯示的影片（依 visibleCount 截取）
      * @returns {Array}
      */
-    paginatedVideos() {
-      const start = (this.currentPage - 1) * this.pageSize
-      return this.filteredVideos.slice(start, start + this.pageSize)
+    visibleVideos() {
+      return this.filteredVideos.slice(0, this.visibleCount)
     },
   },
 
   watch: {
     /**
-     * 監聽搜尋關鍵字變化，延遲1秒後更新結果
+     * 監聽搜尋關鍵字變化，短暫防抖後更新結果
      * @param {String} newValue - 新的搜尋關鍵字
      */
     searchKeyword(newValue) {
@@ -417,37 +491,35 @@ export default {
         clearTimeout(this.searchTimeout)
       }
 
-      // 設定新的延遲計時器（1秒）
+      this.isSearching = true
+      // 設定新的延遲計時器（350ms，避免使用者感覺卡頓）
       this.searchTimeout = setTimeout(() => {
         this.debouncedKeyword = newValue
-      }, 1000)
+        this.isSearching = false
+      }, 350)
     },
 
     /**
-     * 篩選條件改變時，回到第一頁
+     * 篩選條件改變時，重置無限捲動顯示筆數
      */
     selectedCategory() {
-      this.currentPage = 1
+      this.visibleCount = this.loadBatchSize
     },
     selectedCharacter() {
-      this.currentPage = 1
+      this.visibleCount = this.loadBatchSize
     },
     debouncedKeyword() {
-      this.currentPage = 1
+      this.visibleCount = this.loadBatchSize
     },
   },
 
   async mounted() {
-    // 載入影片標籤資料和篩選選項資料
-    await Promise.all([
-      this.loadVideoTags(),
-      this.loadFilterOptions()
-    ])
-    // 載入完成
-    this.isLoading = false
+    await this.loadAllData()
 
     // 套用從標籤總覽頁帶入的篩選條件
     this.applyIncomingTagFilter()
+
+    window.addEventListener('scroll', this.handleScroll)
   },
 
   beforeUnmount() {
@@ -455,9 +527,32 @@ export default {
     if (this.searchTimeout) {
       clearTimeout(this.searchTimeout)
     }
+    window.removeEventListener('scroll', this.handleScroll)
   },
 
   methods: {
+    /**
+     * 載入影片標籤資料和篩選選項資料，供初始掛載與重試按鈕共用
+     */
+    async loadAllData() {
+      this.isLoading = true
+      this.loadError = false
+
+      await Promise.all([
+        this.loadVideoTags(),
+        this.loadFilterOptions()
+      ])
+
+      this.isLoading = false
+    },
+
+    /**
+     * 重新載入資料（載入失敗時的重試按鈕觸發）
+     */
+    async retryLoad() {
+      await this.loadAllData()
+    },
+
     /**
      * 載入影片標籤資料
      */
@@ -465,12 +560,13 @@ export default {
       try {
         const response = await fetch(VIDEO_TAGS_CSV_URL)
         const csvText = await response.text()
-        
+
         // 解析 CSV 資料
         this.videoTags = this.parseCSV(csvText)
       } catch (error) {
         console.error('載入影片標籤資料失敗:', error)
         this.videoTags = []
+        this.loadError = true
       }
     },
 
@@ -574,6 +670,7 @@ export default {
         this.characters = characters
       } catch (error) {
         console.error('載入篩選選項失敗:', error)
+        this.loadError = true
       }
     },
 
@@ -661,21 +758,32 @@ export default {
     },
 
     /**
-     * 上一頁
+     * 增加無限捲動目前顯示的筆數（不超過篩選結果總數）
      */
-    prevPage() {
-      if (this.currentPage > 1) {
-        this.currentPage -= 1
-      }
+    loadMore() {
+      if (this.visibleCount >= this.filteredVideos.length) return
+      this.visibleCount = Math.min(this.visibleCount + this.loadBatchSize, this.filteredVideos.length)
     },
 
     /**
-     * 下一頁
+     * 監聽捲動事件，接近頁面底部時自動載入更多結果
+     * 使用 requestAnimationFrame 節流，避免高頻率觸發
      */
-    nextPage() {
-      if (this.currentPage < this.totalPages) {
-        this.currentPage += 1
-      }
+    handleScroll() {
+      if (this.scrollTicking) return
+      this.scrollTicking = true
+
+      requestAnimationFrame(() => {
+        this.scrollTicking = false
+
+        if (this.isLoading || this.loadError) return
+
+        const scrollPosition = window.innerHeight + window.scrollY
+        const threshold = document.documentElement.scrollHeight - 300
+        if (scrollPosition >= threshold) {
+          this.loadMore()
+        }
+      })
     },
   },
 }

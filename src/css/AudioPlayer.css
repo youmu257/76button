@@ -2,8 +2,8 @@
 
 .audio-player {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  right: calc(20px + env(safe-area-inset-right, 0px));
   background: rgba(33, 37, 41, 0.95);
   border: 2px solid #dc3545;
   border-radius: 12px;
@@ -15,6 +15,56 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
   animation: slideIn 0.3s ease-out;
+}
+
+/* 收合狀態：只剩一個浮動小圖示，不再佔用畫面角落的大面積 */
+.audio-player.collapsed {
+  min-width: 0;
+  max-width: none;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  animation: none;
+}
+
+.player-fab {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: #dc3545;
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.player-fab:hover {
+  background: #bb2d3b;
+  transform: scale(1.08);
+}
+
+.player-fab-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  background: #fff;
+  color: #dc3545;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 9px;
 }
 
 @keyframes slideIn {
@@ -30,11 +80,28 @@
 
 .player-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
   padding-bottom: 10px;
   border-bottom: 1px solid #dc3545;
+}
+
+.player-collapse-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  line-height: 1;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.player-collapse-btn:hover {
+  color: #fff;
+  background-color: rgba(220, 53, 69, 0.3);
 }
 
 .player-title {
@@ -176,8 +243,8 @@
 /* 響應式設計 - 小螢幕調整 */
 @media (max-width: 768px) {
   .audio-player {
-    bottom: 10px;
-    right: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    right: calc(10px + env(safe-area-inset-right, 0px));
     left: 70px; /* 60px sidebar collapsed width + 10px margin */
     min-width: auto;
     max-width: none;
@@ -185,11 +252,21 @@
     transition: left 0.3s ease, right 0.3s ease;
   }
 
+  .audio-player.collapsed {
+    left: auto;
+    padding: 0;
+  }
+
   /* 當側邊欄打開時，播放器緊鄰 sidebar 完整顯示 */
   .audio-player.sidebar-open {
     left: 260px; /* 250px sidebar width + 10px margin */
-    right: 10px;
+    right: calc(10px + env(safe-area-inset-right, 0px));
     max-width: calc(100vw - 270px); /* 確保完整顯示不超出螢幕 */
+  }
+
+  .audio-player.sidebar-open.collapsed {
+    left: auto;
+    max-width: none;
   }
 
   /* 當側邊欄打開時，按鈕改為垂直排列 */

@@ -119,10 +119,10 @@
           <button
             type="button"
             class="accordion-button text-center w-100 clickable"
-            data-toggle="collapse"
-            :data-target="`#collapseRegion_${index}`"
-            :aria-expanded="true"
+            :class="{ collapsed: !isCategoryExpanded(item.category) }"
+            :aria-expanded="isCategoryExpanded(item.category)"
             :aria-controls="`collapseRegion_${index}`"
+            @click="toggleCategory(item.category)"
           >
             <h3>
               {{ item.category }}
@@ -134,7 +134,8 @@
       <!-- 手風琴內容區塊（語音按鈕列表） -->
       <div
         :id="`collapseRegion_${index}`"
-        class="accordion-collapse collapse show"
+        class="accordion-collapse collapse"
+        :class="{ show: isCategoryExpanded(item.category) }"
         aria-labelledby="headingOne"
         :data-bs-parent="`#accordionExample-${index}`"
       >
@@ -301,6 +302,13 @@ export default {
        * @type {number}
        */
       audioIdCounter: 0,
+
+      /**
+       * 手風琴分類的展開狀態
+       * key: 分類名稱, value: 是否展開（未設定時預設為展開）
+       * @type {Object<string, boolean>}
+       */
+      expandedCategories: {},
     }
   },
   computed: {
@@ -336,8 +344,12 @@ export default {
   created() {
     // 註冊鍵盤事件監聽器
     this.handleKeydown = (e) => {
-      // 空白鍵：停止所有音效
+      // 空白鍵：停止所有音效（若焦點在輸入框/可編輯區域則忽略，避免吃掉輸入的空白字元）
       if (e.code === 'Space') {
+        const tag = e.target.tagName
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable) {
+          return
+        }
         this.stopPlay(true)
         e.preventDefault()
       }
@@ -557,6 +569,26 @@ export default {
      */
     switchOverlapPlayback() {
       this.overlapPlayback = !this.overlapPlayback
+    },
+
+    /**
+     * 判斷分類手風琴是否為展開狀態
+     * @param {string} category - 分類名稱
+     * @returns {boolean}
+     */
+    isCategoryExpanded(category) {
+      return this.expandedCategories[category] !== false
+    },
+
+    /**
+     * 切換分類手風琴的展開/收合狀態
+     * @param {string} category - 分類名稱
+     */
+    toggleCategory(category) {
+      this.expandedCategories = {
+        ...this.expandedCategories,
+        [category]: !this.isCategoryExpanded(category),
+      }
     },
 
     /**

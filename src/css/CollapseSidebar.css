@@ -66,6 +66,49 @@
   display: block; /* 顯示縮寫 */
 }
 
+/* ---- 首次造訪的一次性引導提示 ---- */
+.sidebar-hint {
+  position: fixed;
+  top: 64px;
+  left: 10px;
+  z-index: 10001;
+  max-width: 200px;
+  padding: 10px 12px;
+  background: #1e293b;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.5;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  animation: sidebarHintIn 0.25s ease-out;
+}
+
+.sidebar-hint-close {
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 2px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-hint-close:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes sidebarHintIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ---- 收合按鈕 ---- */
 #sidebarCollapse {
   position: fixed;
