@@ -42,11 +42,8 @@
         精華/企劃
       </button>
     </div>
-    <!-- 依年份分組的時間軸：取代左右交錯排列，歷史/場次/精華皆使用 -->
-    <div
-      v-if="isGroupedView"
-      class="history-view"
-    >
+    <!-- 依年份分組的時間軸：取代左右交錯排列，所有分頁（含鴨子模式）皆使用 -->
+    <div class="history-view">
       <div class="history-layout">
         <aside class="history-rail">
           <div class="history-search">
@@ -203,71 +200,6 @@
     </div>
 
     <div
-      v-else
-      class="timeline"
-    >
-      <div
-        v-for="(item, index) in currentData.items"
-        :key="`${isAlternate}-${currentTab}-${index}`"
-        class="timeline-item"
-        :class="{ 'timeline-item-odd': index % 2 === 1 }"
-      >
-        <div class="timeline-dot" />
-        <div class="timeline-date-center">
-          <div class="date-label">
-            {{ item.date }}
-          </div>
-        </div>
-        <div class="timeline-content">
-          <h3>{{ item.title }}</h3>
-          <div class="content-body">
-            <p>{{ item.description }}</p>
-            <img
-              v-if="item.image"
-              :src="item.image"
-              :alt="item.title"
-              class="timeline-image"
-              @click="openLightbox(item.image)"
-            >
-            <div
-              v-if="item.video"
-              :ref="(el) => setVideoRef(el)"
-              class="video-container"
-              :data-index="index"
-            >
-              <iframe
-                v-if="visibleVideos.has(index)"
-                :src="item.video"
-                width="560"
-                height="315"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              />
-            </div>
-            <a
-              v-if="item.link"
-              :href="item.link.url"
-              target="_blank"
-              class="timeline-link"
-            >
-              {{ item.link.text }}
-            </a>
-            <a
-              v-if="item.link2"
-              :href="item.link2.url"
-              target="_blank"
-              class="timeline-link"
-            >
-              {{ item.link2.text }}
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
       v-if="lightboxImage"
       class="lightbox"
       @click="closeLightbox"
@@ -301,9 +233,6 @@ export default {
       lightboxImage: null, // 燈箱顯示的圖片 URL
       isAlternate: false, // 控制是否切換到 duck 模式
       currentTab: 'history', // 當前選中的分頁（'history', 'session', 'highlight'）
-      visibleVideos: new Set(), // 使用 Set 記錄已載入的影片索引
-      observer: null, // IntersectionObserver 實例，用於監控影片容器是否進入可視範圍
-      videoContainers: new Map(), // 使用 Map 儲存影片容器的 DOM 元素引用
       historySearchKeyword: '', // 歷史時間軸的搜尋關鍵字
       activeHistoryYear: null, // 目前捲動到的年份，用於年份導覽反白
       loadedVideoFacades: new Set(), // 已點擊播放、載入 iframe 的影片 ID
@@ -311,14 +240,6 @@ export default {
     }
   },
   computed: {
-    /**
-     * 是否顯示依年份分組的時間軸（歷史／場次/線下活動／精華/企劃皆適用，僅鴨子模式維持交錯排列）
-     * @returns {Boolean}
-     */
-    isGroupedView() {
-      return !this.isAlternate
-    },
-
     /**
      * 將目前分頁的資料（currentData）依年份分組
      * @returns {Array<{year: String, items: Array}>}
@@ -379,20 +300,18 @@ export default {
      */
     historySearchKeyword() {
       this.$nextTick(() => {
-        if (this.isGroupedView) this.initYearObserver()
+        this.initYearObserver()
       })
     },
   },
   mounted() {
     // 組件掛載後，等待 DOM 完全渲染再初始化 observer
     this.$nextTick(() => {
-      this.initObserver()
-      if (this.isGroupedView) this.initYearObserver()
+      this.initYearObserver()
     })
   },
   beforeUnmount() {
     // 組件卸載前清理 observer，防止記憶體洩漏
-    this.cleanupObserver()
     this.cleanupYearObserver()
   },
   methods: {
@@ -408,17 +327,6 @@ export default {
      */
     closeLightbox() {
       this.lightboxImage = null
-    },
-    /**
-     * 收集影片容器的 DOM 元素引用
-     * 使用函數式 ref，在 Vue 渲染時自動調用
-     * @param {HTMLElement} el - 影片容器的 DOM 元素
-     */
-    setVideoRef(el) {
-      if (el) {
-        const index = el.dataset.index
-        this.videoContainers.set(index, el)
-      }
     },
     /**
      * 切換分頁
@@ -443,63 +351,13 @@ export default {
      * 重置時間軸狀態並重新初始化 observer
      */
     resetTimeline() {
-      // 清理舊的 IntersectionObserver
-      this.cleanupObserver()
-      // 重置影片可見性狀態
-      this.visibleVideos.clear()
-      // 清空影片容器引用
-      this.videoContainers.clear()
       // 清理依年份分組時間軸的年份 observer
       this.cleanupYearObserver()
 
       // 等待 DOM 更新完成後重新初始化 observer
       this.$nextTick(() => {
-        this.initObserver()
-        if (this.isGroupedView) this.initYearObserver()
+        this.initYearObserver()
       })
-    },
-    /**
-     * 初始化 IntersectionObserver 來監控影片容器
-     * 當影片容器進入可視範圍時才載入 iframe，提升頁面效能
-     */
-    initObserver() {
-      if (this.videoContainers.size === 0) return
-
-      const options = {
-        root: null, // 使用視窗作為根元素
-        rootMargin: '50px', // 提前 50px 開始載入，改善使用者體驗
-        threshold: 0.1, // 當 10% 的元素可見時觸發
-      }
-
-      // 建立 IntersectionObserver 實例
-      this.observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          // 當元素進入可視範圍時
-          if (entry.isIntersecting) {
-            // 從 data-index 屬性取得索引值
-            const index = parseInt(entry.target.dataset.index)
-            // 標記該影片為可見，觸發 iframe 渲染
-            this.visibleVideos.add(index)
-            // 停止觀察已載入的元素，避免重複處理
-            this.observer.unobserve(entry.target)
-          }
-        })
-      }, options)
-
-      // 對所有影片容器啟動觀察
-      this.videoContainers.forEach((container) => {
-        this.observer.observe(container)
-      })
-    },
-    /**
-     * 清理 IntersectionObserver 實例
-     * 釋放資源，防止記憶體洩漏
-     */
-    cleanupObserver() {
-      if (this.observer) {
-        this.observer.disconnect() // 停止所有觀察
-        this.observer = null // 釋放引用
-      }
     },
     /**
      * 從事件的連結中解析出 YouTube 影片 ID
