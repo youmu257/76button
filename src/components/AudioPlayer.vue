@@ -33,30 +33,38 @@
         </button>
       </div>
       <div
-        v-if="playingList.length > 0"
-        class="playing-list"
+        aria-live="polite"
+        aria-atomic="true"
+        role="status"
       >
         <div
-          v-for="item in playingList"
-          :key="item.id"
-          class="playing-item"
+          v-if="playingList.length > 0"
+          class="playing-list"
         >
-          <span class="playing-name">{{ item.name }}</span>
-          <button
-            class="btn btn-sm btn-outline-danger stop-btn"
-            title="停止播放"
-            @click="stopSingle(item.id)"
+          <span class="visually-hidden">正在播放：{{ playingList.map(item => item.name).join('、') }}</span>
+          <div
+            v-for="item in playingList"
+            :key="item.id"
+            class="playing-item"
           >
-            <i class="bi bi-stop-circle" />
-          </button>
+            <span class="playing-name">{{ item.name }}</span>
+            <button
+              class="btn btn-sm btn-outline-danger stop-btn"
+              title="停止播放"
+              :aria-label="`停止播放 ${item.name}`"
+              @click="stopSingle(item.id)"
+            >
+              <i class="bi bi-stop-circle" />
+            </button>
+          </div>
         </div>
-      </div>
-      <div
-        v-else
-        class="empty-state"
-      >
-        <i class="bi bi-music-note" />
-        <p>目前沒有播放中的音訊</p>
+        <div
+          v-else
+          class="empty-state"
+        >
+          <i class="bi bi-music-note" />
+          <p>目前沒有播放中的音訊</p>
+        </div>
       </div>
       <div class="player-actions">
         <button

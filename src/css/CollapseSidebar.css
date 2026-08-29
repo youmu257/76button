@@ -209,6 +209,28 @@
   color: #0077b6;
 }
 
+/* ---- 目前所在頁面的選單項目 ---- */
+#sidebar ul.components li a.nav-active {
+  background: #e0f4ff;
+  color: #0077b6;
+  font-weight: 700;
+  border-left: 3px solid #0077b6;
+  padding-left: 17px; /* 20px - 3px 邊框，維持文字對齊 */
+}
+
+#sidebar ul.components li a.nav-active i,
+#sidebar ul.components li a.nav-active span[class^='icon-'] {
+  color: #0077b6;
+}
+
+/* 收合狀態下改用置中的底色圓角區塊標示目前頁面（維持置中版面） */
+#sidebar.active ul.components li a.nav-active {
+  border-left: none;
+  padding: 10px;
+  background: #cdeaff;
+  border-radius: 8px;
+}
+
 /* ---- 分隔線 ---- */
 .sidebar-divider {
   margin: 20px 15px;

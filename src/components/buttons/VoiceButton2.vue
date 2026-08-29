@@ -96,9 +96,10 @@ export default {
         return
       }
 
-      // 建立下載連結
+      // 建立下載連結（用按鈕名稱當檔名，而不是建置後的雜湊檔名）
       const link = document.createElement('a')
       link.href = audioSrc
+      link.download = `${this.buttonName}.mp3`
       link.click()
     },
     togglePlay() {

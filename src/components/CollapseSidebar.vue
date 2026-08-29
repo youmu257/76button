@@ -84,6 +84,8 @@
             <router-link
               :to="item.href"
               :title="item.text"
+              :class="{ 'nav-active': isActive(item) }"
+              :aria-current="isActive(item) ? 'page' : null"
             >
               <!-- 選單圖示 -->
               <span
@@ -240,6 +242,21 @@ export default {
     handleOutsideClick(e) {
       if (this.$el.contains(e.target)) return
       this.dismissHint()
+    },
+
+    /**
+     * 判斷選單項目是否對應目前所在頁面
+     * 首頁 `/` 與 `/voice` 是同一個頁面（VoicePage），需視為同一項目
+     * @param {Object} item - 選單項目（來自 sidebar-list.json）
+     * @returns {Boolean}
+     */
+    isActive(item) {
+      const target = `/${item.href}`
+      const current = this.$route.path
+      if (target === '/voice') {
+        return current === '/' || current === '/voice'
+      }
+      return current === target
     },
 
     /**

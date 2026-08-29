@@ -573,10 +573,14 @@ export default {
 
     /**
      * 判斷分類手風琴是否為展開狀態
+     * 搜尋中時強制展開所有（含結果的）分類，避免結果被使用者先前手動收合的手風琴蓋住
      * @param {string} category - 分類名稱
      * @returns {boolean}
      */
     isCategoryExpanded(category) {
+      if (this.searchQuery.trim()) {
+        return true
+      }
       return this.expandedCategories[category] !== false
     },
 
