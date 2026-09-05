@@ -270,6 +270,7 @@
 <script>
 import PageHeader from './PageHeader.vue'
 import BackToTop from './BackToTop.vue'
+import { readCsvCache, fetchCsvFresh } from '@/utils/csvCache'
 
 /**
  * TagSearch 組件
@@ -535,8 +536,14 @@ export default {
      * 載入影片標籤資料和篩選選項資料，供初始掛載與重試按鈕共用
      */
     async loadAllData() {
-      this.isLoading = true
       this.loadError = false
+
+      // 若本地已有上次抓到的快取，先直接顯示，不用讓使用者空等
+      const hasCache = !!(
+        readCsvCache(VIDEO_TAGS_CSV_URL) &&
+        readCsvCache(FILTER_OPTIONS_CSV_URL)
+      )
+      this.isLoading = !hasCache
 
       await Promise.all([
         this.loadVideoTags(),
@@ -557,16 +564,20 @@ export default {
      * 載入影片標籤資料
      */
     async loadVideoTags() {
-      try {
-        const response = await fetch(VIDEO_TAGS_CSV_URL)
-        const csvText = await response.text()
+      const cached = readCsvCache(VIDEO_TAGS_CSV_URL)
+      if (cached) {
+        this.videoTags = this.parseCSV(cached)
+      }
 
-        // 解析 CSV 資料
+      try {
+        const csvText = await fetchCsvFresh(VIDEO_TAGS_CSV_URL)
         this.videoTags = this.parseCSV(csvText)
       } catch (error) {
         console.error('載入影片標籤資料失敗:', error)
-        this.videoTags = []
-        this.loadError = true
+        if (!cached) {
+          this.videoTags = []
+          this.loadError = true
+        }
       }
     },
 
@@ -643,35 +654,48 @@ export default {
      * 載入篩選選項資料
      */
     async loadFilterOptions() {
+      const cached = readCsvCache(FILTER_OPTIONS_CSV_URL)
+      if (cached) {
+        this.applyFilterOptionsCsv(cached)
+      }
+
       try {
-        const response = await fetch(FILTER_OPTIONS_CSV_URL)
-        const csvText = await response.text()
-        
-        const lines = csvText.split('\n').filter(line => line.trim())
-        const dataLines = lines.slice(1) // 跳過標題列
-        
-        const categories = []
-        const characters = []
-        
-        dataLines.forEach(line => {
-          const [name, typeStr] = this.parseCSVLine(line)
-          const type = parseInt(typeStr)
-          
-          if (!name) return
-          
-          if (type === 1) {
-            categories.push(name)
-          } else if (type === 4) {
-            characters.push(name)
-          }
-        })
-        
-        this.categories = categories
-        this.characters = characters
+        const csvText = await fetchCsvFresh(FILTER_OPTIONS_CSV_URL)
+        this.applyFilterOptionsCsv(csvText)
       } catch (error) {
         console.error('載入篩選選項失敗:', error)
-        this.loadError = true
+        if (!cached) {
+          this.loadError = true
+        }
       }
+    },
+
+    /**
+     * 解析篩選選項 CSV 並套用到畫面上
+     * @param {String} csvText - CSV 文字內容
+     */
+    applyFilterOptionsCsv(csvText) {
+      const lines = csvText.split('\n').filter(line => line.trim())
+      const dataLines = lines.slice(1) // 跳過標題列
+
+      const categories = []
+      const characters = []
+
+      dataLines.forEach(line => {
+        const [name, typeStr] = this.parseCSVLine(line)
+        const type = parseInt(typeStr)
+
+        if (!name) return
+
+        if (type === 1) {
+          categories.push(name)
+        } else if (type === 4) {
+          characters.push(name)
+        }
+      })
+
+      this.categories = categories
+      this.characters = characters
     },
 
     /**
