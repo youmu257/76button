@@ -10,14 +10,16 @@
 ## 開發
 
 ```bash
-npm run serve   # 啟動本機開發伺服器
-npm run build   # 建置正式版（輸出至 dist/）
-npm run lint    # 使用 Eslint 檢查程式碼風格
+npm run serve      # 啟動本機開發伺服器
+npm run build      # 建置正式版（輸出至 dist/）
+npm run lint       # 使用 Eslint 檢查程式碼風格
+npm run test:unit  # 執行單元測試（Jest + Vue Test Utils）
 ```
 
 - 如要更改語音按鈕，調整 [src/assets/button-list.json](src/assets/button-list.json) 即可。
 - `<head>` 相關設定（title、meta、OG 標籤）寫在 [src/App.vue](src/App.vue) 中。
 - 程式碼風格規範請見 [docs/CODING_STYLE.md](docs/CODING_STYLE.md)。
+- 單元測試放在 `tests/unit/`，目錄結構對應 `src/`（例如 `src/utils/csvCache.js` 的測試在 `tests/unit/utils/csvCache.spec.js`）。
 
 ## 部署
 

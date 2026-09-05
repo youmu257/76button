@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
     "build": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test:unit": "jest"
   },
   "dependencies": {
     "@morr/vue3-head": "^2.2.1",
@@ -22,9 +23,14 @@
     "@vue/cli-plugin-eslint": "^4.5.15",
     "@vue/cli-service": "^4.5.15",
     "@vue/compiler-sfc": "^3.2.31",
+    "@vue/test-utils": "^2.5.0",
+    "@vue/vue3-jest": "^29.2.6",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^29.7.0",
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^7.20.0",
+    "jest": "^30.5.1",
+    "jest-environment-jsdom": "^30.5.1",
     "prettier": "^3.6.2"
   },
   "eslintConfig": {

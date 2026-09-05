@@ -13,5 +13,13 @@ module.exports = {
     'indent': ['error', 2],
     'quotes': ['error', 'single'],
     'semi': ['error', 'never'],
-  }
+  },
+  'overrides': [
+    {
+      'files': ['tests/unit/**/*.spec.js'],
+      'env': {
+        'jest': true,
+      },
+    },
+  ],
 }
