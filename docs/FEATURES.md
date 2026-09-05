@@ -35,7 +35,7 @@
 | 建置工具 | Vue CLI 4（`vue-cli-service`），需要 `NODE_OPTIONS=--openssl-legacy-provider` |
 | Head 管理 | `@morr/vue3-head`，於 [App.vue](../src/App.vue) 動態設定 `<title>`、meta、OG 標籤 |
 | 資料來源 | 部分功能讀取專案內 JSON（語音按鈕、時間軸、貢獻者、側邊欄選單），部分功能即時抓取 Google 試算表發佈的 CSV |
-| 部署 | GitHub Actions（[deploy.yml](../.github/workflows/deploy.yml)）：push 到 `master` 分支自動建置並發佈到 GitHub Pages |
+| 部署 | GitHub Actions（[deploy.yml](../.github/workflows/deploy.yml)）：push 到 `master` 分支先跑單元測試，測試通過才建置並發佈到 GitHub Pages |
 
 ## 網站導覽結構
 
@@ -224,8 +224,10 @@ npm run build   # 建置正式版（輸出至 dist/）
 npm run lint    # ESLint 檢查
 ```
 
-- 部署已全面自動化：push 到 `master` 分支會觸發 [GitHub Actions](../.github/workflows/deploy.yml)，自動 `npm ci` → build → 發佈到 GitHub Pages（`peaceiris/actions-gh-pages`），不需手動 build/commit。
-- 也可在 GitHub 頁面的 Actions 分頁手動觸發（`workflow_dispatch`）。
+- 部署已全面自動化：push 到 `master` 分支會觸發 [GitHub Actions](../.github/workflows/deploy.yml)，分成兩個 job：
+  1. `test`：`npm ci` → `npm run test:unit`，跑單元測試。
+  2. `deploy`：設定 `needs: test`，只有 `test` job 成功才會執行，依序 `npm ci` → build → 發佈到 GitHub Pages（`peaceiris/actions-gh-pages`）。若單元測試失敗，`deploy` job 會直接被跳過，不會建置也不會發佈。
+- 也可在 GitHub 頁面的 Actions 分頁手動觸發（`workflow_dispatch`），一樣會先跑過 `test` job。
 - 建置需要 `NODE_OPTIONS=--openssl-legacy-provider`（因 Node 版本與舊版 webpack 相依套件的相容性問題）。
 
 ## 已知技術債
