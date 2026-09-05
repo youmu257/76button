@@ -2,6 +2,8 @@
 
 本文件記錄「祈菈語音按鈕」網站（[chilla76cheese.com](https://chilla76cheese.com)）目前的完整功能，供日後開發、維護與交接參考。
 
+> 想知道功能背後程式碼怎麼運作（元件關係、狀態管理、資料流程），請見 [docs/ARCHITECTURE.md](ARCHITECTURE.md)。
+
 ## 目錄
 
 - [專案簡介](#專案簡介)

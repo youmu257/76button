@@ -5,6 +5,7 @@
 單純推廣用。其中所有語音檔版權為 [STORIA 祈菈‧貝希毛絲](https://www.youtube.com/channel/UCykgAuIjn70_CXLNjZ8zppQ) 所有，如有需要下架的音訊檔請再聯絡我。
 
 > 📖 **完整功能說明請見 [docs/FEATURES.md](docs/FEATURES.md)**（各頁面功能、資料來源、彩蛋、技術架構等）
+> 🔧 **程式碼架構與內部邏輯請見 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**（元件關係、狀態管理、資料流程）
 
 ## 開發
 
