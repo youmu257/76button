@@ -107,6 +107,7 @@
 <script>
 import PageHeader from './PageHeader.vue'
 import BackToTop from './BackToTop.vue'
+import { readCsvCache, fetchCsvFresh } from '@/utils/csvCache'
 
 /**
  * TagSummarySearch 組件
@@ -225,6 +226,13 @@ export default {
   },
 
   async mounted() {
+    // 若本地已有上次抓到的快取，先直接顯示，不用讓使用者空等
+    const cached = readCsvCache(VIDEO_TAGS_CSV_URL)
+    if (cached) {
+      this.applyVideoTagsCsv(cached)
+      this.isLoading = false
+    }
+
     await this.loadFilterOptions()
     this.isLoading = false
   },
@@ -234,52 +242,59 @@ export default {
      * 載入影片標籤資料並提取不重複的標籤
      */
     async loadFilterOptions() {
+      const cached = readCsvCache(VIDEO_TAGS_CSV_URL)
+
       try {
-        const response = await fetch(VIDEO_TAGS_CSV_URL)
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
-        }
-        
-        const csvText = await response.text()
-        const lines = csvText.split('\n').filter(line => line.trim())
-        const dataLines = lines.slice(1) // 跳過標題列
-        
-        // 使用 Object 儲存各類型的 Map，簡化代碼結構
-        const tagMaps = {
-          [TAG_TYPES.STREAM_TYPE]: new Map(),
-          [TAG_TYPES.GAME]: new Map(),
-          [TAG_TYPES.SONG]: new Map(),
-          [TAG_TYPES.CHARACTER]: new Map(),
-        }
-        
-        // 批次處理標籤
-        dataLines.forEach(line => {
-          const fields = this.parseCSVLine(line)
-          const tagString = fields[CSV_FIELD_INDEX.TAGS]
-          
-          if (!tagString) return
-          
-          try {
-            const tags = JSON.parse(tagString)
-            this.processTags(tags, tagMaps)
-          } catch (e) {
-            // 忽略解析失敗的標籤
-          }
-        })
-        
-        // 轉換為排序後的陣列
-        this.streamTypes = this.convertMapToSortedArray(tagMaps[TAG_TYPES.STREAM_TYPE])
-        this.games = this.convertMapToSortedArray(tagMaps[TAG_TYPES.GAME])
-        this.songs = this.convertMapToSortedArray(tagMaps[TAG_TYPES.SONG])
-        this.characters = this.convertMapToSortedArray(tagMaps[TAG_TYPES.CHARACTER])
+        const csvText = await fetchCsvFresh(VIDEO_TAGS_CSV_URL)
+        this.applyVideoTagsCsv(csvText)
       } catch (error) {
         console.error('載入影片標籤資料失敗:', error)
-        // 確保即使失敗也有空陣列
-        this.streamTypes = []
-        this.games = []
-        this.songs = []
-        this.characters = []
+        if (!cached) {
+          // 確保即使失敗也有空陣列
+          this.streamTypes = []
+          this.games = []
+          this.songs = []
+          this.characters = []
+        }
       }
+    },
+
+    /**
+     * 解析影片標籤 CSV 並統計、套用到畫面上
+     * @param {String} csvText - CSV 文字內容
+     */
+    applyVideoTagsCsv(csvText) {
+      const lines = csvText.split(/\r\n|\n/).filter(line => line.trim())
+      const dataLines = lines.slice(1) // 跳過標題列
+
+      // 使用 Object 儲存各類型的 Map，簡化代碼結構
+      const tagMaps = {
+        [TAG_TYPES.STREAM_TYPE]: new Map(),
+        [TAG_TYPES.GAME]: new Map(),
+        [TAG_TYPES.SONG]: new Map(),
+        [TAG_TYPES.CHARACTER]: new Map(),
+      }
+
+      // 批次處理標籤
+      dataLines.forEach(line => {
+        const fields = this.parseCSVLine(line)
+        const tagString = fields[CSV_FIELD_INDEX.TAGS]
+
+        if (!tagString) return
+
+        try {
+          const tags = JSON.parse(tagString)
+          this.processTags(tags, tagMaps)
+        } catch (e) {
+          // 忽略解析失敗的標籤
+        }
+      })
+
+      // 轉換為排序後的陣列
+      this.streamTypes = this.convertMapToSortedArray(tagMaps[TAG_TYPES.STREAM_TYPE])
+      this.games = this.convertMapToSortedArray(tagMaps[TAG_TYPES.GAME])
+      this.songs = this.convertMapToSortedArray(tagMaps[TAG_TYPES.SONG])
+      this.characters = this.convertMapToSortedArray(tagMaps[TAG_TYPES.CHARACTER])
     },
 
     /**

@@ -9,6 +9,23 @@
       role="navigation"
       aria-label="主要導航選單"
     >
+      <!-- 首次造訪、側邊欄為收合狀態時顯示的一次性引導提示 -->
+      <div
+        v-if="showHint"
+        class="sidebar-hint"
+        role="status"
+      >
+        點這裡展開選單，可以看到完整的文字說明喔
+        <i
+          class="bi bi-x sidebar-hint-close"
+          role="button"
+          tabindex="0"
+          aria-label="關閉提示"
+          @click="dismissHint"
+          @keydown.enter="dismissHint"
+        />
+      </div>
+
       <!-- 收合/展開按鈕 -->
       <button
         id="sidebarCollapse"
@@ -64,7 +81,12 @@
             :key="item.id || index"
           >
             <!-- 路由連結 -->
-            <router-link :to="item.href">
+            <router-link
+              :to="item.href"
+              :title="item.text"
+              :class="{ 'nav-active': isActive(item) }"
+              :aria-current="isActive(item) ? 'page' : null"
+            >
               <!-- 選單圖示 -->
               <span
                 :class="item.icon"
@@ -128,7 +150,32 @@ export default {
        * @type {Array}
        */
       sidebarItems: sidebarItemList,
+
+      /**
+       * 是否顯示「側邊欄可展開」的一次性引導提示
+       * @type {Boolean}
+       */
+      showHint: false,
+
+      /**
+       * 顯示提示前的延遲計時器
+       * @type {Number|null}
+       */
+      hintTimeout: null,
     }
+  },
+
+  watch: {
+    /**
+     * 提示顯示時監聽點擊側邊欄以外的區域，任何互動都視為「已看過」
+     */
+    showHint(isShown) {
+      if (isShown) {
+        document.addEventListener('click', this.handleOutsideClick)
+      } else {
+        document.removeEventListener('click', this.handleOutsideClick)
+      }
+    },
   },
 
   created() {
@@ -141,12 +188,77 @@ export default {
     window.addEventListener('resize', this.handleResize)
   },
 
+  mounted() {
+    this.maybeShowHint()
+  },
+
   beforeUnmount() {
     // 移除事件監聽器，防止記憶體洩漏
     window.removeEventListener('resize', this.handleResize)
+    document.removeEventListener('click', this.handleOutsideClick)
+    if (this.hintTimeout) {
+      clearTimeout(this.hintTimeout)
+    }
   },
 
   methods: {
+    /**
+     * 若側邊欄目前是收合狀態，且使用者從未看過提示，延遲顯示一次性引導提示
+     */
+    maybeShowHint() {
+      if (this.isSidebarOpen) return
+
+      let alreadySeen = false
+      try {
+        alreadySeen = localStorage.getItem('sidebarHintSeen') === '1'
+      } catch (e) {
+        // localStorage 無法使用（例如隱私瀏覽模式），直接放棄顯示提示
+        return
+      }
+      if (alreadySeen) return
+
+      this.hintTimeout = setTimeout(() => {
+        this.showHint = true
+      }, 1000)
+    },
+
+    /**
+     * 關閉提示，並記住使用者已經看過，之後不再顯示
+     */
+    dismissHint() {
+      if (!this.showHint) return
+      this.showHint = false
+      try {
+        localStorage.setItem('sidebarHintSeen', '1')
+      } catch (e) {
+        // 忽略無法寫入 localStorage 的情況
+      }
+    },
+
+    /**
+     * 點擊側邊欄以外的地方時關閉提示
+     * @param {MouseEvent} e
+     */
+    handleOutsideClick(e) {
+      if (this.$el.contains(e.target)) return
+      this.dismissHint()
+    },
+
+    /**
+     * 判斷選單項目是否對應目前所在頁面
+     * 首頁 `/` 與 `/voice` 是同一個頁面（VoicePage），需視為同一項目
+     * @param {Object} item - 選單項目（來自 sidebar-list.json）
+     * @returns {Boolean}
+     */
+    isActive(item) {
+      const target = `/${item.href}`
+      const current = this.$route.path
+      if (target === '/voice') {
+        return current === '/' || current === '/voice'
+      }
+      return current === target
+    },
+
     /**
      * 切換側邊欄開啟/收合狀態
      * 並通知父組件狀態變更
@@ -154,6 +266,7 @@ export default {
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen
       this.$emit('sidebar-toggle', this.isSidebarOpen)
+      this.dismissHint()
     },
 
     /**

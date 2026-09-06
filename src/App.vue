@@ -22,6 +22,7 @@ import TimelinePage from './components/Timeline.vue'
 import VideoSearch from './components/VideoSearch.vue'
 import TagSummarySearch from './components/TagSummarySearch.vue'
 import VoicePageFooter from './components/VoicePageFooter.vue'
+import NotFound from './components/NotFound.vue'
 
 export default {
   name: 'App',
@@ -106,6 +107,7 @@ const routes = [
   { path: '/timeline', component: TimelinePage },
   { path: '/video-search', component: VideoSearch },
   { path: '/tag-summary', component: TagSummarySearch },
+  { path: '/:pathMatch(.*)*', component: NotFound }, // 找不到對應路由時顯示 404
 ]
 
 const router = createRouter({

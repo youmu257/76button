@@ -7,11 +7,19 @@ module.exports = {
   },
   'extends': ['plugin:vue/essential', 'eslint:recommended', 'plugin:vue/recommended'],
   'parserOptions': {
-    'parser': 'babel-eslint'
+    'parser': '@babel/eslint-parser'
   },
   'rules': {
     'indent': ['error', 2],
     'quotes': ['error', 'single'],
     'semi': ['error', 'never'],
-  }
+  },
+  'overrides': [
+    {
+      'files': ['tests/unit/**/*.spec.js'],
+      'env': {
+        'jest': true,
+      },
+    },
+  ],
 }

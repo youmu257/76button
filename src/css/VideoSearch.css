@@ -86,12 +86,64 @@
   color: #333;
 }
 
+/* 搜尋中的小型 spinner（取代搜尋框的清除圖示） */
+.search-spinner {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ddd;
+  border-top-color: #4a90e2;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* 目前套用的篩選條件摘要 */
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 12px;
+  background-color: #eef4fc;
+  color: #2c5aa0;
+  border-radius: 16px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.filter-chip i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.filter-chip i:hover,
+.filter-chip i:focus-visible {
+  background-color: rgba(44, 90, 160, 0.15);
+  outline: none;
+}
+
 /* 清除篩選按鈕 */
 .reset-filter-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 12px;
   padding: 6px 14px;
   font-size: 14px;
   color: #4a90e2;
@@ -228,6 +280,37 @@
   color: #c2185b;
 }
 
+/* 載入失敗樣式 */
+.load-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 20px;
+  color: #c0392b;
+  font-size: 16px;
+  text-align: center;
+}
+
+.retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #c0392b;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.retry-btn:hover {
+  background-color: #a93226;
+}
+
 /* 載入中樣式 */
 .loading-container {
   display: flex;
@@ -258,43 +341,36 @@
   margin: 0;
 }
 
-/* 分頁控制 */
-.pagination-container {
+/* 無限捲動：載入更多 */
+.load-more-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 16px;
+  gap: 8px;
   margin-top: 24px;
   padding: 8px;
 }
 
-.pagination-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  font-size: 16px;
+.load-more-info {
+  margin: 0;
+  font-size: 13px;
+  color: #999;
+}
+
+.load-more-btn {
+  padding: 8px 24px;
+  font-size: 14px;
   color: #4a90e2;
   background-color: #fff;
-  border: 2px solid #ddd;
-  border-radius: 6px;
+  border: 2px solid #4a90e2;
+  border-radius: 20px;
   cursor: pointer;
-  transition: border-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.pagination-btn:hover:not(:disabled) {
-  border-color: #4a90e2;
-}
-
-.pagination-btn:disabled {
-  color: #ccc;
-  cursor: not-allowed;
-}
-
-.pagination-info {
-  font-size: 14px;
-  color: #555;
+.load-more-btn:hover {
+  background-color: #4a90e2;
+  color: #fff;
 }
 
 /* 響應式設計 */

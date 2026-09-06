@@ -66,6 +66,49 @@
   display: block; /* 顯示縮寫 */
 }
 
+/* ---- 首次造訪的一次性引導提示 ---- */
+.sidebar-hint {
+  position: fixed;
+  top: 64px;
+  left: 10px;
+  z-index: 10001;
+  max-width: 200px;
+  padding: 10px 12px;
+  background: #1e293b;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.5;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  animation: sidebarHintIn 0.25s ease-out;
+}
+
+.sidebar-hint-close {
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 2px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-hint-close:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes sidebarHintIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ---- 收合按鈕 ---- */
 #sidebarCollapse {
   position: fixed;
@@ -164,6 +207,28 @@
 #sidebar ul.components li a:hover {
   background: #e0f4ff;
   color: #0077b6;
+}
+
+/* ---- 目前所在頁面的選單項目 ---- */
+#sidebar ul.components li a.nav-active {
+  background: #e0f4ff;
+  color: #0077b6;
+  font-weight: 700;
+  border-left: 3px solid #0077b6;
+  padding-left: 17px; /* 20px - 3px 邊框，維持文字對齊 */
+}
+
+#sidebar ul.components li a.nav-active i,
+#sidebar ul.components li a.nav-active span[class^='icon-'] {
+  color: #0077b6;
+}
+
+/* 收合狀態下改用置中的底色圓角區塊標示目前頁面（維持置中版面） */
+#sidebar.active ul.components li a.nav-active {
+  border-left: none;
+  padding: 10px;
+  background: #cdeaff;
+  border-radius: 8px;
 }
 
 /* ---- 分隔線 ---- */
