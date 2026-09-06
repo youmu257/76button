@@ -226,7 +226,10 @@ npm run lint    # ESLint 檢查
 
 - 部署已全面自動化：push 到 `master` 分支會觸發 [GitHub Actions](../.github/workflows/deploy.yml)，分成兩個 job：
   1. `test`：`npm ci` → `npm run test:unit`，跑單元測試。
-  2. `deploy`：設定 `needs: test`，只有 `test` job 成功才會執行，依序 `npm ci` → build → 發佈到 GitHub Pages（`peaceiris/actions-gh-pages`）。若單元測試失敗，`deploy` job 會直接被跳過，不會建置也不會發佈。
+  2. `deploy`：設定 `needs: test`，只有 `test` job 成功才會執行，依序：
+     - **自動遞增版號**：檢查這次推送有沒有動到 `.env`（footer 版本號來源），如果沒有就自動把 patch 版號 +1（例如 `2.0.2` → `2.0.3`）並直接 commit + push 回 `master`（commit message 帶 `[skip ci]`，不會再觸發一次 workflow）；如果這次推送本來就手動改過 `.env`（例如想跳到 `2.1.0`），就尊重手動設定的版本，不會再疊加。
+     - `npm ci` → build → 發佈到 GitHub Pages（`peaceiris/actions-gh-pages`）。
+     - 若單元測試失敗，`deploy` job 會直接被跳過，不會建置也不會發佈，也不會遞增版號。
 - 也可在 GitHub 頁面的 Actions 分頁手動觸發（`workflow_dispatch`），一樣會先跑過 `test` job。
 - 建置工具已升級到 Vue CLI 5（webpack 5），不再需要 `NODE_OPTIONS=--openssl-legacy-provider` 這個相容性補丁。
 
