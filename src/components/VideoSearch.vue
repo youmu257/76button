@@ -587,7 +587,7 @@ export default {
      * @returns {Array} 解析後的影片資料陣列
      */
     parseCSV(csvText) {
-      const lines = csvText.split('\n').filter(line => line.trim())
+      const lines = csvText.split(/\r\n|\n/).filter(line => line.trim())
       const dataLines = lines.slice(1) // 跳過標題列
       
       return dataLines
@@ -675,7 +675,7 @@ export default {
      * @param {String} csvText - CSV 文字內容
      */
     applyFilterOptionsCsv(csvText) {
-      const lines = csvText.split('\n').filter(line => line.trim())
+      const lines = csvText.split(/\r\n|\n/).filter(line => line.trim())
       const dataLines = lines.slice(1) // 跳過標題列
 
       const categories = []

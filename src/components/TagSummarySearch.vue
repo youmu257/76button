@@ -264,7 +264,7 @@ export default {
      * @param {String} csvText - CSV 文字內容
      */
     applyVideoTagsCsv(csvText) {
-      const lines = csvText.split('\n').filter(line => line.trim())
+      const lines = csvText.split(/\r\n|\n/).filter(line => line.trim())
       const dataLines = lines.slice(1) // 跳過標題列
 
       // 使用 Object 儲存各類型的 Map，簡化代碼結構

@@ -8,7 +8,7 @@ module.exports = {
     '^.+\\.js$': 'babel-jest',
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(jpg|jpeg|png|gif|svg|mp3)$': '<rootDir>/tests/unit/__mocks__/fileMock.js',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
 }
