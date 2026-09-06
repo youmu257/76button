@@ -7,7 +7,7 @@ module.exports = {
   },
   'extends': ['plugin:vue/essential', 'eslint:recommended', 'plugin:vue/recommended'],
   'parserOptions': {
-    'parser': 'babel-eslint'
+    'parser': '@babel/eslint-parser'
   },
   'rules': {
     'indent': ['error', 2],

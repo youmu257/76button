@@ -31,8 +31,8 @@
 | 項目 | 說明 |
 | --- | --- |
 | 前端框架 | Vue 3（Options API）＋ Vue Router 4（`createWebHashHistory`，網址帶 `#`） |
-| UI 套件 | Bootstrap 5、Bootstrap Icons、bootstrap-vue |
-| 建置工具 | Vue CLI 4（`vue-cli-service`），需要 `NODE_OPTIONS=--openssl-legacy-provider` |
+| UI 套件 | Bootstrap 5、Bootstrap Icons |
+| 建置工具 | Vue CLI 5（`vue-cli-service`，內部使用 webpack 5） |
 | Head 管理 | `@morr/vue3-head`，於 [App.vue](../src/App.vue) 動態設定 `<title>`、meta、OG 標籤 |
 | 資料來源 | 部分功能讀取專案內 JSON（語音按鈕、時間軸、貢獻者、側邊欄選單），部分功能即時抓取 Google 試算表發佈的 CSV |
 | 部署 | GitHub Actions（[deploy.yml](../.github/workflows/deploy.yml)）：push 到 `master` 分支先跑單元測試，測試通過才建置並發佈到 GitHub Pages |
@@ -228,7 +228,7 @@ npm run lint    # ESLint 檢查
   1. `test`：`npm ci` → `npm run test:unit`，跑單元測試。
   2. `deploy`：設定 `needs: test`，只有 `test` job 成功才會執行，依序 `npm ci` → build → 發佈到 GitHub Pages（`peaceiris/actions-gh-pages`）。若單元測試失敗，`deploy` job 會直接被跳過，不會建置也不會發佈。
 - 也可在 GitHub 頁面的 Actions 分頁手動觸發（`workflow_dispatch`），一樣會先跑過 `test` job。
-- 建置需要 `NODE_OPTIONS=--openssl-legacy-provider`（因 Node 版本與舊版 webpack 相依套件的相容性問題）。
+- 建置工具已升級到 Vue CLI 5（webpack 5），不再需要 `NODE_OPTIONS=--openssl-legacy-provider` 這個相容性補丁。
 
 ## 已知技術債
 
