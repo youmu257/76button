@@ -176,7 +176,7 @@
 
 檔案：[ContributorsPage.vue](../src/components/ContributorsPage.vue)
 
-以卡片網格列出所有貢獻者，資料來自 [contributors-list.json](../src/assets/contributors-list.json)，每筆包含姓名、貢獻內容，以及可選的外部連結（例如提供的圖片素材原始貼文）。
+以卡片網格列出所有貢獻者，資料來自 [contributors-list.json](../src/assets/contributors-list.json)，每筆包含姓名與一組貢獻項目（同一人可能有多項貢獻），每項貢獻各自可帶可選的外部連結（例如提供的圖片素材原始貼文）。
 
 ## 共用元件
 

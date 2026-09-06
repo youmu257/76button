@@ -218,7 +218,7 @@ flowchart LR
 
 **`sidebar-list.json`**：`{ href, icon, text }[]`，`href` 是不含開頭斜線的路由路徑片段，`icon` 對應 `src/css/ItemIcon.css` 裡定義的 icon class。
 
-**`contributors-list.json`**：`{ name, contribution, link?, linkText? }[]`，`link`/`linkText` 選填，沒有就不顯示連結。
+**`contributors-list.json`**：`{ name, contributions: { text, link?, linkText? }[] }[]`。同一人若有多項貢獻，`contributions` 就放多個項目（例如 Cow Lo 同時提供了語音按鈕與意見回饋頁的圖片素材，會合併成一張卡片、列出兩項貢獻）；`link`/`linkText` 為每個項目各自選填，沒有就不顯示連結。
 
 **`timeline-*-data.json`**（四份時間軸資料共用同一種結構）：
 
