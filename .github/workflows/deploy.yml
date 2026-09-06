@@ -23,19 +23,41 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
+      # 這次推送若沒有手動改過 .env 的版號，自動把 patch 版號 +1，
+      # 讓 footer 顯示的版本號每次上版都會變動，不用每次都手動改。
+      - name: 自動遞增版號（若這次推送沒有手動改版號）
+        run: |
+          if git diff --quiet HEAD^ HEAD -- .env 2>/dev/null; then
+            CURRENT_VERSION=$(sed -n 's/^VUE_APP_VERSION=//p' .env | tr -d '\r\n')
+            MAJOR=$(cut -d. -f1 <<< "$CURRENT_VERSION")
+            MINOR=$(cut -d. -f2 <<< "$CURRENT_VERSION")
+            PATCH=$(cut -d. -f3 <<< "$CURRENT_VERSION")
+            NEW_VERSION="$MAJOR.$MINOR.$((PATCH + 1))"
+            echo "VUE_APP_VERSION=$NEW_VERSION" > .env
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .env
+            git commit -m "chore: 自動遞增版號至 $NEW_VERSION [skip ci]"
+            git push origin HEAD:master
+          else
+            echo ".env 這次推送已經手動修改過版號，略過自動遞增"
+          fi
+
       - run: npm ci
 
       - run: npx vue-cli-service build
-        env:
-          NODE_OPTIONS: --openssl-legacy-provider
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
